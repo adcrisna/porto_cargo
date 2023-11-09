@@ -50,7 +50,7 @@
             border-radius: 5pxrgb(204, 204, 204);
             border-radius: 10px;
             width: 160px;
-            height: 60px;
+            height: 50px;
             margin-right: 20px;
         }
 
