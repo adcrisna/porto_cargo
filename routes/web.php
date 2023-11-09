@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ShipmentController;
 use App\Http\Controllers\Frontend\ReportController;
 use App\Http\Controllers\Frontend\ClaimController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,9 @@ use App\Http\Controllers\Frontend\ClaimController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(TestController::class)->group(function () {
+    Route::get('/premium_note', 'pdfPremiumNote')->name('pdfPremiumNote');
+});
 
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'index')->name('index');

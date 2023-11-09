@@ -402,14 +402,34 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Photos of Damage Items
                                     </b></label>
-                                <input type="file" class="form-control" name="photosOfDamage[]" id="photosOfDamage"
-                                    style="background-color: #ffffff" multiple>
+                                <div id="dynamicInputsDamage">
+                                    <div class="form-group">
+                                        <div class="d-flex">
+                                            <input type="file" class="form-control" name="photosOfDamage[]"
+                                                id="photosOfDamage" style="background-color: #ffffff">
+                                            <a class="ml-3 btn btn-danger removeInputDamage"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a id="addInputDamage" class="btn btn-primary"><i class="fa fa-plus-circle"
+                                        aria-hidden="true"></i></a>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Photos of Unloading
                                         Process</b></label>
-                                <input type="file" class="form-control" name="photosOfUnloading[]"
-                                    id="photosOfUnloading" style="background-color: #ffffff" multiple>
+                                <div id="dynamicInputsLoading">
+                                    <div class="form-group">
+                                        <div class="d-flex">
+                                            <input type="file" class="form-control" name="photosOfUnloading[]"
+                                                id="photosOfUnloading" style="background-color: #ffffff">
+                                            <a class="ml-3 btn btn-danger removeInputLoading"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a id="addInputLoading" class="btn btn-primary"><i class="fa fa-plus-circle"
+                                        aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </form>
@@ -452,5 +472,62 @@
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function() {
+            var hitungDamage = 0;
+            $('#addInputDamage').click(function() {
+                var clone = $('#dynamicInputsDamage .form-group:first').clone();
+                clone.find('input[name="photosOfDamage[]"]').val('');
+                $('#dynamicInputsDamage').append(clone);
+                hitungDamage++;
+                updateHapusTombolStatusDamage();
+            });
+
+            $('#dynamicInputsDamage').on('click', '.removeInputDamage', function() {
+                $(this).parent().parent().remove();
+                hitungDamage--;
+                updateHapusTombolStatusDamage();
+            });
+
+            function updateHapusTombolStatusDamage() {
+                if (hitungDamage <= 0) {
+                    $('.removeInputDamage').hide();
+                } else {
+                    $('.removeInputDamage').show();
+                }
+            }
+
+            updateHapusTombolStatusDamage();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var hitungLoading = 0;
+            $('#addInputLoading').click(function() {
+                var clone = $('#dynamicInputsLoading .form-group:first').clone();
+                clone.find('input[name="photosOfUnloading[]"]').val('');
+                $('#dynamicInputsLoading').append(clone);
+                hitungLoading++;
+                updateHapusTombolStatusLoading();
+            });
+
+            $('#dynamicInputsLoading').on('click', '.removeInputLoading', function() {
+                console.log('kontl');
+                $(this).parent().parent().remove();
+                hitungLoading--;
+                updateHapusTombolStatusLoading();
+            });
+
+            function updateHapusTombolStatusLoading() {
+                if (hitungLoading <= 0) {
+                    $('.removeInputLoading').hide();
+                } else {
+                    $('.removeInputLoading').show();
+                }
+            }
+
+            updateHapusTombolStatusLoading();
+        });
     </script>
 @endsection
