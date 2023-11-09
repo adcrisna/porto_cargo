@@ -40,7 +40,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/logout', 'logout')->name('auth.logout');
 });
 
-Route::group(['middleware' => ['auth']],function() {
+Route::group(['middleware' => ['auth','verify_account']],function() {
     Route::controller(QuoteController::class)->group(function () {
         Route::get('/quote', 'index')->name('quote.index');
         Route::get('/confirmation', 'confirmation')->name('quote.confirmation');
