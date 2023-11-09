@@ -21,6 +21,7 @@ use App\Http\Controllers\TestController;
 */
 Route::controller(TestController::class)->group(function () {
     Route::get('/premium_note', 'pdfPremiumNote')->name('pdfPremiumNote');
+    Route::get('/test', 'test')->name('test')->name('test');
 });
 
 Route::controller(IndexController::class)->group(function () {
