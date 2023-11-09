@@ -68,6 +68,11 @@
 @endsection
 @section('content')
     <div class="row py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 ">
+                @include('component.session')
+            </div>
+        </div>
         <div class="col-lg-6 d-flex justify-content-center text-center">
             <div class="container">
                 <div class="text-overlay">
@@ -84,7 +89,7 @@
                     <h5 class="text-primary mt-2">Login</h5>
                 </div>
                 <div class="card-body text-primary">
-                    <form action="" method="POST">
+                    <form action="{{ route('auth.postlogin') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Email</label>

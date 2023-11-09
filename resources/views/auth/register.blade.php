@@ -67,6 +67,11 @@
 @endsection
 @section('content')
     <div class="row py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 ">
+                @include('component.session')
+            </div>
+        </div>
         <div class="col-lg-6 d-flex justify-content-center text-center">
             <div class="container">
                 <div class="text-overlay">
@@ -81,19 +86,21 @@
             <div class="card border-primary mb-3">
                 <div class="card-header bg-white">
                     <h5 class="text-primary mt-2">Register</h5>
+                    @include('component.session')
                 </div>
                 <div class="card-body text-primary">
-                    <form action="" method="POST">
+                    <form action="{{ route('auth.postregister') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Name Type</label>
-                            <select class="form-select" name="nameType" id="nameType" style="background-color: #ffffff"
+                            <select class="form-select" name="nametype" id="nameType" style="background-color: #ffffff"
                                 required>
-                                <option selected>PT/Individu</option>
+                                <option selected>-Selected-</option>
                                 <option value="PT">PT</option>
                                 <option value="Individu">Individu</option>
                             </select>
                         </div>
+                        <input type="hidden" value="0" id="is_verify" name="is_verify">
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Name</label>
                             <input type="text" class="form-control" name="name" id="name" required>
@@ -104,7 +111,7 @@
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                            <input type="number" class="form-control" name="name" id="name" required>
+                            <input type="number" class="form-control" name="phone_number" id="phone_number" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Password</label>
@@ -117,13 +124,13 @@
                         </div>
                         <br>
                         <center>
-                            <button type="submit" class="btn btn-primary" style="width: 260px">Verify Account</button>
+                            <button type="submit" class="btn btn-primary" id="verify" style="width: 260px">Verify Account</button>
                             <p></p>
                             <p style="font-size: 10px; color:rgb(126, 124, 124)">Salvus reserves the rights to verify new
                                 user
                                 registration.<br>Your account will be active after verification and notified by email.</p>
                             <br>
-                            <button type="submit" class="btn btn-primary" style="width: 260px">Processed Without
+                            <button type="submit" class="btn btn-primary" id="non_verify" style="width: 260px">Processed Without
                                 Verification</button>
                             <p></p>
                             <p style="font-size: 10px; color:rgb(126, 124, 124)">You can processed without verification. Get
@@ -140,5 +147,15 @@
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+
+    <script>
+
+        $(document).ready(function() {
+            $('#verify').click(function() {
+                $('#is_verify').val(1);
+            });
+            });
     </script>
 @endsection

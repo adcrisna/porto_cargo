@@ -33,31 +33,36 @@ Route::controller(IndexController::class)->group(function () {
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'login')->name('auth.login');
+    Route::post('/postlogin', 'postlogin')->name('auth.postlogin');
     Route::get('/register', 'register')->name('auth.register');
+    Route::post('/postregister', 'postregister')->name('auth.postregister');
     Route::get('/verification', 'waitVerif')->name('auth.verif');
+    Route::get('/logout', 'logout')->name('auth.logout');
 });
 
-Route::controller(QuoteController::class)->group(function () {
-    Route::get('/quote', 'index')->name('quote.index');
-    Route::get('/confirmation', 'confirmation')->name('quote.confirmation');
-});
+Route::group(['middleware' => ['auth']],function() {
+    Route::controller(QuoteController::class)->group(function () {
+        Route::get('/quote', 'index')->name('quote.index');
+        Route::get('/confirmation', 'confirmation')->name('quote.confirmation');
+    });
 
-Route::controller(PaymentController::class)->group(function () {
-    Route::get('/payment', 'index')->name('payment.index');
-});
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('/payment', 'index')->name('payment.index');
+    });
 
-Route::controller(ShipmentController::class)->group(function () {
-    Route::get('/shipment', 'index')->name('shipment.index');
-});
+    Route::controller(ShipmentController::class)->group(function () {
+        Route::get('/shipment', 'index')->name('shipment.index');
+    });
 
-Route::controller(ReportController::class)->group(function () {
-    Route::get('/report', 'index')->name('report.index');
-});
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/report', 'index')->name('report.index');
+    });
 
-Route::controller(ClaimController::class)->group(function () {
-    Route::get('/new_claim', 'newClaim')->name('claim.new');
-    Route::get('/form_claim', 'formClaim')->name('claim.form');
-    Route::get('/submitted_claim', 'submittedClaim')->name('claim.submitted');
-    Route::get('/submitted_detail', 'submittedDetail')->name('claim.detailSubmitted');
-    Route::get('/closed_claim', 'closedClaim')->name('claim.closed');
+    Route::controller(ClaimController::class)->group(function () {
+        Route::get('/new_claim', 'newClaim')->name('claim.new');
+        Route::get('/form_claim', 'formClaim')->name('claim.form');
+        Route::get('/submitted_claim', 'submittedClaim')->name('claim.submitted');
+        Route::get('/submitted_detail', 'submittedDetail')->name('claim.detailSubmitted');
+        Route::get('/closed_claim', 'closedClaim')->name('claim.closed');
+    });
 });

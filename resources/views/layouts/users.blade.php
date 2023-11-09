@@ -98,10 +98,7 @@
                 <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
             </div>
             &nbsp;
-            @php
-                $auth = 'Login';
-            @endphp
-            @if ($auth == 'Login')
+            @if (Auth::check())
                 <div class="profile-dropdown">
                     <div class="nav-item dropdown">
                         <div class="row">
@@ -110,13 +107,12 @@
                             </div>
                             <div class="col-sm-5" style="margin-right: 20px">
                                 <a href="#" class="nav-link" data-bs-toggle="dropdown"
-                                    style="font-size: 12px">ALEX
-                                    MARTIN</a>
+                                    style="font-size: 12px">{{ strtoupper(Auth::user()->name) }}</a>
                             </div>
                         </div>
                         <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border: 1px solid #3156A5">
                             <a href="#" class="dropdown-item">Account Settings</a>
-                            <a href="#" class="dropdown-item">Keluar</a>
+                            <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
                         </div>
                     </div>
                     <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
