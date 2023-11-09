@@ -16,8 +16,8 @@
             position: absolute;
             top: 0;
             left: 0;
+            height: 655px;
             width: 100%;
-            height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
 
@@ -41,6 +41,10 @@
             .content {
                 width: 100%;
                 left: 50%;
+            }
+
+            .newBackground::before {
+                height: 655px;
             }
         }
 
