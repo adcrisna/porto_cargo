@@ -57,7 +57,7 @@
                             <td class="text-primary">$320,800</td>
                             <td>
                                 <a href="{{ route('claim.detailSubmitted') }}" class="btn btn-sm btn-primary"
-                                    style="width: 100%">Claim
+                                    style="width: 120px">Claim
                                     Details</a>
                             </td>
                         </tr>

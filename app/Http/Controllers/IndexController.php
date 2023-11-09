@@ -10,7 +10,7 @@ class IndexController extends Controller
         return view('index');
     }
     public function contact() {
-        return view('frontend.contact');
+        return view('Frontend.contact');
     }
     public function cargo() {
         return view('cargo_cover');

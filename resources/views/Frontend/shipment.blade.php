@@ -56,9 +56,9 @@
                             <td>Edinburgh</td>
                             <td>$320,800</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-default border-primary" style="width: 60%"><i
+                                <a href="" class="btn btn-sm btn-default border-primary" style="width: 150px"><i
                                         class="fa fa-download"></i> Premium Note</a>
-                                <a href="" class="btn btn-sm btn-primary" style="width: 60%"><i
+                                <a href="" class="btn btn-sm btn-primary mt-1" style="width: 150px"><i
                                         class="fa fa-download"></i> Policy Summary</a>
                             </td>
                         </tr>

@@ -57,7 +57,7 @@
                             <td>$320,800</td>
                             <td>
                                 <a href="{{ route('claim.form') }}" class="btn btn-sm btn-primary"
-                                    style="width: 100%">Claim</a>
+                                    style="width: 90px">Claim</a>
                             </td>
                         </tr>
                     </tbody>

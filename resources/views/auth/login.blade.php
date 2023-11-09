@@ -88,11 +88,11 @@
                         @csrf
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Email</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Password</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                         <br>
                         <center>

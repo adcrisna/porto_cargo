@@ -96,23 +96,24 @@
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Name</label>
-                            <input type="text" class="form-control" name="name" id="name">
+                            <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Email</label>
-                            <input type="email" class="form-control" name="email" id="email">
+                            <input type="email" class="form-control" name="email" id="email" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                            <input type="number" class="form-control" name="name" id="name">
+                            <input type="number" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Password</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword">
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                                required>
                         </div>
                         <br>
                         <center>
