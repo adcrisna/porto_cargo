@@ -110,7 +110,7 @@
                             </div>
                             <div class="col-sm-5" style="margin-right: 20px">
                                 <a href="#" class="nav-link" data-bs-toggle="dropdown"
-                                    style="font-size: 14px">ALEX
+                                    style="font-size: 12px">ALEX
                                     MARTIN</a>
                             </div>
                         </div>
