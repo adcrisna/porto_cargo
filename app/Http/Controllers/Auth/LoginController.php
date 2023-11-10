@@ -29,8 +29,6 @@ class LoginController extends Controller
 
 
     public function postlogin(Request $request) {
-
-        // return $request;
         if (auth()->attempt($request->only('email', 'password'))) {
             return redirect()->route('quote.index');
         }
@@ -50,10 +48,11 @@ class LoginController extends Controller
             $user->name = $request->name;
             $user->email = strtolower($request->email);
             $user->password = bcrypt($request->password);
-            $request->is_verify = '0' ? $user->status = '1' : $user->status = '0';
-            $request->is_verify = '0' ? $user->account_type = 'retail' : $user->account_type = 'verify';
+            $request->is_verify == '0' ? $user->status = '1' : $user->status = '0';
+            $request->is_verify == '0' ? $user->account_type = 'retail' : $user->account_type = 'verify';
             $user->type =  $request->nametype;
             $user->phone_number =  $request->phone_number;
+            return $user;
             $user->save();
 
             DB::commit();
@@ -68,4 +67,5 @@ class LoginController extends Controller
         auth()->logout();
         return redirect()->route('auth.login')->with('info', 'Logout Successfully!.');
     }
+
 }
