@@ -93,7 +93,8 @@
                         @csrf
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
+                            <input type="email" class="form-control" name="email" id="email"
+                                value="{{ old('email') }}" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Password</label>

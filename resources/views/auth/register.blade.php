@@ -103,15 +103,18 @@
                         <input type="hidden" value="0" id="is_verify" name="is_verify">
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Name</label>
-                            <input type="text" class="form-control" name="name" id="name" required>
+                            <input type="text" class="form-control" name="name" id="name"
+                                value="{{ old('name') }}" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
+                            <input type="email" class="form-control" name="email" id="email"
+                                value="{{ old('email') }}" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                            <input type="number" class="form-control" name="phone_number" id="phone_number" required>
+                            <input type="number" class="form-control" name="phone_number" id="phone_number"
+                                value="{{ old('phone_number') }}" required>
                         </div>
                         <div class="mb-3">
                             <label style="color: rgb(126, 124, 124)">Password</label>
@@ -124,13 +127,15 @@
                         </div>
                         <br>
                         <center>
-                            <button type="submit" class="btn btn-primary" id="verify" style="width: 260px">Verify Account</button>
+                            <button type="submit" class="btn btn-primary" id="verify" style="width: 260px">Verify
+                                Account</button>
                             <p></p>
                             <p style="font-size: 10px; color:rgb(126, 124, 124)">Salvus reserves the rights to verify new
                                 user
                                 registration.<br>Your account will be active after verification and notified by email.</p>
                             <br>
-                            <button type="submit" class="btn btn-primary" id="non_verify" style="width: 260px">Processed Without
+                            <button type="submit" class="btn btn-primary" id="non_verify" style="width: 260px">Processed
+                                Without
                                 Verification</button>
                             <p></p>
                             <p style="font-size: 10px; color:rgb(126, 124, 124)">You can processed without verification. Get
@@ -151,11 +156,10 @@
 
 
     <script>
-
         $(document).ready(function() {
             $('#verify').click(function() {
                 $('#is_verify').val(1);
             });
-            });
+        });
     </script>
 @endsection
