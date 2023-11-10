@@ -45,9 +45,9 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
     Route::controller(QuoteController::class)->group(function () {
         Route::get('/quote', 'index')->name('quote.index');
         Route::get('/confirmation', 'confirmation')->name('quote.confirmation');
-        // prefix::('quote')->group(function () {
-        //     Route::get('/calculation', 'calculation')->name('quote.calculation');
-        // });
+        Route::prefix('process')->group(function () {
+            Route::post('/calculation', 'calculation')->name('quote.calculation');
+         });
 
     });
 

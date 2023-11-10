@@ -13,4 +13,8 @@ class QuoteController extends Controller
     public function confirmation() {
         return view('Frontend.confirmation');
     }
+
+    function calculation(Request $request) {
+        return $request->all();
+    }
 }

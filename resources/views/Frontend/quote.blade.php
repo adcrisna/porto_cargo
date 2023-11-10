@@ -147,59 +147,61 @@
             <p style="font-size: 22px" class="text-primary">Let's get your quote now!</p>
         </div>
     </div>
-    <div id="insuredProfile">
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary mb-3">
-                <div class="card-header bg-white">
-                    <h5 class="text-primary mt-2">Insured Profile</h5>
-                </div>
-                <div class="card-body text-primary">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Company Name</label>
-                            <input type="text" class="form-control" name="companyName" id="companyName">
-                        </div>
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                            <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
-                        </div>
+    <form action="{{ route('quote.calculation') }}" method="POST">
+        <div id="insuredProfile">
+            <div class="row mt-2" style="justify-content: center">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-white">
+                        <h5 class="text-primary mt-2">Insured Profile</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Company Email</label>
-                            <input type="email  " class="form-control" name="companyEmail" id="companyEmail">
+                    <div class="card-body text-primary">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Company Name</label>
+                                <input type="text" class="form-control" name="companyName" id="companyName">
+                            </div>
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Phone Number</label>
+                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Insurance Address</label>
-                            <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress">
-                            {{-- <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea> --}}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Company Email</label>
+                                <input type="email  " class="form-control" name="companyEmail" id="companyEmail">
+                            </div>
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Insurance Address</label>
+                                <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress">
+                                {{-- <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Conveyance</label>
-                            <select name="conveyance" id="conveyance" class="form-select" style="background-color: #ffffff">
-                                <option value="Land" selected>Land</option>
-                                <option value="Sea">Sea</option>
-                                <option value="Air">Air</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Conveyance</label>
+                                <select name="conveyance" id="conveyance" class="form-select"
+                                    style="background-color: #ffffff">
+                                    <option value="Land" selected>Land</option>
+                                    <option value="Sea">Sea</option>
+                                    <option value="Air">Air</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Goods Type</label>
+                                <select name="goodsType" id="goodsType" class="form-select"
+                                    style="background-color: #ffffff">
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label style="color: rgb(126, 124, 124)">Goods Type</label>
-                            <select name="goodsType" id="goodsType" class="form-select" style="background-color: #ffffff">
-                                <option value="Other">Other</option>
-                            </select>
+                        <br>
+                        <div class="right">
+                            <button type="button" class="btn btn-primary" id="continueButton" style="width: 120px">Continue</button>
                         </div>
-                    </div>
-                    <br>
-                    <div class="right">
-                        <button class="btn btn-primary" id="continueButton" style="width: 120px">Continue</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <form action="" method="POST">
         <div id="shipmentDetails" style="display: none">
             <div class="row mt-2" style="justify-content: center">
                 <div class="card border-primary mb-3">
