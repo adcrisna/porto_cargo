@@ -167,7 +167,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Company Name</label>
+                                <label style="color: rgb(126, 124, 124)">Company Email</label>
                                 <input type="email" class="form-control" name="companyEmail" id="companyEmail">
                             </div>
                             <div class="col-sm-6">
@@ -196,7 +196,7 @@
                         <br>
                     </form>
                     <div class="right">
-                        <button class="btn btn-primary" onclick="myContinue()" style="width: 120px">Continue</button>
+                        <button class="btn btn-primary" id="continueButton" style="width: 120px">Continue</button>
                     </div>
                 </div>
             </div>
@@ -819,38 +819,60 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <script>
-        function myContinue() {
-            let conveyanceType = document.getElementById("conveyance");
-            let valueConveyance = conveyanceType.value;
-            console.log(valueConveyance);
-            document.querySelector('#shipmentDetails').style.display = 'block';
-            if (valueConveyance == 'Land') {
-                document.querySelector('#travelPermissionLand').style.display = 'block';
-                document.querySelector('#land').style.display = 'block';
-                document.querySelector('#billOfLandingSea').style.display = 'none';
-                document.querySelector('#sea').style.display = 'none';
-                document.querySelector('#airwayBillAir').style.display = 'none';
-                document.querySelector('#air').style.display = 'none';
-                window.location.hash = '#land';
-            } else if (valueConveyance == 'Sea') {
-                document.querySelector('#billOfLandingSea').style.display = 'block';
-                document.querySelector('#sea').style.display = 'block';
-                document.querySelector('#travelPermissionLand').style.display = 'none';
-                document.querySelector('#land').style.display = 'none';
-                document.querySelector('#airwayBillAir').style.display = 'none';
-                document.querySelector('#air').style.display = 'none';
-                window.location.hash = '#sea';
-            } else if (valueConveyance == 'Air') {
-                document.querySelector('#airwayBillAir').style.display = 'block';
-                document.querySelector('#air').style.display = 'block';
-                document.querySelector('#billOfLandingSea').style.display = 'none';
-                document.querySelector('#sea').style.display = 'none';
-                document.querySelector('#travelPermissionLand').style.display = 'none';
-                document.querySelector('#land').style.display = 'none';
-                window.location.hash = '#air';
-            }
-            document.querySelector('#btnCalculate').style.display = 'block';
-        }
+        $(document).ready(function () {
+            $('#continueButton').on('click', function () {
+                let conveyanceType = $("#conveyance");
+                let valueConveyance = conveyanceType.val();
+                console.log(valueConveyance);
+
+                $('#shipmentDetails').css('display', 'block');
+
+                if (valueConveyance === 'Land') {
+                    $('#travelPermissionLand').css('display', 'block');
+                    $('#land').css('display', 'block');
+                    $('#billOfLandingSea').css('display', 'none');
+                    $('#sea').css('display', 'none');
+                    $('#airwayBillAir').css('display', 'none');
+                    $('#air').css('display', 'none');
+                    window.location.hash = '#land';
+                } else if (valueConveyance === 'Sea') {
+                    $('#billOfLandingSea').css('display', 'block');
+                    $('#sea').css('display', 'block');
+                    $('#travelPermissionLand').css('display', 'none');
+                    $('#land').css('display', 'none');
+                    $('#airwayBillAir').css('display', 'none');
+                    $('#air').css('display', 'none');
+                    window.location.hash = '#sea';
+                } else if (valueConveyance === 'Air') {
+                    $('#airwayBillAir').css('display', 'block');
+                    $('#air').css('display', 'block');
+                    $('#billOfLandingSea').css('display', 'none');
+                    $('#sea').css('display', 'none');
+                    $('#travelPermissionLand').css('display', 'none');
+                    $('#land').css('display', 'none');
+                    window.location.hash = '#air';
+                }
+
+                $('#btnCalculate').css('display', 'block');
+            });
+
+            $('#detailInsured').css('display', 'none');
+            $('#yourInsurancePlan').css('display', 'none');
+            $('#specialRisk').css('display', 'none');
+
+            // $('#calculate').on('click', function () {
+            //     $('#btnCancel').css('display', 'block');
+            //     window.location.hash = '#detailInsured';
+            // });
+        });
+
+
     </script>
+
+
+
+
 @endsection
