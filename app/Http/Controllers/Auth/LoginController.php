@@ -52,7 +52,7 @@ class LoginController extends Controller
             $request->is_verify == '0' ? $user->account_type = 'retail' : $user->account_type = 'verify';
             $user->type =  $request->nametype;
             $user->phone_number =  $request->phone_number;
-            return $user;
+            // return $user;
             $user->save();
 
             DB::commit();
