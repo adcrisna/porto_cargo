@@ -34,9 +34,9 @@ $(document).ready(function() {
         $('#btnCalculate').css('display', 'block');
     });
 
-    $('#detailInsured').css('display', 'none');
-    $('#yourInsurancePlan').css('display', 'none');
-    $('#specialRisk').css('display', 'none');
+    // $('#detailInsured').css('display', 'none');
+    // $('#yourInsurancePlan').css('display', 'none');
+    // $('#specialRisk').css('display', 'none');
 
     // $('#calculate').on('click', function () {
     //     $('#btnCancel').css('display', 'block');

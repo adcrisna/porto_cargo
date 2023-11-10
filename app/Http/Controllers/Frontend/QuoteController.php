@@ -15,6 +15,10 @@ class QuoteController extends Controller
     }
 
     function calculation(Request $request) {
-        return $request->all();
+        if ( empty($request->all()) ) {
+            return "asd";
+        }
+        $data = $request->all();
+        return view('Frontend.quote_calculate', compact('data'));
     }
 }

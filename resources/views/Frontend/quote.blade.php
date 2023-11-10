@@ -387,7 +387,7 @@
 
     <br>
     <br>
-    <div id="detailInsured">
+    {{-- <div id="detailInsured">
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
                 <div class="card-body text-primary">
@@ -749,7 +749,7 @@
                 <br>
             </center>
         </div>
-    </div>
+    </div> --}}
     <div class="modal fade" id="detailInsurance" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -822,53 +822,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#continueButton').on('click', function() {
-                let conveyanceType = $("#conveyance");
-                let valueConveyance = conveyanceType.val();
-                console.log(valueConveyance);
-
-                $('#shipmentDetails').css('display', 'block');
-
-                if (valueConveyance === 'Land') {
-                    $('#travelPermissionLand').css('display', 'block');
-                    $('#land').css('display', 'block');
-                    $('#billOfLandingSea').css('display', 'none');
-                    $('#sea').css('display', 'none');
-                    $('#airwayBillAir').css('display', 'none');
-                    $('#air').css('display', 'none');
-                    window.location.hash = '#land';
-                } else if (valueConveyance === 'Sea') {
-                    $('#billOfLandingSea').css('display', 'block');
-                    $('#sea').css('display', 'block');
-                    $('#travelPermissionLand').css('display', 'none');
-                    $('#land').css('display', 'none');
-                    $('#airwayBillAir').css('display', 'none');
-                    $('#air').css('display', 'none');
-                    window.location.hash = '#sea';
-                } else if (valueConveyance === 'Air') {
-                    $('#airwayBillAir').css('display', 'block');
-                    $('#air').css('display', 'block');
-                    $('#billOfLandingSea').css('display', 'none');
-                    $('#sea').css('display', 'none');
-                    $('#travelPermissionLand').css('display', 'none');
-                    $('#land').css('display', 'none');
-                    window.location.hash = '#air';
-                }
-
-                $('#btnCalculate').css('display', 'block');
-            });
-
-            $('#detailInsured').css('display', 'none');
-            $('#yourInsurancePlan').css('display', 'none');
-            $('#specialRisk').css('display', 'none');
-
-            // $('#calculate').on('click', function () {
-            //     $('#btnCancel').css('display', 'block');
-            //     window.location.hash = '#detailInsured';
-            // });
-        });
-    </script>
+    <script src="{{ asset('js/quote.js') }}" ></script>
 @endsection
