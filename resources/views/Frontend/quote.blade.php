@@ -395,7 +395,7 @@
                             <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: PT Ngentod Terus</p>
+                            <p class="text-dark" style="font-size:12px">: PT XYZ Terus</p>
                         </div>
                     </div>
                     <div class="row">
@@ -419,7 +419,7 @@
                             <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: JL. Ngentod No.69 </p>
+                            <p class="text-dark" style="font-size:12px">: JL. XYZ No.69 </p>
                         </div>
                     </div>
                     <div class="row">
@@ -822,8 +822,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#continueButton').on('click', function () {
+        $(document).ready(function() {
+            $('#continueButton').on('click', function() {
                 let conveyanceType = $("#conveyance");
                 let valueConveyance = conveyanceType.val();
                 console.log(valueConveyance);
@@ -868,11 +868,5 @@
             //     window.location.hash = '#detailInsured';
             // });
         });
-
-
     </script>
-
-
-
-
 @endsection

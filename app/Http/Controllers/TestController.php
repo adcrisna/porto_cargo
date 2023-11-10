@@ -20,6 +20,11 @@ class TestController extends Controller
         $pdf = Pdf::loadView('pdf.premium_note');
         return $pdf->stream();
     }
+    function pdfPolicySummary()
+    {
+        $pdf = Pdf::loadView('pdf.policy_summary');
+        return $pdf->stream();
+    }
 
     function test() {
         $data =  User::find(1);

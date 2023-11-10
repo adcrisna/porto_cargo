@@ -95,7 +95,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: PT Ngentod Terus</p>
+                                        <p class="text-dark" style="font-size:12px">: PT Xyz Terus</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -111,7 +111,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: ngetodterus@gmail.com</p>
+                                        <p class="text-dark" style="font-size:12px">: xyzterus@gmail.com</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -119,7 +119,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: JL. Ngentod No.69 </p>
+                                        <p class="text-dark" style="font-size:12px">: JL. Xyz No.69 </p>
                                     </div>
                                 </div>
                                 <div class="row">
