@@ -154,47 +154,44 @@
                     <h5 class="text-primary mt-2">Insured Profile</h5>
                 </div>
                 <div class="card-body text-primary">
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Company Name</label>
-                                <input type="text" class="form-control" name="companyName" id="companyName">
-                            </div>
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Company Name</label>
+                            <input type="text" class="form-control" name="companyName" id="companyName">
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Company Email</label>
-                                <input type="email" class="form-control" name="companyEmail" id="companyEmail">
-                            </div>
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Insurance Address</label>
-                                <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea>
-                            </div>
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Phone Number</label>
+                            <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Conveyance</label>
-                                <select name="conveyance" id="conveyance" class="form-select"
-                                    style="background-color: #ffffff">
-                                    <option value="Land">Land</option>
-                                    <option value="Sea">Sea</option>
-                                    <option value="Air">Air</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Goods Type</label>
-                                <select name="goodsType" id="goodsType" class="form-select"
-                                    style="background-color: #ffffff">
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Company Email</label>
+                            <input type="email  " class="form-control" name="companyEmail" id="companyEmail">
                         </div>
-                        <br>
-                    </form>
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Insurance Address</label>
+                            <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress">
+                            {{-- <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea> --}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Conveyance</label>
+                            <select name="conveyance" id="conveyance" class="form-select" style="background-color: #ffffff">
+                                <option value="Land" selected>Land</option>
+                                <option value="Sea">Sea</option>
+                                <option value="Air">Air</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label style="color: rgb(126, 124, 124)">Goods Type</label>
+                            <select name="goodsType" id="goodsType" class="form-select" style="background-color: #ffffff">
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
                     <div class="right">
                         <button class="btn btn-primary" id="continueButton" style="width: 120px">Continue</button>
                     </div>
@@ -202,14 +199,14 @@
             </div>
         </div>
     </div>
-    <div id="shipmentDetails" style="display: none">
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary mb-3">
-                <div class="card-header bg-white">
-                    <h5 class="text-primary mt-2">Shipment Details</h5>
-                </div>
-                <div class="card-body text-primary">
-                    <form action="" method="POST">
+    <form action="" method="POST">
+        <div id="shipmentDetails" style="display: none">
+            <div class="row mt-2" style="justify-content: center">
+                <div class="card border-primary mb-3">
+                    <div class="card-header bg-white">
+                        <h5 class="text-primary mt-2">Shipment Details</h5>
+                    </div>
+                    <div class="card-body text-primary">
                         @csrf
                         <div class="row">
                             <div class="col-sm-6">
@@ -244,11 +241,11 @@
                         <div class="row">
                             <div class="col-sm-2">
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
-                                <select class="form-select" id="autoSizingSelect">
-                                    <option selected>IDR</option>
-                                    <option value="IDR">IDR</option>
-                                    <option value="USD">USD</option>
-                                    <option value="YEN">YEN</option>
+                                <select class="form-select" name="Currency" id="autoSizingSelect">
+                                    {{-- <option selected>IDR</option> --}}
+                                    <option value="IDR" selected>IDR</option>
+                                    {{-- <option value="USD">USD</option>
+                                    <option value="YEN">YEN</option> --}}
                                 </select>
                             </div>
                             <div class="col-sm-4">
@@ -257,7 +254,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
-                                <input type="email" class="form-control" name="invoiceNumber" id="invoiceNumber">
+                                <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber">
                             </div>
                         </div>
                         <div class="row">
@@ -313,10 +310,11 @@
                                 <div class="col-sm-12">
                                     <label style="color: rgb(126, 124, 124)">Ship Name</label>
                                     <select class="form-select" name="shipName" id="shipName">
-                                        <option selected>Star Ship</option>
-                                        <option value="IDR">IDR</option>
-                                        <option value="USD">USD</option>
-                                        <option value="YEN">YEN</option>
+                                        {{-- <option selected>Star Ship</option> --}}
+                                        <option value="star ship">Star Ship</option>
+                                        {{-- <option value="IDR">IDR</option> --}}
+                                        {{-- <option value="USD">USD</option> --}}
+                                        {{-- <option value="YEN">YEN</option> --}}
                                     </select>
                                 </div>
                             </div>
@@ -374,16 +372,17 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="btnCalculate" style="display: none">
-        <div class="row" style="justify-content: center">
-            <button class="btn btn-primary" id="calculate" style="width: 80%">CALCULATE</button>
+        <div id="btnCalculate" style="display: none">
+            <div class="row" style="justify-content: center">
+                <button class="btn btn-primary" id="calculate" style="width: 80%">CALCULATE</button>
+            </div>
         </div>
-    </div>
+    </form>
+
     <br>
     <br>
     <div id="detailInsured">
@@ -570,6 +569,7 @@
             </div>
         </div>
     </div>
+
     <div id="yourInsurancePlan">
         <br>
         <center>
@@ -820,59 +820,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#continueButton').on('click', function () {
-                let conveyanceType = $("#conveyance");
-                let valueConveyance = conveyanceType.val();
-                console.log(valueConveyance);
-
-                $('#shipmentDetails').css('display', 'block');
-
-                if (valueConveyance === 'Land') {
-                    $('#travelPermissionLand').css('display', 'block');
-                    $('#land').css('display', 'block');
-                    $('#billOfLandingSea').css('display', 'none');
-                    $('#sea').css('display', 'none');
-                    $('#airwayBillAir').css('display', 'none');
-                    $('#air').css('display', 'none');
-                    window.location.hash = '#land';
-                } else if (valueConveyance === 'Sea') {
-                    $('#billOfLandingSea').css('display', 'block');
-                    $('#sea').css('display', 'block');
-                    $('#travelPermissionLand').css('display', 'none');
-                    $('#land').css('display', 'none');
-                    $('#airwayBillAir').css('display', 'none');
-                    $('#air').css('display', 'none');
-                    window.location.hash = '#sea';
-                } else if (valueConveyance === 'Air') {
-                    $('#airwayBillAir').css('display', 'block');
-                    $('#air').css('display', 'block');
-                    $('#billOfLandingSea').css('display', 'none');
-                    $('#sea').css('display', 'none');
-                    $('#travelPermissionLand').css('display', 'none');
-                    $('#land').css('display', 'none');
-                    window.location.hash = '#air';
-                }
-
-                $('#btnCalculate').css('display', 'block');
-            });
-
-            $('#detailInsured').css('display', 'none');
-            $('#yourInsurancePlan').css('display', 'none');
-            $('#specialRisk').css('display', 'none');
-
-            // $('#calculate').on('click', function () {
-            //     $('#btnCancel').css('display', 'block');
-            //     window.location.hash = '#detailInsured';
-            // });
-        });
-
-
-    </script>
-
-
-
-
+    <script src="{{ asset('js/quote.js') }}"></script>
 @endsection
