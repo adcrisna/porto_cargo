@@ -155,7 +155,9 @@
         @endphp
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
-                <div class="card-body text-primary">
+                <div class="card-body
+                 text-primary">
+                    @if (!empty($data['companyName']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
@@ -164,6 +166,9 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['companyName'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['phoneNumber']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
@@ -172,6 +177,9 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['phoneNumber'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['companyEmail']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
@@ -180,6 +188,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['companyEmail'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['insuranceAddress']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
@@ -188,6 +200,9 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['insuranceAddress'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['conveyance']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
@@ -196,6 +211,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['conveyance'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if (!empty($data['goodsType']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
@@ -204,6 +223,9 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['goodsType'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['departure']))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
@@ -212,6 +234,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['departure'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['arrival']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
@@ -220,6 +246,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['arrival'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['pointOforigin']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
@@ -228,14 +258,23 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['pointOforigin'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if (!empty($data['pointOfDestination']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['pointOfDesti'] ?? '' }}</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $data['pointOfDestination'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['sumInsured']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
@@ -244,6 +283,10 @@
                             <p class="text-dark" style="font-size:12px">: IDR {{ $data['sumInsured'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['invoiceNumber']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
@@ -252,6 +295,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['invoiceNumber'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['packingListNumber']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
@@ -260,6 +307,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['packingListNumber'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['billOfLanding']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
@@ -268,6 +319,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['billOfLanding'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['shipName']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
@@ -276,6 +331,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['shipName'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['vesselGroup']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
@@ -284,6 +343,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['vesselGroup'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['containerLoad']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
@@ -292,6 +355,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['containerLoad'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['vesselMaterial']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
@@ -300,6 +367,11 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['vesselMaterial'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if (!empty($data['vesselType']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
@@ -308,6 +380,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['vesselType'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['classified']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
@@ -316,6 +392,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['classified'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['builtYear']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
@@ -324,6 +404,10 @@
                             <p class="text-dark" style="font-size:12px">: {{ $data['builtYear'] ?? '' }}</p>
                         </div>
                     </div>
+                    @endif
+
+                    @if (!empty($data['transhipment']))
+
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Transhipment</b></p>
@@ -332,6 +416,7 @@
                             <p class="text-dark" style="font-size:12px">: {{ !empty($data['transhipment']) == 'on' ? 'YES' : 'NO' }}</p>
                         </div>
                     </div>
+                    @endif
                 </div>
 
             </div>
@@ -344,36 +429,41 @@
             <h1 class="text-primary">Your Insurance Plan</h1>
         </center>
         <br>
+        @foreach ($result as $item)
+        <div class="row mt-2" style="justify-content: center">
+            <div class="card border-primary">
+                <div class="card-body text-primary">
+                    <div class="row" style="justify-content: center">
+                        <div class="col-sm-3 align-self-center" style="width: 140px">
+                            <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px"
+                                class="img-fluid rounded-circle" alt="logo">
+                                {{-- <span>{{ $item['product_data']['display_name'] }}</span> --}}
+                        </div>
+                        @if (!empty($item['icc_price']['a']))
+                        <div class="col-sm-3 align-self-center" style="width: 300px">
+                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
+                                <div class="card-body text-primary" style="height: 25%">
+                                    <div class="row">
+                                        <div class="col-sm-3 align-self-center" style="margin: 0px">
+                                            <p><b>ICC A</b></p>
+                                        </div>
+                                        <div class="col-sm-9 align-self-center">
+                                            <div class="garis_vertikal"></div>
+                                            <P style="font-size: 10px">Premium Ammount</P>
+                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5>
+                                            <p></p>
+                                            <button type="button" class="btn btn-sm btn-default border-primary"
+                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
+                                            <a href="{{ route('quote.confirmation') }}"
+                                                class="btn btn-sm btn-primary">Select</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
 
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary">
-                <div class="card-body text-primary">
-                    <div class="row" style="justify-content: center">
-                        <div class="col-sm-2 align-self-center" style="width: 140px">
-                            <img src="{{ asset('images/Contact Us.png') }}" style="width: 120px"
-                                class="img-fluid rounded-circle" alt="logo">
-                        </div>
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 25%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center" style="margin: 0px">
-                                            <p><b>ICC A</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 1.000.000</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @if (!empty($item['icc_price']['b']))
                         <div class="col-sm-3 align-self-center" style="width: 300px">
                             <div class="card" style="max-width: 100%; padding:0px; margin:0px">
                                 <div class="card-body text-primary" style="height: 25%">
@@ -384,7 +474,7 @@
                                         <div class="col-sm-9 align-self-center">
                                             <div class="garis_vertikal"></div>
                                             <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 700.000</h5>
+                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5>
                                             <p></p>
                                             <button type="button" class="btn btn-sm btn-default border-primary"
                                                 data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
@@ -395,6 +485,9 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
+
+                        @if (!empty($item['icc_price']['c']))
                         <div class="col-sm-3 align-self-center" style="width: 300px">
                             <div class="card" style="max-width: 100%; padding:0px; margin:0px">
                                 <div class="card-body text-primary" style="height: 25%">
@@ -405,7 +498,7 @@
                                         <div class="col-sm-9 align-self-center">
                                             <div class="garis_vertikal"></div>
                                             <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 500.000</h5>
+                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5>
                                             <p></p>
                                             <button type="button" class="btn btn-sm btn-default border-primary"
                                                 data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
@@ -416,88 +509,15 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary">
-                <div class="card-body text-primary">
-                    <div class="row" style="justify-content: center">
-                        <div class="col-sm-2 align-self-center" style="width: 140px">
-                            <img src="{{ asset('images/Contact Us.png') }}" style="width: 120px"
-                                class="img-fluid rounded-circle" alt="logo">
-                        </div>
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 20%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center" style="margin: 0px">
-                                            <p><b>ICC A</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 1.000.000</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 20%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center">
-                                            <p><b>ICC B</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 700.000</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 20%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center">
-                                            <p><b>ICC C</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR 500.000</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
         <div id="btnCancel">
-            <div class="row" style="justify-content: center">
-                <button class="btn btn-primary" id="cancel" style="width: 80%">CANCEL</button>
+            <div class="row mt-3" style="justify-content: center">
+                <a href="{{ route('quote.index') }}" class="btn btn-primary" id="cancel" style="width: 80%">CANCEL</a>
             </div>
         </div>
         <br>

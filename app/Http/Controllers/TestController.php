@@ -27,7 +27,10 @@ class TestController extends Controller
     }
 
     function test() {
-        $data =  User::find(1);
-        return $data;
+        $data =  Products::with('rate')->get();
+
+        return $result = [];
+
     }
+
 }

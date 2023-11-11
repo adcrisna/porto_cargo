@@ -190,9 +190,9 @@
                                 <label style="color: rgb(126, 124, 124)">Goods Type</label>
                                 <select name="goodsType" id="goodsType" class="form-select"
                                     style="background-color: #ffffff">
-                                    <option selected>- Select -</option>
+                                        <option selected>- Select -</option>
                                     @foreach ($good as $item)
-                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -240,7 +240,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Destination</label>
-                                <input type="text" class="form-control" name="pointOfDesti" id="pointOfDesti">
+                                <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti">
                             </div>
                         </div>
                         <div class="row">

@@ -86,7 +86,6 @@
             <div class="card border-primary mb-3">
                 <div class="card-header bg-white">
                     <h5 class="text-primary mt-2">Register</h5>
-                    @include('component.session')
                 </div>
                 <div class="card-body text-primary">
                     <form action="{{ route('auth.postregister') }}" method="POST">
