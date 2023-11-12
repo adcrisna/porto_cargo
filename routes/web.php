@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
         Route::post('/confirmation', 'confirmation')->name('quote.confirmation');
         Route::prefix('process')->group(function () {
             Route::post('/calculation', 'calculation')->name('quote.calculation');
+            Route::post('/saved', 'saved')->name('quote.saved');
          });
 
     });

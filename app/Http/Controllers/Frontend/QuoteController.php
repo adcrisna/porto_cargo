@@ -61,10 +61,11 @@ class QuoteController extends Controller
             $result[] = $productData;
         }
 
-        $is_risk = false;
 
-        if ($request->goodsType == 'other' || $this->builtYear($request->builtYear) >= 23) {
-            $is_risk = true;
+        if ($request->goodsType === 'other' || !empty($request->builtYear) ?  $this->builtYear( $request->builtYear) : null >= 23) {
+            $is_risk = 1;
+        }else {
+            $is_risk = 0;
         }
 
         return view('Frontend.quote_calculate', compact('data','result','is_risk'));
@@ -78,5 +79,90 @@ class QuoteController extends Controller
         $currentYear = Carbon::now()->year;
         $difference = $currentYear - (int)$builtYear;
         return $difference;
+    }
+
+    function saved(Request $request) {
+
+        DB::beginTransaction();
+        try {
+            $data = json_decode($request['data']);
+            $product = Products::find($data->product_id);
+
+            $order = new Orders;
+
+            $order->user_id = Auth::user()->id ?? null;
+            $order->product_id = $data->product_id ?? null;
+            $order->company_name = $data->data->companyName ?? null;
+            $order->phone_number = $data->data->phoneNumber ?? null;
+            $order->company_email = $data->data->companyEmail ?? null;
+            $order->insured_address = $data->data->insuranceAddress ?? null;
+            $order->conveyance = $data->data->conveyance ?? null;
+            $order->goods_type = $data->data->goodsType ?? null;
+            $order->is_risk = $data->is_risk ?? 0;  // ke 0
+            $order->specify = $data->data->specify ?? null;
+            $order->estimated_time_of_departure = $data->data->departure ?? null;
+            $order->estimated_time_of_arrival = $data->data->arrival ?? null;
+            $order->point_of_origin = $data->data->pointOforigin ?? null;
+            $order->point_of_destination = $data->data->pointOfDestination ?? null;
+            $order->sum_insured = $data->data->sumInsured ?? 0;  // ke 0
+            $order->invoice_number = $data->data->invoiceNumber ?? null;
+            $order->packing_list_number = $data->data->packingListNumber ?? null;
+            $order->bill_of_lading_number = $data->data->billOfLanding ?? null;
+
+            $order->ship_name = $data->data->shipName ?? null;
+            $order->vessel_group = $data->data->vesselGroup ?? null;
+            $order->container_load = $data->data->containerLoad ?? null;
+            $order->vessel_material = $data->data->vesselMaterial ?? null;
+            $order->vessel_type = $data->data->vesselType ?? null;
+            $order->classified = $data->data->classified ?? null;
+            $order->built_year = $data->data->builtYear ?? null;
+            $order->transhipment = isset($data->data->transhipment) ? ($data->data->transhipment == 'on' ? 'YES' : 'NO') : null;
+            $order->coverage = $data->icc_selected ?? null;
+
+            $order->deductibles =  null;
+            $order->total_sum_insured =  0;  // ke 0
+            $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'];  // ke 0.0
+            $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
+            $order->premium_calculation =  null;
+            $order->premium_payment_warranty = '7 days After Sailling Date';
+            $order->security = null;
+
+            // return $order;
+            $order->save();
+
+            $transaction = new Transactions;
+            $transaction->order_id = $order->id;
+            $transaction->pn_number = 'PN-'.date('Ymd').'-'.$order->id;
+            $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
+            $transaction->payment_total = $data->premium_amount; //???
+            $transaction->payment_status = 'unpaid';
+            $transaction->start_policy_date = date('Y-m-d');
+            $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
+            $transaction->risk_status = $data->is_risk == 1 ? 'follow_up' : null;
+            // return $transaction;
+            $transaction->save();
+
+            DB::commit();
+
+            $link = "https://www.youtube.com/watch?v=x06GQeLohLk";
+
+            if (Auth::user()->account_type == 'retail') {
+                return response()->json([
+                    'message' => 'success',
+                    'type' => 'retail',
+                    'link' => $link
+                ]);
+            }else{
+                return response()->json([
+                    'type' => 'verify',
+                    'message' => 'success',
+                ]);
+            }
+
+
+        } catch (Exception $e) {
+            DB::rollback();
+            return back()->with('status', 'Oops something went wrong :(');
+        }
     }
 }

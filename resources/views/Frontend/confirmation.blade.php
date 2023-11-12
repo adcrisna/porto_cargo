@@ -81,6 +81,25 @@
         .confirmCancel {
             margin-left: 9%;
         }
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loader-content {
+            background-color: white;
+            /* padding: 20px;
+                    border-radius: 8px; */
+        }
     </style>
 @endsection
 @section('content')
@@ -91,14 +110,16 @@
             <p style="font-size: 22px" class="text-primary">Let's confirm your insurance plan now!</p>
         </div>
     </div>
+
     <div id="detailInsured">
         @php
             $data;
         @endphp
         <div class="row mt-2" style="justify-content: center">
+
             <div class="card border-primary mb-3">
-                <div class="card-body
-                 text-primary">
+
+                <div class="card-body text-primary">
                     @if (!empty($data['data']->companyName))
                         <div class="row">
                             <div class="col-sm-3">
@@ -207,7 +228,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->pointOfDestination ?? '' }}
+                                <p class="text-dark" style="font-size:12px">:
+                                    {{ $data['data']->pointOfDestination ?? '' }}
                                 </p>
                             </div>
                         </div>
@@ -219,7 +241,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: IDR {{ $data['data']->sumInsured ?? '' }}</p>
+                                <p class="text-dark" style="font-size:12px">: IDR
+                                    {{ number_format($data['data']->sumInsured, 0, ',', '.') }}</p>
                             </div>
                         </div>
                     @endif
@@ -230,7 +253,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->invoiceNumber ?? '' }}</p>
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->invoiceNumber ?? '' }}
+                                </p>
                             </div>
                         </div>
                     @endif
@@ -363,16 +387,14 @@
                         </div>
                     @endif
 
-                    {{-- ============================================================================== --}}
-
                     @if (!empty($data['icc_selected']))
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">:
-                                    </p>
+                                <p class="text-dark" style="font-size:12px">: -
+                                </p>
                             </div>
                         </div>
                     @endif
@@ -383,8 +405,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Total sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">:
-                                    </p>
+                                <p class="text-dark" style="font-size:12px">: -
+                                </p>
                             </div>
                         </div>
                     @endif
@@ -402,27 +424,27 @@
                         </div>
                     @endif
 
-                    @if (!empty($data['icc_selected']))
+                    @if (!empty($data['premium_amount']))
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-dark" style="font-size:12px">:
-                                    </p>
+                                    IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
                             </div>
                         </div>
                     @endif
 
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">:
-                                    7 days After Sailling Date</p>
-                            </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
                         </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">:
+                                7 days After Sailling Date</p>
+                        </div>
+                    </div>
 
                     @if (!empty($data['icc_selected']))
                         <div class="row">
@@ -430,13 +452,11 @@
                                 <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">:
-                                    </p>
+                                <p class="text-dark" style="font-size:12px">: -
+                                </p>
                             </div>
                         </div>
                     @endif
-
-
 
                 </div>
 
@@ -444,35 +464,45 @@
         </div>
     </div>
 
-
-
+    <div class="loader-container" id="load_save">
+        <div class="d-flex align-items-center loader-content">
+            <div class="spinner-grow text-primary" role="status"></div>
+            <div class="spinner-grow text-info" role="status"></div>
+            <div class="spinner-grow text-light" role="status"></div>
+            <div class="ms-3">Please wait, processing your transaction...</div>
+        </div>
+    </div>
+    <form action="{{ route('quote.saved') }}" id="post_data" method="post">
+        @csrf
+        <input type="hidden" name="data" value="{{ json_encode($data) }}" id="final_data">
+    </form>
 
     <div id="payment">
         @if ($data['account_type'] == 'retail')
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary mb-3">
-                <div class="card-body text-primary">
-                    <form action="" method="">
-                        @csrf
-                        <label style="color: rgb(126, 124, 124); font-size:12px"><b>Payment Method</b></label>
-                        <select name="paymentMethod" id="paymentMethod" class="form-select"
-                            style="background-color: #ffffff">
-                            <option value="Land">BCA</option>
-                            <option value="Sea">BRI</option>
-                            <option value="Air">BNI</option>
-                        </select>
-                    </form>
+            <div class="row mt-2" style="justify-content: center">
+                <div class="card border-primary mb-3">
+                    <div class="card-body text-primary">
+                        <form action="" method="">
+                            @csrf
+                            <label style="color: rgb(126, 124, 124); font-size:12px"><b>Payment Method</b></label>
+                            <select name="paymentMethod" id="paymentMethod" class="form-select"
+                                style="background-color: #ffffff">
+                                <option value="Land">BCA</option>
+                                <option value="Sea">BRI</option>
+                                <option value="Air">BNI</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary mb-3">
-                <div class="card-body text-primary">
-                    <p style="color: rgb(126, 124, 124); font-size:12px"><b>Total Payment</b></p>
-                    <h5 class="text-primary">IDR 1.000.000</h5>
+            <div class="row mt-2" style="justify-content: center">
+                <div class="card border-primary mb-3">
+                    <div class="card-body text-primary">
+                        <p style="color: rgb(126, 124, 124); font-size:12px"><b>Total Payment</b></p>
+                        <h5 class="text-primary">IDR 1.000.000</h5>
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
 
         <div class="row mt-2" style="margin-left: 9%">
@@ -490,16 +520,17 @@
     <div class="confirmCancel">
         <div class="row mt-2">
             <div class="col-sm-6 mb-3">
-                <button class="btn btn-default border-primary  text-primary" id="cancel"
-                    style="width: 80%">Cancel</button>
+                <a href="{{ route('quote.index') }}" class="btn btn-default border-primary  text-primary" id="cancel"
+                    style="width: 80%">Cancel</a>
             </div>
             <div class="col-sm-6 mb-3">
-                <button type="button" class="btn btn-primary" id="confirm" style="width: 80%" data-bs-toggle="modal"
-                    data-bs-target="#modalSuccess">Confirm</button>
+                <button type="button" class="btn btn-primary" id="confirm" style="width: 80%"
+                    data-bs-toggle="modal">Confirm</button>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modalSuccess" tabindex="-1" aria-labelledby="modalSuccessLabel" aria-hidden="true">
+    <div class="modal fade" id="modalSuccess" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="modalSuccessLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
@@ -514,8 +545,8 @@
                                     Meanwhile,
                                     please check policy
                                     Summary and Premium Note in your account.</b></p>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                style="width: 150px; margin-top: 20px">Ok</button>
+                            <a href="{{ route('payment.index') }}" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal" style="width: 150px; margin-top: 20px">Ok</a>
                         </div>
                     </div>
                 </div>
@@ -527,5 +558,50 @@
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    {{-- <script>
+    $(document).ready(function() {
+        $('#load_save').hide();
+        $('#confirm').click(function() {
+            $('#post_data').submit();
+            // $('#load_save').show();
+            // setTimeout(function() {
+            //     $('#load_save').hide();
+            //     $('#modalSuccess').modal('show');
+            // }, 3000);
+        });
+    });
+</script> --}}
+
+
+    <script>
+        $(document).ready(function() {
+            $('#load_save').hide();
+            $('#confirm').click(function() {
+                $('#load_save').show();
+                $.ajax({
+                    url: '{{ route('quote.saved') }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        data: $('#final_data').val()
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        $('#load_save').hide();
+                        if (response.type === 'retail' && response.link) {
+                            window.location.href = response.link;
+                        } else {
+                            $('#modalSuccess').modal('show');
+                        }
+                    },
+                    error: function(xhr) {
+                        $('#load_save').hide();
+                        console.error(xhr);
+                    }
+                });
+            });
+        });
     </script>
 @endsection

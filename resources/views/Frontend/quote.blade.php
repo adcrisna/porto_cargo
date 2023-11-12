@@ -192,9 +192,18 @@
                                     style="background-color: #ffffff">
                                         <option selected disabled>- Select -</option>
                                     @foreach ($good as $item)
-                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        <option value="{{ strtolower($item->name) }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div></div>
+                            </div>
+                            <div class="col-sm-6 d-none" id="specify">
+                                <label style="color: rgb(126, 124, 124)">Specify</label>
+                                <input type="text" class="form-control" name="specify">
                             </div>
                         </div>
                         <br>
@@ -408,4 +417,17 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#goodsType').change(function() {
+                var selectedGoodType = $(this).val();
+                if (selectedGoodType === 'other') {
+                    $('#specify').removeClass('d-none');
+                } else {
+                    $('#specify').addClass('d-none');
+                }
+            });
+        });
+    </script>
+
 @endsection
