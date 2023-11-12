@@ -12,15 +12,28 @@ use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
-
+use Carbon\Carbon;
+use Auth;
 class QuoteController extends Controller
 {
     public function index() {
         $good = Repository::all();
         return view('Frontend.quote', compact('good'));
     }
-    public function confirmation() {
-        return view('Frontend.confirmation');
+
+    public function confirmation(Request $request) {
+        $data =
+            [
+                "data" => json_decode($request->insured_detail),
+                "product_id" => $request->product_id,
+                "icc_selected" => $request->icc_selected,
+                "premium_amount" => $request->premium_amount,
+                "is_risk" => $request->is_risk,
+                "account_type" => Auth::user()->account_type,
+            ];
+        $product = Products::find($request->product_id);
+        // return $data;
+        return view('Frontend.confirmation',compact('data','product'));
     }
 
     function calculation(Request $request) {
@@ -48,11 +61,22 @@ class QuoteController extends Controller
             $result[] = $productData;
         }
 
-        // return $result;
-        return view('Frontend.quote_calculate', compact('data','result'));
+        $is_risk = false;
+
+        if ($request->goodsType == 'other' || $this->builtYear($request->builtYear) >= 23) {
+            $is_risk = true;
+        }
+
+        return view('Frontend.quote_calculate', compact('data','result','is_risk'));
     }
 
     function calculatePrice($sumInsured, $rate, $additionalCostSum) {
-        return $sumInsured + ($sumInsured * $rate)+$additionalCostSum;
+        return ceil($sumInsured + ($sumInsured * $rate)+$additionalCostSum);
+    }
+
+    function builtYear($builtYear) {
+        $currentYear = Carbon::now()->year;
+        $difference = $currentYear - (int)$builtYear;
+        return $difference;
     }
 }

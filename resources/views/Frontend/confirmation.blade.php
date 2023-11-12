@@ -92,190 +92,363 @@
         </div>
     </div>
     <div id="detailInsured">
+        @php
+            $data;
+        @endphp
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
-                <div class="card-body text-primary">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
+                <div class="card-body
+                 text-primary">
+                    @if (!empty($data['data']->companyName))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->companyName ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: PT Xyz Terus</p>
+                    @endif
+
+                    @if (!empty($data['data']->phoneNumber))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->phoneNumber ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->companyEmail))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->companyEmail ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 086969696969</p>
+                    @endif
+
+                    @if (!empty($data['data']->insuranceAddress))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->insuranceAddress ?? '' }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->conveyance))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->conveyance ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: ngetodterus@gmail.com</p>
+                    @endif
+
+
+                    @if (!empty($data['data']->goodsType))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->goodsType ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->departure))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->departure ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: JL. Xyz No.69 </p>
+                    @endif
+
+                    @if (!empty($data['data']->arrival))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->arrival ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->pointOforigin))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->pointOforigin ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Sea</p>
+                    @endif
+
+
+                    @if (!empty($data['data']->pointOfDestination))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->pointOfDestination ?? '' }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->sumInsured))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: IDR {{ $data['data']->sumInsured ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Doggy Style</p>
+                    @endif
+
+                    @if (!empty($data['data']->invoiceNumber))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->invoiceNumber ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->packingListNumber))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    {{ $data['data']->packingListNumber ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 7 Februari 2023</p>
+                    @endif
+
+                    @if (!empty($data['data']->billOfLanding))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->billOfLanding ?? '' }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->shipName))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->shipName ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 14 Februari 2023</p>
+                    @endif
+
+                    @if (!empty($data['data']->vesselGroup))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->vesselGroup ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->containerLoad))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->containerLoad ?? '' }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Jawa</p>
+                    @endif
+
+                    @if (!empty($data['data']->vesselMaterial))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->vesselMaterial ?? '' }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
+                    @endif
+
+
+                    @if (!empty($data['data']->vesselType))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->vesselType ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Kalimantan</p>
+                    @endif
+
+                    @if (!empty($data['data']->classified))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->classified ?? '' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
+                    @endif
+
+                    @if (!empty($data['data']->builtYear))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->builtYear ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: IDR 1.696.969.696</p>
+                    @endif
+
+                    @if (!empty($data['data']->transhipment))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Transhipment</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    {{ !empty($data['data']->transhipment) == 'on' ? 'YES' : 'NO' }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
+                    @endif
+
+                    @if (!empty($data['icc_selected']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Coverage</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    ICC {{ $data['icc_selected'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 696969</p>
+                    @endif
+
+                    {{-- ============================================================================== --}}
+
+                    @if (!empty($data['icc_selected']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
+                    @endif
+
+                    @if (!empty($data['icc_selected']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Total sum Insured</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 696969</p>
+                    @endif
+
+                    @if (!empty($product->rate->{'icc_' . strtolower($data['icc_selected'])}))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    ICC {{ $data['icc_selected'] ?? '' }} :
+                                    {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                    @endif
+
+                    @if (!empty($data['icc_selected']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 69696</p>
+                    @endif
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    7 days After Sailling Date</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+
+                    @if (!empty($data['icc_selected']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Security</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    </p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Maria Ozawa</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Mother Vessel</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Full Conainer Loaded</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Steel</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: General Cargo</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Yes</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 2023</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Transipment</b></p>
-                        </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: No</p>
-                        </div>
-                    </div>
+                    @endif
+
+
+
                 </div>
+
             </div>
         </div>
     </div>
+
+
+
+
     <div id="payment">
+        @if ($data['account_type'] == 'retail')
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
                 <div class="card-body text-primary">
@@ -300,6 +473,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
         <div class="row mt-2" style="margin-left: 9%">
             <div class="col-sm-6">
                 <div class="mb-3 form-check">

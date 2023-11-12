@@ -33,5 +33,6 @@ $(document).ready(function () {
 
         $("#btnCalculate").css("display", "block");
     });
-
 });
+
+

@@ -97,7 +97,7 @@
         }
 
         .borderProduct {
-            width: 20%;
+            /* width: 20%; */
             border: 1px solid rgb(197, 197, 197);
             margin: 5px;
             padding: 5px;
@@ -147,279 +147,278 @@
             <p style="font-size: 22px" class="text-primary">Let's get your quote now!</p>
         </div>
     </div>
+    <form action="{{ route('quote.confirmation') }}" class="d-none" id="sendtoconfirm" method="post">
+        @csrf
+        <input type="hidden" value="{{ json_encode($data) }}" name="insured_detail">
+        <input type="hidden" value="" name="premium_amount">
+        <input type="hidden" value="" name="icc_selected">
+        <input type="hidden" value="" name="product_id">
+        <input type="hidden" value="{{ $is_risk }}" name="is_risk">
+    </form>
+
     <br>
     <br>
     <div id="detailInsured">
         @php
-            $send = $data;
+            $data;
         @endphp
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
                 <div class="card-body
                  text-primary">
                     @if (!empty($data['companyName']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['companyName'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['companyName'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['phoneNumber']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['phoneNumber'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['phoneNumber'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['companyEmail']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['companyEmail'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['companyEmail'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['insuranceAddress']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['insuranceAddress'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['insuranceAddress'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['conveyance']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['conveyance'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['conveyance'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
 
                     @if (!empty($data['goodsType']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['goodsType'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['goodsType'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['departure']))
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['departure'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['departure'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['arrival']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['arrival'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['arrival'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['pointOforigin']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['pointOforigin'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['pointOforigin'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
 
                     @if (!empty($data['pointOfDestination']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['pointOfDestination'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['pointOfDestination'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['sumInsured']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: IDR {{ $data['sumInsured'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: IDR {{ $data['sumInsured'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['invoiceNumber']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['invoiceNumber'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['invoiceNumber'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['packingListNumber']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['packingListNumber'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['packingListNumber'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['billOfLanding']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['billOfLanding'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['billOfLanding'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['shipName']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['shipName'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['shipName'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['vesselGroup']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['vesselGroup'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['vesselGroup'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['containerLoad']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['containerLoad'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['containerLoad'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['vesselMaterial']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['vesselMaterial'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['vesselMaterial'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
 
                     @if (!empty($data['vesselType']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['vesselType'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['vesselType'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['classified']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['classified'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['classified'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['builtYear']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['builtYear'] ?? '' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ $data['builtYear'] ?? '' }}</p>
-                        </div>
-                    </div>
                     @endif
 
                     @if (!empty($data['transhipment']))
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <p class="text-dark" style="font-size:12px"><b>Transhipment</b></p>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Transhipment</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">:
+                                    {{ !empty($data['transhipment']) == 'on' ? 'YES' : 'NO' }}</p>
+                            </div>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: {{ !empty($data['transhipment']) == 'on' ? 'YES' : 'NO' }}</p>
-                        </div>
-                    </div>
                     @endif
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <div id="loader_calculate" class="d-flex justify-content-center d-none">
+        <div class="spinner-border text-primary" role="status">
         </div>
     </div>
 
@@ -430,105 +429,282 @@
         </center>
         <br>
         @foreach ($result as $item)
-        <div class="row mt-2" style="justify-content: center">
-            <div class="card border-primary">
-                <div class="card-body text-primary">
-                    <div class="row" style="justify-content: center">
-                        <div class="col-sm-3 align-self-center" style="width: 140px">
-                            <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px"
-                                class="img-fluid rounded-circle" alt="logo">
+            <div class="row mt-2" style="justify-content: center">
+                <div class="card border-primary">
+                    <div class="card-body text-primary">
+                        <div class="row" style="justify-content: center">
+                            <div class="col-sm-3 align-self-center" style="width: 140px">
+                                <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px"
+                                    class="img-fluid rounded-circle" alt="logo">
                                 {{-- <span>{{ $item['product_data']['display_name'] }}</span> --}}
-                        </div>
-                        @if (!empty($item['icc_price']['a']))
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 25%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center" style="margin: 0px">
-                                            <p><b>ICC A</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        @endif
+                            @if (!empty($item['icc_price']['a']))
+                                <div class="col-sm-3 align-self-center" style="width: 300px">
+                                    <div class="card" style="max-width: 100%; padding:0px; margin:0px">
+                                        <div class="card-body text-primary" style="height: 25%">
+                                            <div class="row">
+                                                <div class="col-sm-3 align-self-center" style="margin: 0px">
+                                                    <p><b>ICC A</b></p>
+                                                </div>
+                                                <div class="col-sm-9 align-self-center">
+                                                    <div class="garis_vertikal"></div>
+                                                    <P style="font-size: 10px">Premium Ammount</P>
+                                                    <h5 class="text-primary">IDR
+                                                        {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5>
+                                                    <p></p>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-default border-primary btnDetails"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['a'],
+                                                            'icc_type' => 'A'
+                                                        ])'
+                                                        data-detail='{{ $item['product_data']['rate']['icc_a']['detail'] }}'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Details</button>
 
-                        @if (!empty($item['icc_price']['b']))
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 25%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center">
-                                            <p><b>ICC B</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-primary OnlyConfirm"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['a'],
+                                                            'icc_type' => 'A'
+                                                        ])'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Select</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        @endif
+                            @endif
 
-                        @if (!empty($item['icc_price']['c']))
-                        <div class="col-sm-3 align-self-center" style="width: 300px">
-                            <div class="card" style="max-width: 100%; padding:0px; margin:0px">
-                                <div class="card-body text-primary" style="height: 25%">
-                                    <div class="row">
-                                        <div class="col-sm-3 align-self-center">
-                                            <p><b>ICC C</b></p>
-                                        </div>
-                                        <div class="col-sm-9 align-self-center">
-                                            <div class="garis_vertikal"></div>
-                                            <P style="font-size: 10px">Premium Ammount</P>
-                                            <h5 class="text-primary">IDR {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5>
-                                            <p></p>
-                                            <button type="button" class="btn btn-sm btn-default border-primary"
-                                                data-bs-toggle="modal" data-bs-target="#detailInsurance">Details</button>
-                                            <a href="{{ route('quote.confirmation') }}"
-                                                class="btn btn-sm btn-primary">Select</a>
+                            @if (!empty($item['icc_price']['b']))
+                                <div class="col-sm-3 align-self-center" style="width: 300px">
+                                    <div class="card" style="max-width: 100%; padding:0px; margin:0px">
+                                        <div class="card-body text-primary" style="height: 25%">
+                                            <div class="row">
+                                                <div class="col-sm-3 align-self-center">
+                                                    <p><b>ICC B</b></p>
+                                                </div>
+                                                <div class="col-sm-9 align-self-center">
+                                                    <div class="garis_vertikal"></div>
+                                                    <P style="font-size: 10px">Premium Ammount</P>
+                                                    <h5 class="text-primary">IDR
+                                                        {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5>
+                                                    <p></p>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-default border-primary btnDetails"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['b'],
+                                                            'icc_type' => 'B'
+                                                        ])'
+                                                        data-detail='{{ $item['product_data']['rate']['icc_b']['detail'] }}'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Details</button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-primary OnlyConfirm"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['b'],
+                                                            'icc_type' => 'B'
+                                                        ])'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Select</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
+
+                            @if (!empty($item['icc_price']['c']))
+                                <div class="col-sm-3 align-self-center" style="width: 300px">
+                                    <div class="card" style="max-width: 100%; padding:0px; margin:0px">
+                                        <div class="card-body text-primary" style="height: 25%">
+                                            <div class="row">
+                                                <div class="col-sm-3 align-self-center">
+                                                    <p><b>ICC C</b></p>
+                                                </div>
+                                                <div class="col-sm-9 align-self-center">
+                                                    <div class="garis_vertikal"></div>
+                                                    <P style="font-size: 10px">Premium Ammount</P>
+                                                    <h5 class="text-primary">IDR
+                                                        {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5>
+                                                    <p></p>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-default border-primary btnDetails"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['c'],
+                                                            'icc_type' => 'C'
+                                                        ])'
+                                                        data-detail='{{ $item['product_data']['rate']['icc_c']['detail'] }}'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Details</button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-primary OnlyConfirm"
+                                                        data-product='@json([
+                                                            'product_name' => $item['product_data']['display_name'],
+                                                            'premium_amount' => $item['icc_price']['c'],
+                                                            'icc_type' => 'C'
+                                                        ])'
+                                                        data-proid='{{ $item['product_data']['id'] }}'>Select</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                        @endif
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+
+        <div id="btnCancel">
+            <div class="row mt-3" style="justify-content: center">
+                <a href="{{ route('quote.index') }}" class="btn btn-primary" id="cancel"
+                    style="width: 80%">CANCEL</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="specialRisk" class="mt-5">
+        <div class="row">
+            <center>
+                <h2 class="text-primary">Your goods are categorized as special risk</h2>
+                <p class="text-primary">To assist with your special needs, our insurance specialist will contact you as
+                    soon possible</p>
+                <br>
+                <div class="row" style="justify-content: center">
+                    <button class="btn btn-primary" id="ok_risk" style="width: 80%">OK</button>
+                </div>
+                <br>
+            </center>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="modal fade" id="detailInsuranceModals" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modalHeader">
+                    <h5 class="modal-title text-primary">Details</h5>
+                    <center>
+                        <div class="borderProduct col-md-4">
+                            <b class="text-primary" id="productName"></b>&nbsp; &nbsp;| &nbsp; &nbsp;<b
+                                class="text-primary" id="iccType"></b>
+                        </div>
+                    </center>
+                </div>
+                <hr style="color: #3156A5">
+                <div class="modal-body">
+                    <div style="height: 400px; overflow-y: scroll;" id="productDetails">
+                    </div>
+                </div>
+                <hr style="color: #3156A5">
+                <div class="row mb-3">
+                    <div class="col-sm-5" style="margin-left: 20px">
+                        <p class="text-primary" style="font-size: 12px">Premium Ammount <br>
+                        <h5 id="premiumAmount"></h5>
+                        </p>
+                    </div>
+                    <div class="col-sm-6" style="margin-top: 20px">
+                        <button class="btn btn-primary btnFooter" id="topayment">Select</button>
+                        <button type="button" class="btn btn-default border-primary btnFooter"
+                            data-bs-dismiss="modal">Back</button>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
-        <div id="btnCancel">
-            <div class="row mt-3" style="justify-content: center">
-                <a href="{{ route('quote.index') }}" class="btn btn-primary" id="cancel" style="width: 80%">CANCEL</a>
-            </div>
-        </div>
-        <br>
-        <br>
     </div>
 @endsection
 
 @section('javascript')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{{ asset('js/quote.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            if ('{{ $is_risk }}' == '1') {
+                $('#yourInsurancePlan').hide();
+                $('#specialRisk').show();
+            } else {
+                $('#yourInsurancePlan').show();
+                $('#specialRisk').hide();
+            }
+
+            $('#ok_risk').click(function() {
+                $('#loader_calculate').removeClass('d-none').addClass('d-block');
+                $('#specialRisk').addClass('d-none');
+                setTimeout(function() {
+                    $('#loader_calculate').removeClass('d-block').addClass('d-none');
+                    $('#yourInsurancePlan').addClass('d-block');
+                }, 400);
+            });
+        });
+    </script>
+
+    <script>
+        function showProductDetails(product, detail, productid) {
+            $('#productName').text(product.product_name);
+            $('#iccType').text('ICC ' + product.icc_type);
+            $('#premiumAmount').text('IDR ' + product.premium_amount.toLocaleString('id-ID'));
+            $('#productDetails').html(detail);
+
+            $('#detailInsuranceModals').modal('show');
+        }
+
+        $(document).ready(function() {
+            $('.btnDetails').on('click', function() {
+                var product = $(this).data('product');
+                var detail = $(this).data('detail');
+                var productid = $(this).data('proid');
+
+                $('#sendtoconfirm input[name="premium_amount"]').val(product.premium_amount);
+                $('#sendtoconfirm input[name="product_id"]').val(productid);
+                $('#sendtoconfirm input[name="icc_selected"]').val(product.icc_type);
+
+                showProductDetails(product, detail, productid);
+
+
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#topayment').on('click', function() {
+                $('#sendtoconfirm').submit();
+            });
+
+            $('.OnlyConfirm').on('click', function() {
+                var product = $(this).data('product');
+                var productid = $(this).data('proid');
+
+                $('#sendtoconfirm input[name="premium_amount"]').val(product.premium_amount);
+                $('#sendtoconfirm input[name="product_id"]').val(productid);
+                $('#sendtoconfirm input[name="icc_selected"]').val(product.icc_type);
+
+
+                $('#sendtoconfirm').submit();
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).on('contextmenu', function () {
+            return false;
+        });
+
+        $(document).keydown(function (event) {
+            if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;
+            }
+        });
+        $(document).keydown(function (event) {
+            if (event.ctrlKey && event.keyCode == 85) {
+                return false;
+            }
+        });
+    </script>
 @endsection

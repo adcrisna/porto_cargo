@@ -190,7 +190,7 @@
                                 <label style="color: rgb(126, 124, 124)">Goods Type</label>
                                 <select name="goodsType" id="goodsType" class="form-select"
                                     style="background-color: #ffffff">
-                                        <option selected>- Select -</option>
+                                        <option selected disabled>- Select -</option>
                                     @foreach ($good as $item)
                                         <option value="{{ $item->name }}">{{ $item->name }}</option>
                                     @endforeach
@@ -315,7 +315,7 @@
                                 <div class="col-sm-12">
                                     <label style="color: rgb(126, 124, 124)">Ship Name</label>
                                     <select class="form-select" name="shipName" id="shipName">
-                                        {{-- <option selected>Star Ship</option> --}}
+                                        <option selected disabled>- Select -</option>
                                         <option value="star ship">Star Ship</option>
                                         {{-- <option value="IDR">IDR</option> --}}
                                         {{-- <option value="USD">USD</option> --}}
@@ -391,91 +391,21 @@
     <br>
     <br>
 
-    {{-- <div id="specialRisk">
-        <div class="row">
-            <center>
-                <h2 class="text-primary">Your goods are categorized as special risk</h2>
-                <p class="text-primary">To assist with your special needs, our insurance specialist will contact you as
-                    soon possible</p>
-                <br>
-                <div class="row" style="justify-content: center">
-                    <button class="btn btn-primary" id="ok" style="width: 80%">OK</button>
-                </div>
-                <br>
-            </center>
-        </div>
-    </div> --}}
-    <div class="modal fade" id="detailInsurance" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modalHeader">
-                    <h5 class="modal-title text-primary">Details</h5>
-                    <center>
-                        <div class="borderProduct">
-                            <b class="text-primary">Zurich</b>&nbsp; &nbsp;| &nbsp; &nbsp;<b class="text-primary">ICC
-                                A</b>
-                        </div>
-                    </center>
-                </div>
-                <hr style="color: #3156A5">
-                <div class="modal-body">
-                    <div style="height: 400px; overflow-y: scroll;">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolores quisquam eos est explicabo
-                            fugit deserunt quasi iure, quas itaque temporibus impedit numquam porro culpa delectus quam rem
-                            fuga
-                            doloremque!</p>
-                    </div>
-                </div>
-                <hr style="color: #3156A5">
-                <div class="row mb-3">
-                    <div class="col-sm-5" style="margin-left: 20px">
-                        <p class="text-primary" style="font-size: 12px">Premium Ammount <br>
-                        <h5>IDR 1.000.000</h5>
-                        </p>
-                    </div>
-                    <div class="col-sm-6" style="margin-top: 20px">
-                        <a href="{{ route('quote.confirmation') }}" class="btn btn-primary btnFooter">Select</a>
-                        <button type="button" class="btn btn-default border-primary btnFooter"
-                            data-bs-dismiss="modal">Back</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 @endsection
 
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="{{ asset('js/quote.js') }}" ></script>
+    <script>
+        $(document).ready(function() {
+            $('#builtYear').on('input', function() {
+                var year = $(this).val().replace(/\D/g, '');
+                $(this).val(year);
+            });
+        });
+    </script>
 @endsection
