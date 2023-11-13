@@ -405,7 +405,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Total sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: -
+                                <p class="text-dark" style="font-size:12px">:
+                                    IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }}
                                 </p>
                             </div>
                         </div>
@@ -431,7 +432,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-dark" style="font-size:12px">:
-                                    IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
+                                   IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }} x {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }} % =  IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
                             </div>
                         </div>
                     @endif
@@ -497,7 +498,7 @@
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
                         <p style="color: rgb(126, 124, 124); font-size:12px"><b>Total Payment</b></p>
-                        <h5 class="text-primary">IDR 1.000.000</h5>
+                        <h5 class="text-primary">IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</h5>
                     </div>
                 </div>
             </div>
@@ -582,6 +583,7 @@
                     data: $('#final_data').val(),
                     payment_method: selectedPaymentMethod
                 };
+                console.log(formData);
 
                 $('#load_save').show();
                 $.ajax({
@@ -608,7 +610,7 @@
         });
     </script>
 
-
+{{--
     <script>
         $(document).on('contextmenu', function () {
             return false;
@@ -630,5 +632,5 @@
                 return false;
             }
         });
-    </script>
+    </script> --}}
 @endsection

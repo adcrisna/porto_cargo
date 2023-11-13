@@ -73,7 +73,7 @@ class QuoteController extends Controller
     }
 
     function calculatePrice($sumInsured, $rate, $additionalCostSum) {
-        return ceil($sumInsured + ($sumInsured * $rate)+$additionalCostSum);
+        return ceil(($sumInsured * $rate)+$additionalCostSum);
     }
 
     function builtYear($builtYear) {
@@ -121,10 +121,10 @@ class QuoteController extends Controller
             $order->coverage = $data->icc_selected ?? null;
 
             $order->deductibles =  null;
-            $order->total_sum_insured =  0;  // ke 0
+            $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
             $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'];  // ke 0.0
             $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
-            $order->premium_calculation =  null;
+            $order->premium_calculation =  $data->data->sumInsured . ' x ' . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ' = ' . $data->premium_amount;
             $order->premium_payment_warranty = '7 days After Sailling Date';
             $order->security = null;
 
@@ -137,6 +137,7 @@ class QuoteController extends Controller
             $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
             $transaction->payment_total = $data->premium_amount; //???
             $transaction->payment_status = 'unpaid';
+            $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
             $transaction->start_policy_date = date('Y-m-d');
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
             $transaction->risk_status = $data->is_risk == 1 ? 'follow_up' : null;
