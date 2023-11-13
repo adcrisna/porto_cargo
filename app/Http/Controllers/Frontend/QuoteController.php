@@ -62,12 +62,13 @@ class QuoteController extends Controller
         }
 
 
-        if ($request->goodsType === 'other' || !empty($request->builtYear) ?  $this->builtYear( $request->builtYear) : null >= 23) {
-            $is_risk = 1;
-        }else {
+        if ($request->goodsType !== 'other' && (isset($request->builtYear) && $this->builtYear($request->builtYear) <= 23)) {
             $is_risk = 0;
+        }else {
+            $is_risk = 1;
         }
 
+        // return $is_risk;
         return view('Frontend.quote_calculate', compact('data','result','is_risk'));
     }
 
