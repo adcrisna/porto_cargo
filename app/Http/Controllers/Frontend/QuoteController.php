@@ -145,7 +145,7 @@ class QuoteController extends Controller
 
             DB::commit();
 
-            $link = "https://www.youtube.com/watch?v=x06GQeLohLk";
+            $link = "https://www.google.com";
 
             if (Auth::user()->account_type == 'retail') {
                 return response()->json([

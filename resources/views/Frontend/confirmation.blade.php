@@ -98,7 +98,7 @@
         .loader-content {
             background-color: white;
             /* padding: 20px;
-                    border-radius: 8px; */
+                        border-radius: 8px; */
         }
     </style>
 @endsection
@@ -589,12 +589,14 @@
                     },
                     success: function(response) {
                         console.log(response);
-                        $('#load_save').hide();
-                        if (response.type === 'retail' && response.link) {
-                            window.location.href = response.link;
-                        } else {
-                            $('#modalSuccess').modal('show');
-                        }
+                        setTimeout(function() {
+                            $('#load_save').hide();
+                            // if (response.type === 'retail' && response.link) {
+                            //     window.location.href = response.link;
+                            // } else {
+                            //     $('#modalSuccess').modal('show');
+                            // }
+                        }, 1000);
                     },
                     error: function(xhr) {
                         $('#load_save').hide();
