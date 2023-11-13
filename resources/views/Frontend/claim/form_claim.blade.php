@@ -94,252 +94,371 @@
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
                 <div class="card-body text-primary">
+
+
+
+                    @if ( !empty($order->policy_number) )
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: PT Xyz Terus</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->company_name }}</p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->phone_number) )
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 086969696969</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->phone_number }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->company_email))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: ngetodterus@gmail.com</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->company_email }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->insured_address))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: JL. Xyz No.69 </p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->insured_address }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->conveyance))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Sea</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->conveyance }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->goods_type))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Doggy Style</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->goods_type }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->estimated_time_of_departure))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 7 Februari 2023</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->estimated_time_of_departure }}</p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->estimated_time_of_arrival))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 14 Februari 2023</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->estimated_time_of_arrival }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->point_of_origin))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Jawa</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->point_of_origin }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->point_of_destination))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Kalimantan</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->point_of_destination }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->$order->sum_insured))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: IDR 1.696.969.696</p>
+                            <p class="text-dark" style="font-size:12px">: {{ number_format($order->sum_insured, 0, ',', '.') }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->invoice_number))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 696969</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->invoice_number }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->packing_list_number))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 696969</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->packing_list_number }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->bill_of_lading_number))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 69696</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->bill_of_lading_number }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->ship_name))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Maria Ozawa</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->ship_name }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->vessel_group))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Mother Vessel</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->vessel_group }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->container_load))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Full Conainer Loaded</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->container_load }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->vessel_material))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Steel</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->vessel_material }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->vessel_type))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: General Cargo</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->vessel_type }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->classified))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: Yes</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->classified }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->built_year))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 2023</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->built_year }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->transhipment))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Transipment</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: No</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->transhipment }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->coverage))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Coverage</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: ICC A</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->coverage }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->deductibles))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 1% of total sum insured per any one
-                                occurrence any one conveyance</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->deductibles }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->total_sum_insured))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Total Sum Insurance</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->total_sum_insured }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->rate))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: ICC A 0.1%</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->rate }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->premium_calculation))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00 x 0,1% = IDR
-                                1.000.0000,00</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->premium_calculation }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->premium_payment_warranty))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: 7 Days After Sailling Date</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->premium_payment_warranty }} </p>
                         </div>
                     </div>
+                    @endif
+
+
+                    @if ( !empty($order->security))
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-dark" style="font-size:12px">: ZURICH ASURANSI INDONESIA, Tbk</p>
+                            <p class="text-dark" style="font-size:12px">: {{ $order->security }} </p>
                         </div>
                     </div>
+                    @endif
+
                 </div>
             </div>
         </div>
     </div>
+    <form action="{{ route('post.claim') }}" method="post" enctype="multipart/form-data">
     <div id="claimForm">
         <div class="row mt-2" style="justify-content: center">
             <div class="card border-primary mb-3">
                 <div class="card-body text-primary">
                     <h5 class="card-title text-primary">Claim Form</h5>
                     <hr>
-                    <form action="" method="" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="transaction_id" value="{{ $order->transaction->id }}">
+                        <input type="hidden" name="claim_conveyance" value="{{ $order->conveyance }}">
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Chronology</b></label>
@@ -360,27 +479,27 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Invoice</b></label>
-                                <input type="file" class="form-control" name="invoice" id="invoice"
+                                <input type="file" class="form-control" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" name="invoice" id="invoice"
                                     style="background-color: #ffffff">
                             </div>
                             <div class="col-sm-6">
                                 @php
-                                    $data = 'Sea';
+                                    $data = $order->conveyance;
                                 @endphp
                                 @if ($data == 'Land')
                                     <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Travel Permission
                                             Letter</b></label>
-                                    <input type="file" class="form-control" name="travelPermissionLetter"
+                                    <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control" name="travelPermissionLetter"
                                         id="travelPermissionLetter" style="background-color: #ffffff">
                                 @elseif ($data == 'Sea')
                                     <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Bill of
                                             Landing</b></label>
-                                    <input type="file" class="form-control" name="billOfLanding" id="billOfLanding"
+                                    <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control" name="billOfLanding" id="billOfLanding"
                                         style="background-color: #ffffff">
                                 @elseif ($data == 'Air')
                                     <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Airway Bill
                                         </b></label>
-                                    <input type="file" class="form-control" name="airwayBill" id="airwayBill"
+                                    <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control" name="airwayBill" id="airwayBill"
                                         style="background-color: #ffffff">
                                 @endif
                             </div>
@@ -389,12 +508,12 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Police Investigation
                                         Report</b>(if available)</label>
-                                <input type="file" class="form-control" name="policeInvestiReport"
+                                <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control" name="policeInvestiReport"
                                     id="policeInvestiReport" style="background-color: #ffffff">
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Packing List</b></label>
-                                <input type="file" class="form-control" name="packingList" id="packingList"
+                                <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control" name="packingList" id="packingList"
                                     style="background-color: #ffffff">
                             </div>
                         </div>
@@ -405,14 +524,14 @@
                                 <div id="dynamicInputsDamage">
                                     <div class="form-group">
                                         <div class="d-flex">
-                                            <input type="file" class="form-control" name="photosOfDamage[]"
+                                            <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control mt-2" name="photosOfDamage[]"
                                                 id="photosOfDamage" style="background-color: #ffffff">
-                                            <a class="ml-3 btn btn-danger removeInputDamage"><i class="fa fa-trash"
+                                            <a class="ml-3 btn btn-danger removeInputDamage mt-2"><i class="fa fa-trash"
                                                     aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <a id="addInputDamage" class="btn btn-primary"><i class="fa fa-plus-circle"
+                                <a id="addInputDamage" class="btn btn-primary mt-2"><i class="fa fa-plus-circle"
                                         aria-hidden="true"></i></a>
                             </div>
                             <div class="col-sm-6">
@@ -421,18 +540,17 @@
                                 <div id="dynamicInputsLoading">
                                     <div class="form-group">
                                         <div class="d-flex">
-                                            <input type="file" class="form-control" name="photosOfUnloading[]"
+                                            <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control mt-2" name="photosOfUnloading[]"
                                                 id="photosOfUnloading" style="background-color: #ffffff">
-                                            <a class="ml-3 btn btn-danger removeInputLoading"><i class="fa fa-trash"
+                                            <a class="ml-3 btn btn-danger removeInputLoading mt-2"><i class="fa fa-trash"
                                                     aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                <a id="addInputLoading" class="btn btn-primary"><i class="fa fa-plus-circle"
+                                <a id="addInputLoading" class="btn btn-primary mt-2"><i class="fa fa-plus-circle"
                                         aria-hidden="true"></i></a>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -463,10 +581,12 @@
     <div class="submit" style="margin-left: 10%">
         <div class="row mt-2">
             <div class="col-sm-12 mb-3">
-                <button class="btn btn-primary" id="submit" style="width: 90%">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submit" style="width: 90%">Submit</button>
             </div>
         </div>
     </div>
+</form>
+
 @endsection
 
 @section('javascript')

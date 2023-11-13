@@ -12,6 +12,12 @@ class Claims extends Model
 
     protected $table = 'claims';
 
+
+    protected $casts = [
+        'photos_of_damaged_items' => 'array',
+        'photos_of_unloading_process' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id');

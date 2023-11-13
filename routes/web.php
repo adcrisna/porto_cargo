@@ -66,7 +66,8 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
 
     Route::controller(ClaimController::class)->group(function () {
         Route::get('/new_claim', 'newClaim')->name('claim.new');
-        Route::get('/form_claim', 'formClaim')->name('claim.form');
+        Route::get('/form_claim/{id}', 'formClaim')->name('claim.form');
+        Route::post('/form_claim', 'postClaim')->name('post.claim');
         Route::get('/submitted_claim', 'submittedClaim')->name('claim.submitted');
         Route::get('/submitted_detail', 'submittedDetail')->name('claim.detailSubmitted');
         Route::get('/closed_claim', 'closedClaim')->name('claim.closed');

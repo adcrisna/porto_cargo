@@ -49,17 +49,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>$320,800</td>
-                            <td>
-                                <a href="{{ route('claim.form') }}" class="btn btn-sm btn-primary"
-                                    style="width: 90px">Claim</a>
-                            </td>
-                        </tr>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>{{ $item->transaction->policy_number }}</td>
+                                <td>{{ $item->company_name }}</td>
+                                <td>{{ $item->point_of_origin }}</td>
+                                <td>{{ $item->point_of_destination }}</td>
+                                <td>
+                                    @if ($item->transaction)
+                                        {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
+                                        - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('claim.form',$item->id) }}" class="btn btn-sm btn-primary"
+                                        style="width: 90px">Claim</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

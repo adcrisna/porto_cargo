@@ -203,6 +203,11 @@
         </div>
     </nav>
     <div class="bgContent">
+        <div class="row justify-content-center">
+            <div class="col-md-10 ">
+                @include('component.session')
+            </div>
+        </div>
         @yield('content')
     </div>
 

@@ -69,12 +69,12 @@
                                     @endif
 
                                 </td>
-                                <td>{{ number_format($item->premium_amount, 0, ',', '.') }}</td>
+                                <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
                                 <td>
                                     <a href="" class="btn btn-sm btn-default border-primary mt-1" style="width: 90px"
                                         data-bs-toggle="modal" data-bs-target="#detailModal">Details</a>
-                                    @if (Auth::user()->account_type == 'retail')
-                                        <a href="" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
+                                    @if (Auth::user()->account_type == 'retail' && $item->transaction->payment_status == 'unpaid')
+                                        <a href="{{ @$item->transaction->payment_link }}" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
                                     @endif
                                 </td>
                             </tr>
