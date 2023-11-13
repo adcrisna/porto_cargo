@@ -51,23 +51,32 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td class=" text-center">{{ @$item->transaction->policy_number  }}</td>
+                                <td class=" text-center">{{ @$item->transaction->policy_number }}</td>
                                 <td class=" text-center">{{ @$item->company_name }}</td>
                                 <td class=" text-center">{{ @$item->point_of_origin }}</td>
                                 <td class=" text-center">{{ @$item->point_of_destination }}</td>
                                 <td class=" text-center">
-                                    @if($item->transaction)
-                                    {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
-                                    - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
+                                    @if ($item->transaction)
+                                        {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
+                                        - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
                                     @else
                                         N/A
                                     @endif
                                 </td>
-                                <td class=" text-center">
-                                    <a href="" class="btn btn-sm btn-default border-primary"><i
-                                            class="fa fa-download"></i> Premium Note</a>
-                                    <a href="" class="btn btn-sm btn-primary mt-1"><i
-                                            class="fa fa-download"></i> Policy Summary</a>
+                                <td class="">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <a href=""><span class="badge bg-primary "><i
+                                                        class="fa fa-download p-1"></i>Premium Note</span></a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="">
+                                                <span class="badge bg-white text-primary" style="border: 1px solid #007BFF;">
+                                                    <i class="fa fa-download p-1"></i>Policy Summary
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

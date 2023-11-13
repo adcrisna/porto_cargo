@@ -20,12 +20,15 @@ class ShipmentController extends Controller
 {
     public function index() {
         $order = Orders::where('user_id', Auth::user()->id);
+
         if (Auth::user()->account_type === 'verify') {
-            $data = $order->get();
+            $data = $order->with('transaction')->get();
         } else {
-            $data = $order->where('payment_status', 'paid')->get();
+            $data = $order->with('transaction')->whereHas('transaction', function ($query) {
+                $query->where('payment_status', 'paid');
+            })->get();
         }
-        // return $data;
+
         return view('Frontend.shipment' , compact('data'));
     }
 }
