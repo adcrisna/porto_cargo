@@ -70,7 +70,7 @@
                             </td>
                             <td>$320,800</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-default border-primary" style="width: 90px"
+                                <a href="" class="btn btn-sm btn-default border-primary mt-1" style="width: 90px"
                                     data-bs-toggle="modal" data-bs-target="#detailModal">Details</a>
                                 <a href="" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
                             </td>
