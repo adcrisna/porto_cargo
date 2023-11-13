@@ -30,6 +30,19 @@
             width: 100%;
         }
 
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            html,
+            body {
+                overflow-x: hidden;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
