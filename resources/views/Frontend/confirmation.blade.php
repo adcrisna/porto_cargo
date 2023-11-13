@@ -597,6 +597,7 @@
                             } else {
                                 $('#modalSuccess').modal('show');
                             }
+                            history.replaceState({}, document.title, window.location.href.split('?')[0]);
                         }, 1400);
                     },
                     error: function(xhr) {
