@@ -50,31 +50,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>
-                                @php
-                                    $data = 'Expired';
-                                @endphp
-                                @if ($data == 'Unpaid')
-                                    <button class="btn btn-default border-danger text-danger">Unpaid</button>
-                                @elseif ($data == 'Paid')
-                                    <button class="btn btn-default border-success text-success">Paid</button>
-                                @elseif ($data == 'Expired')
-                                    <button class="btn btn-default border-warning text-warning">Expired</button>
-                                @endif
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>{{ $item->transaction->pn_number }}</td>
+                                <td>{{ $item->company_name }}</td>
+                                <td>{{ $item->point_of_origin }}</td>
+                                <td>{{ $item->point_of_destination }}</td>
+                                <td>
+                                    @php
+                                        $status = $item->transaction->payment_status;
+                                    @endphp
+                                    @if ($status == 'unpaid')
+                                        <button class="btn btn-default border-danger text-danger">Unpaid</button>
+                                    @elseif ($status == 'paid')
+                                        <button class="btn btn-default border-success text-success">Paid</button>
+                                    @else
+                                        <button class="btn btn-default border-warning text-warning">Expired</button>
+                                    @endif
 
-                            </td>
-                            <td>$320,800</td>
-                            <td>
-                                <a href="" class="btn btn-sm btn-default border-primary mt-1" style="width: 90px"
-                                    data-bs-toggle="modal" data-bs-target="#detailModal">Details</a>
-                                <a href="" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>{{ number_format($item->premium_amount, 0, ',', '.') }}</td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-default border-primary mt-1" style="width: 90px"
+                                        data-bs-toggle="modal" data-bs-target="#detailModal">Details</a>
+                                    @if (Auth::user()->account_type == 'retail')
+                                        <a href="" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

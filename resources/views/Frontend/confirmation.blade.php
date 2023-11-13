@@ -543,8 +543,7 @@
                                     Meanwhile,
                                     please check policy
                                     Summary and Premium Note in your account.</b></p>
-                            <a href="{{ route('payment.index') }}" type="button" class="btn btn-primary"
-                                data-bs-dismiss="modal" style="width: 150px; margin-top: 20px">Ok</a>
+                            <a href="{{ route('shipment.index') }}" type="button" class="btn btn-primary" style="width: 150px; margin-top: 20px">Ok</a>
                         </div>
                     </div>
                 </div>

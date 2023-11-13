@@ -40,28 +40,37 @@
                 <table id="shipment" class="table table-striped table-responsive" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-primary">Policy Summary Number</th>
-                            <th class="text-primary">Insured Name</th>
-                            <th class="text-primary">Point of Origin</th>
-                            <th class="text-primary">Point of Destination</th>
-                            <th class="text-primary">Policy Periode</th>
-                            <th class="text-primary">Action</th>
+                            <th class="text-primary text-center">Policy Summary Number</th>
+                            <th class="text-primary text-center">Insured Name</th>
+                            <th class="text-primary text-center">Point of Origin</th>
+                            <th class="text-primary text-center">Point of Destination</th>
+                            <th class="text-primary text-center">Policy Periode</th>
+                            <th class="text-primary text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>$320,800</td>
-                            <td>
-                                <a href="" class="btn btn-sm btn-default border-primary" style="width: 150px"><i
-                                        class="fa fa-download"></i> Premium Note</a>
-                                <a href="" class="btn btn-sm btn-primary mt-1" style="width: 150px"><i
-                                        class="fa fa-download"></i> Policy Summary</a>
-                            </td>
-                        </tr>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td class=" text-center">{{ @$item->transaction->policy_number  }}</td>
+                                <td class=" text-center">{{ @$item->company_name }}</td>
+                                <td class=" text-center">{{ @$item->point_of_origin }}</td>
+                                <td class=" text-center">{{ @$item->point_of_destination }}</td>
+                                <td class=" text-center">
+                                    @if($item->transaction)
+                                    {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
+                                    - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                <td class=" text-center">
+                                    <a href="" class="btn btn-sm btn-default border-primary"><i
+                                            class="fa fa-download"></i> Premium Note</a>
+                                    <a href="" class="btn btn-sm btn-primary mt-1"><i
+                                            class="fa fa-download"></i> Policy Summary</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -80,7 +89,8 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
     <script>
         new DataTable('#shipment', {
-            responsive: true
+            responsive: true,
+            lengthMenu: [5, 10, 25, 50],
         });
     </script>
 @endsection
