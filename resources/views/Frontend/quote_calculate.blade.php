@@ -706,5 +706,11 @@
                 return false;
             }
         });
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // F12
+                return false;
+            }
+        });
     </script>
 @endsection

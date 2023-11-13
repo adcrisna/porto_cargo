@@ -482,16 +482,14 @@
             <div class="row mt-2" style="justify-content: center">
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
-                        <form action="" method="">
-                            @csrf
+
                             <label style="color: rgb(126, 124, 124); font-size:12px"><b>Payment Method</b></label>
                             <select name="paymentMethod" id="paymentMethod" class="form-select"
                                 style="background-color: #ffffff">
-                                <option value="Land">BCA</option>
-                                <option value="Sea">BRI</option>
-                                <option value="Air">BNI</option>
+                                <option selected value="BCA">BCA</option>
+                                <option value="BRI">BRI</option>
+                                <option value="BNI">BNI</option>
                             </select>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -579,24 +577,27 @@
         $(document).ready(function() {
             $('#load_save').hide();
             $('#confirm').click(function() {
+                var selectedPaymentMethod = $('#paymentMethod').val();
+                var formData = {
+                    _token: '{{ csrf_token() }}',
+                    data: $('#final_data').val(),
+                    payment_method: selectedPaymentMethod
+                };
+
                 $('#load_save').show();
                 $.ajax({
                     url: '{{ route('quote.saved') }}',
                     type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        data: $('#final_data').val()
-                    },
+                    data: formData,
                     success: function(response) {
-                        console.log(response);
                         setTimeout(function() {
                             $('#load_save').hide();
-                            // if (response.type === 'retail' && response.link) {
-                            //     window.location.href = response.link;
-                            // } else {
-                            //     $('#modalSuccess').modal('show');
-                            // }
-                        }, 1000);
+                            if (response.type === 'retail' && response.link) {
+                                window.location.href = response.link;
+                            } else {
+                                $('#modalSuccess').modal('show');
+                            }
+                        }, 1400);
                     },
                     error: function(xhr) {
                         $('#load_save').hide();
@@ -604,6 +605,30 @@
                     }
                 });
             });
+        });
+    </script>
+
+
+    <script>
+        $(document).on('contextmenu', function () {
+            return false;
+        });
+
+        $(document).keydown(function (event) {
+            if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                return false;
+            }
+        });
+        $(document).keydown(function (event) {
+            if (event.ctrlKey && event.keyCode == 85) {
+                return false;
+            }
+        });
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // F12
+                return false;
+            }
         });
     </script>
 @endsection
