@@ -68,11 +68,6 @@
 @endsection
 @section('content')
     <div class="row py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10 ">
-                @include('component.session')
-            </div>
-        </div>
         <div class="col-lg-6 d-flex justify-content-center text-center">
             <div class="container">
                 <div class="text-overlay">
