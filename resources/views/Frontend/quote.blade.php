@@ -158,21 +158,22 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Company Name</label>
-                                <input type="text" class="form-control" name="companyName" id="companyName">
+                                <input type="text" class="form-control" name="companyName" id="companyName" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber">
+                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Company Email</label>
-                                <input type="email  " class="form-control" name="companyEmail" id="companyEmail">
+                                <input type="email  " class="form-control" name="companyEmail" id="companyEmail" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Insurance Address</label>
-                                <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress">
+                                <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress"
+                                    required>
                                 {{-- <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea> --}}
                             </div>
                         </div>
@@ -180,7 +181,7 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Conveyance</label>
                                 <select name="conveyance" id="conveyance" class="form-select"
-                                    style="background-color: #ffffff">
+                                    style="background-color: #ffffff" required>
                                     <option value="Land" selected>Land</option>
                                     <option value="Sea">Sea</option>
                                     <option value="Air">Air</option>
@@ -189,8 +190,8 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Goods Type</label>
                                 <select name="goodsType" id="goodsType" class="form-select"
-                                    style="background-color: #ffffff">
-                                        <option selected disabled>- Select -</option>
+                                    style="background-color: #ffffff" required>
+                                    <option selected disabled>- Select -</option>
                                     @foreach ($good as $item)
                                         <option value="{{ strtolower($item->name) }}">{{ $item->name }}</option>
                                     @endforeach
@@ -203,12 +204,13 @@
                             </div>
                             <div class="col-sm-6 d-none" id="specify">
                                 <label style="color: rgb(126, 124, 124)">Specify</label>
-                                <input type="text" class="form-control" name="specify">
+                                <input type="text" class="form-control" name="specify" required>
                             </div>
                         </div>
                         <br>
                         <div class="right">
-                            <button type="button" class="btn btn-primary" id="continueButton" style="width: 120px">Continue</button>
+                            <button type="button" class="btn btn-primary" id="continueButton"
+                                style="width: 120px">Continue</button>
                         </div>
                     </div>
                 </div>
@@ -245,17 +247,19 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Origin</label>
-                                <input type="text" class="form-control" name="pointOforigin" id="pointOforigin">
+                                <input type="text" class="form-control" name="pointOforigin" id="pointOforigin"
+                                    required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Destination</label>
-                                <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti">
+                                <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
-                                <select class="form-select" name="Currency" id="autoSizingSelect">
+                                <select class="form-select" name="Currency" id="autoSizingSelect" required>
                                     {{-- <option selected>IDR</option> --}}
                                     <option value="IDR" selected>IDR</option>
                                     {{-- <option value="USD">USD</option>
@@ -264,32 +268,35 @@
                             </div>
                             <div class="col-sm-4">
                                 <label style="color: rgb(126, 124, 124)"></label>
-                                <input type="number" class="form-control" required name="sumInsured" id="sumInsured">
+                                <input type="number" class="form-control" name="sumInsured" id="sumInsured" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
-                                <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber">
+                                <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Packing List Number</label>
                                 <input type="number" class="form-control" name="packingListNumber"
-                                    id="packingListNumber">
+                                    id="packingListNumber" required>
                             </div>
                             <div class="col-sm-6">
                                 <div id="travelPermissionLand" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Travel Permission Letter Number</label>
                                     <input type="number" class="form-control" name="travelPermission"
-                                        id="travelPermission">
+                                        id="travelPermission" required>
                                 </div>
                                 <div id="billOfLandingSea" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Bill Of Landing</label>
-                                    <input type="number" class="form-control" name="billOfLanding" id="billOfLanding">
+                                    <input type="number" class="form-control" name="billOfLanding" id="billOfLanding"
+                                        required>
                                 </div>
                                 <div id="airwayBillAir" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Airway Bill</label>
-                                    <input type="number" class="form-control" name="airwayBill" id="airwayBill">
+                                    <input type="number" class="form-control" name="airwayBill" id="airwayBill"
+                                        required>
                                 </div>
                             </div>
                         </div>
@@ -298,7 +305,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
-                                    <input type="number" class="form-control" name="licensePlate" id="licensePlate">
+                                    <input type="number" class="form-control" name="licensePlate" id="licensePlate"
+                                        required>
                                 </div>
                             </div>
                             <div class="row mt-4">
@@ -315,7 +323,7 @@
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
                                     <input type="number" class="form-control" name="licensePlateInter"
-                                        id="licensePlateInter">
+                                        id="licensePlateInter" required>
                                 </div>
                             </div>
                         </div>
@@ -323,7 +331,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label style="color: rgb(126, 124, 124)">Ship Name</label>
-                                    <select class="form-select" name="shipName" id="shipName">
+                                    <select class="form-select" name="shipName" id="shipName" required>
                                         <option selected disabled>- Select -</option>
                                         <option value="star ship">Star Ship</option>
                                         {{-- <option value="IDR">IDR</option> --}}
@@ -335,7 +343,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Vessel Group</label>
-                                    <input type="text" class="form-control" name="vesselGroup" id="vesselGroup">
+                                    <input type="text" class="form-control" name="vesselGroup" id="vesselGroup"
+                                        required>
                                 </div>
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Container Load</label>
@@ -360,7 +369,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Built Year</label>
-                                    <input type="text" class="form-control" name="builtYear" id="builtYear">
+                                    <input type="text" class="form-control" name="builtYear" id="builtYear" required>
                                 </div>
                             </div>
                             <div class="row mt-5">
@@ -399,16 +408,13 @@
 
     <br>
     <br>
-
-
-
 @endsection
 
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('js/quote.js') }}" ></script>
+    <script src="{{ asset('js/quote.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#builtYear').on('input', function() {
@@ -429,5 +435,4 @@
             });
         });
     </script>
-
 @endsection

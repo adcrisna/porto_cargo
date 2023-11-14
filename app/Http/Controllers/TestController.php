@@ -25,7 +25,11 @@ class TestController extends Controller
         $pdf = Pdf::loadView('pdf.policy_summary');
         return $pdf->stream();
     }
-
+    function compensationOffer()
+    {
+        $pdf = Pdf::loadView('pdf.compensation_offer');
+        return $pdf->stream();
+    }
     function test() {
         $data =  Products::with('rate')->get();
 

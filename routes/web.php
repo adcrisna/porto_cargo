@@ -22,6 +22,7 @@ use App\Http\Controllers\TestController;
 Route::controller(TestController::class)->group(function () {
     Route::get('/premium_note', 'pdfPremiumNote')->name('pdfPremiumNote');
     Route::get('/policy_summary', 'pdfPolicySummary')->name('pdfPolicySummary');
+    Route::get('/compensation_offer', 'compensationOffer')->name('compensationOffer');
     Route::get('/test', 'test')->name('test')->name('test');
 });
 
