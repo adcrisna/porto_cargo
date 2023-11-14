@@ -49,32 +49,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>
-                                @php
-                                    $data = 'Rejected';
-                                @endphp
-                                @if ($data == 'Rejected')
-                                    <p class="text-danger">Rejected</p>
-                                @elseif ($data == 'Approved')
-                                    <p class="text-success">Approved</p>
-                                @endif
-                            </td>
-                            <td>
-                                @if ($data == 'Rejected')
-                                    <a href="#" class="btn btn-sm btn-default border-primary text-primary"
-                                        style="width: 100%">Rejection Letter
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>CLM-{{ $item->id }}</td>
+                                <td>{{ $item->transaction->order->company_name }}</td>
+                                <td>{{ $item->transaction->order->point_of_destination }}</td>
+                                <td>-</td>
+                                <td>{{ $item->claim_status }}</td>
+                                <td>
+                                    <a href="{{ route('claim.detailSubmitted') }}" class="btn btn-sm btn-primary"
+                                        style="width: 120px">Claim
                                         Details</a>
-                                @elseif ($data == 'Approved')
-                                    <a href="#" class="btn btn-sm btn-primary" style="width: 100%">Compensation Offer
-                                        Letter</a>
-                                @endif
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

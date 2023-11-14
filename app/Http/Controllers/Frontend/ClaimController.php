@@ -101,13 +101,16 @@ class ClaimController extends Controller
 
     function submittedClaim() {
 
-        $data = Claims::where('user_id', Auth::user()->id)->get();
+        $data = Claims::where('user_id', Auth::user()->id)->where('claim_status','submited')->get();
         return view('Frontend.claim.submitted_claim' , compact('data'));
     }
+
     function submittedDetail() {
         return view('Frontend.claim.detail_submitted');
     }
+
     function closedClaim() {
-        return view('Frontend.claim.closed_claim');
+        $data = Claims::where('user_id', Auth::user()->id)->where('claim_status','!=','submited')->get();
+        return view('Frontend.claim.closed_claim', compact('data'));
     }
 }
