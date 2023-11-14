@@ -49,18 +49,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td class="text-primary">$320,800</td>
-                            <td>
-                                <a href="{{ route('claim.detailSubmitted') }}" class="btn btn-sm btn-primary"
-                                    style="width: 120px">Claim
-                                    Details</a>
-                            </td>
-                        </tr>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>CLM-{{ $item->id }}</td>
+                                <td>{{ $item->transaction->order->company_name }}</td>
+                                <td>{{ $item->transaction->order->point_of_origin }}</td>
+                                <td>{{ $item->transaction->order->point_of_destination }}</td>
+                                <td>{{ $item->claim_status }}</td>
+                                <td>
+                                    <a href="{{ route('claim.detailSubmitted') }}" class="btn btn-sm btn-primary"
+                                        style="width: 120px">Claim
+                                        Details</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

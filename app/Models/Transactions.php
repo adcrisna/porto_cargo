@@ -16,6 +16,6 @@ class Transactions extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\Models\Cargo\CargoOrder', 'order_id');
+        return $this->belongsTo('App\Models\Orders', 'order_id');
     }
 }
