@@ -204,7 +204,7 @@
                             </div>
                             <div class="col-sm-6 d-none" id="specify">
                                 <label style="color: rgb(126, 124, 124)">Specify</label>
-                                <input type="text" class="form-control" name="specify" required>
+                                <input type="text" class="form-control" name="specify">
                             </div>
                         </div>
                         <br>
@@ -291,12 +291,12 @@
                                 <div id="billOfLandingSea" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Bill Of Landing</label>
                                     <input type="number" class="form-control" name="billOfLanding" id="billOfLanding"
-                                        required>
+                                        >
                                 </div>
                                 <div id="airwayBillAir" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Airway Bill</label>
                                     <input type="number" class="form-control" name="airwayBill" id="airwayBill"
-                                        required>
+                                        >
                                 </div>
                             </div>
                         </div>
@@ -344,7 +344,7 @@
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Vessel Group</label>
                                     <input type="text" class="form-control" name="vesselGroup" id="vesselGroup"
-                                        required>
+                                        >
                                 </div>
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Container Load</label>
@@ -369,7 +369,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Built Year</label>
-                                    <input type="text" class="form-control" name="builtYear" id="builtYear" required>
+                                    <input type="text" class="form-control" name="builtYear" id="builtYear">
                                 </div>
                             </div>
                             <div class="row mt-5">

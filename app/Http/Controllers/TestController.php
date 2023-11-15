@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use DB;
+use DB,Str;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Products;
@@ -31,9 +31,10 @@ class TestController extends Controller
         return $pdf->stream();
     }
     function test() {
-        $data =  Products::with('rate')->get();
-
-        return $result = [];
+        $trx_id = 12345;
+        $external_id = Str::random(10) . '_' . $trx_id;
+        $parts = explode('_', $external_id);
+        return $parts[1];
 
     }
 

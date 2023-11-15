@@ -13,7 +13,9 @@ use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
 use Carbon\Carbon;
-use Auth;
+use Auth,Str;
+use Xendit\Xendit;
+
 class QuoteController extends Controller
 {
     public function index() {
@@ -136,23 +138,28 @@ class QuoteController extends Controller
             $transaction->pn_number = 'PN-'.date('Ymd').'-'.$order->id;
             $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
             $transaction->payment_total = $data->premium_amount; //???
-            $transaction->payment_status = 'unpaid';
             $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
             $transaction->start_policy_date = date('Y-m-d');
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
             $transaction->risk_status = $data->is_risk == 1 ? 'follow_up' : null;
+            $transaction->payment_status = 'unpaid';
+
             // return $transaction;
             $transaction->save();
 
             DB::commit();
 
-            $link = "https://www.google.com";
 
             if (Auth::user()->account_type == 'retail') {
+                $trx_id = $transaction->id;
+                $pay_method = $request["payment_method"];
+                $pay_total = $data->premium_amount;
+                $to_xendit =  $this->payment_store($trx_id,$pay_method,$pay_total);
+
                 return response()->json([
                     'message' => 'success',
                     'type' => 'retail',
-                    'link' => $link
+                    'link' => $to_xendit
                 ]);
             }else{
                 return response()->json([
@@ -166,5 +173,28 @@ class QuoteController extends Controller
             DB::rollback();
             return back()->with('status', 'Oops something went wrong :(');
         }
+    }
+
+
+    function payment_store($trx_id,$pay_method,$pay_total) {
+        $transaction = Transactions::find($trx_id);
+        Xendit::setApiKey("xnd_development_JZtuTWarcPMX8z4vQhhw4KMEeUatMkbyzxlVG0oyiklSJqKRgOx1qqPtSyn");
+        $external_id = Str::random(10).'_'.$trx_id;
+        $params = [
+            'external_id' =>  $external_id,
+            'description' => "Payment CARGO for transaction #".$transaction->order->company_name,
+            'amount' => $pay_total,
+            'payment_methods' => [$pay_method],
+            'success_redirect_url' => route('payment.index'),
+            'failure_redirect_url' => route('payment.index'),
+        ];
+
+        $createInvoice = \Xendit\Invoice::create($params);
+        $transaction->payment_status = strtolower($createInvoice['status']);
+        $transaction->payment_link = $createInvoice['invoice_url'];
+        $transaction->update();
+
+        return $createInvoice['invoice_url'];
+
     }
 }

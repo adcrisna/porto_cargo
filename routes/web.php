@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\ShipmentController;
 use App\Http\Controllers\Frontend\ReportController;
 use App\Http\Controllers\Frontend\ClaimController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Payment\ProcessedPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,10 @@ Route::controller(TestController::class)->group(function () {
     Route::get('/policy_summary', 'pdfPolicySummary')->name('pdfPolicySummary');
     Route::get('/compensation_offer', 'compensationOffer')->name('compensationOffer');
     Route::get('/test', 'test')->name('test')->name('test');
+});
+
+Route::controller(ProcessedPaymentController::class)->group(function () {
+    Route::post('/payment/callback', 'callback')->name('callback.payment');
 });
 
 Route::controller(IndexController::class)->group(function () {

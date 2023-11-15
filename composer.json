@@ -12,7 +12,9 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
-        "laravelcollective/html": "^6.4"
+        "laravelcollective/html": "^6.4",
+        "phpmailer/phpmailer": "^6.8",
+        "xendit/xendit-php": "^2.19"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
