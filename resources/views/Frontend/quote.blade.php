@@ -248,18 +248,18 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Origin</label>
                                 <input type="text" class="form-control" name="pointOforigin" id="pointOforigin"
-                                    required>
+                                    >
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Destination</label>
                                 <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti"
-                                    required>
+                                    >
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2">
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
-                                <select class="form-select" name="Currency" id="autoSizingSelect" required>
+                                <select class="form-select" name="Currency" id="autoSizingSelect" >
                                     {{-- <option selected>IDR</option> --}}
                                     <option value="IDR" selected>IDR</option>
                                     {{-- <option value="USD">USD</option>
@@ -273,20 +273,20 @@
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
                                 <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber"
-                                    required>
+                                    >
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Packing List Number</label>
                                 <input type="number" class="form-control" name="packingListNumber"
-                                    id="packingListNumber" required>
+                                    id="packingListNumber" >
                             </div>
                             <div class="col-sm-6">
                                 <div id="travelPermissionLand" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Travel Permission Letter Number</label>
                                     <input type="number" class="form-control" name="travelPermission"
-                                        id="travelPermission" required>
+                                        id="travelPermission" >
                                 </div>
                                 <div id="billOfLandingSea" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Bill Of Landing</label>
@@ -306,7 +306,7 @@
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
                                     <input type="number" class="form-control" name="licensePlate" id="licensePlate"
-                                        required>
+                                        >
                                 </div>
                             </div>
                             <div class="row mt-4">
@@ -323,7 +323,7 @@
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
                                     <input type="number" class="form-control" name="licensePlateInter"
-                                        id="licensePlateInter" required>
+                                        id="licensePlateInter" >
                                 </div>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label style="color: rgb(126, 124, 124)">Ship Name</label>
-                                    <select class="form-select" name="shipName" id="shipName" required>
+                                    <select class="form-select" name="shipName" id="shipName" >
                                         <option selected disabled>- Select -</option>
                                         <option value="star ship">Star Ship</option>
                                         {{-- <option value="IDR">IDR</option> --}}
