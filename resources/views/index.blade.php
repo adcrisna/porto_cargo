@@ -84,7 +84,7 @@
             <p class="text-white">Fast, Secure, and Convenient Cargo Insurence Solution</p>
             <br>
             <br>
-            <a class="btn btn-primary border-white px-4" href="" style="height: 40px">Register</a>
+            <a class="btn btn-primary border-white px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
         </div>
     </div>
     <div class="content1">
