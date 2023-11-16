@@ -98,7 +98,7 @@
         .loader-content {
             background-color: white;
             /* padding: 20px;
-                        border-radius: 8px; */
+                                        border-radius: 8px; */
         }
     </style>
 @endsection
@@ -432,7 +432,9 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-dark" style="font-size:12px">:
-                                   IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }} x {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }} % =  IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
+                                    IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }} x
+                                    {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }} % =
+                                    IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
                             </div>
                         </div>
                     @endif
@@ -484,13 +486,13 @@
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
 
-                            <label style="color: rgb(126, 124, 124); font-size:12px"><b>Payment Method</b></label>
-                            <select name="paymentMethod" id="paymentMethod" class="form-select"
-                                style="background-color: #ffffff">
-                                <option selected value="BCA">BCA</option>
-                                <option value="BRI">BRI</option>
-                                <option value="BNI">BNI</option>
-                            </select>
+                        <label style="color: rgb(126, 124, 124); font-size:12px"><b>Payment Method</b></label>
+                        <select name="paymentMethod" id="paymentMethod" class="form-select"
+                            style="background-color: #ffffff">
+                            <option selected value="BCA">BCA</option>
+                            <option value="BRI">BRI</option>
+                            <option value="BNI">BNI</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -507,7 +509,7 @@
         <div class="row mt-2" style="margin-left: 9%">
             <div class="col-sm-6">
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="transhipment" name="transhipment"
+                    <input type="checkbox" class="form-check-input" id="iAggre" name="iAggre"
                         style="background-color: rgb(126, 124, 124)">
                     <label class="form-check-label" style="color: black; font-size: 12px" for="transhipment">I agree to
                         the
@@ -523,8 +525,8 @@
                     style="width: 80%">Cancel</a>
             </div>
             <div class="col-sm-6 mb-3">
-                <button type="button" class="btn btn-primary" id="confirm" style="width: 80%"
-                    data-bs-toggle="modal">Confirm</button>
+                <button type="button" class="btn btn-primary" id="confirm" style="width: 80%" data-bs-toggle="modal"
+                    disabled>Confirm</button>
             </div>
         </div>
     </div>
@@ -544,7 +546,8 @@
                                     Meanwhile,
                                     please check policy
                                     Summary and Premium Note in your account.</b></p>
-                            <a href="{{ route('shipment.index') }}" type="button" class="btn btn-primary" style="width: 150px; margin-top: 20px">Ok</a>
+                            <a href="{{ route('shipment.index') }}" type="button" class="btn btn-primary"
+                                style="width: 150px; margin-top: 20px">Ok</a>
                         </div>
                     </div>
                 </div>
@@ -571,7 +574,17 @@
         });
     });
 </script> --}}
-
+    <script>
+        $(document).ready(function() {
+            $("#iAggre").change(function() {
+                if (this.checked) {
+                    $("#confirm").attr('disabled', false);
+                } else {
+                    $("#confirm").attr('disabled', true);
+                }
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -598,7 +611,8 @@
                             } else {
                                 $('#modalSuccess').modal('show');
                             }
-                            history.replaceState({}, document.title, window.location.href.split('?')[0]);
+                            history.replaceState({}, document.title, window.location
+                                .href.split('?')[0]);
                         }, 1400);
                     },
                     error: function(xhr) {
@@ -610,27 +624,27 @@
         });
     </script>
 
-{{--
+
     <script>
-        $(document).on('contextmenu', function () {
+        $(document).on('contextmenu', function() {
             return false;
         });
 
-        $(document).keydown(function (event) {
+        $(document).keydown(function(event) {
             if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
                 return false;
             }
         });
-        $(document).keydown(function (event) {
+        $(document).keydown(function(event) {
             if (event.ctrlKey && event.keyCode == 85) {
                 return false;
             }
         });
 
-        $(document).keydown(function (event) {
+        $(document).keydown(function(event) {
             if (event.keyCode == 123) { // F12
                 return false;
             }
         });
-    </script> --}}
+    </script>
 @endsection
