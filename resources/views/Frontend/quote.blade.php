@@ -247,11 +247,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Origin</label>
-                                <input type="text" class="form-control" name="pointOforigin" id="pointOforigin">
+                                <input type="text" class="form-control" name="pointOforigin" id="pointOforigin"
+                                    required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Point of Destination</label>
-                                <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti">
+                                <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
@@ -270,7 +272,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
-                                <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber">
+                                <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber"
+                                    required>
                             </div>
                         </div>
                         <div class="row">

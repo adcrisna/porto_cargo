@@ -13,7 +13,7 @@ $(document).ready(function () {
             $("#airwayBillAir").css("display", "none");
             $("#air").css("display", "none");
 
-            $("#travelPermissionLand").attr("required", true);
+            $("#travelPermission").attr("required", true);
             $("#licensePlate").attr("required", true);
             $("#billOfLanding").attr("required", false);
             $("#airwayBill").attr("required", false);
@@ -33,7 +33,7 @@ $(document).ready(function () {
             $("#airwayBillAir").css("display", "none");
             $("#air").css("display", "none");
 
-            $("#travelPermissionLand").attr("required", false);
+            $("#travelPermission").attr("required", false);
             $("#licensePlate").attr("required", false);
             $("#billOfLanding").attr("required", true);
             $("#airwayBill").attr("required", false);
@@ -53,7 +53,7 @@ $(document).ready(function () {
             $("#travelPermissionLand").css("display", "none");
             $("#land").css("display", "none");
 
-            $("#travelPermissionLand").attr("required", false);
+            $("#travelPermission").attr("required", false);
             $("#licensePlate").attr("required", false);
             $("#billOfLanding").attr("required", false);
             $("#airwayBill").attr("required", true);
