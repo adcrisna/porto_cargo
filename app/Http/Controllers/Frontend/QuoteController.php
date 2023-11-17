@@ -112,6 +112,12 @@ class QuoteController extends Controller
             $order->packing_list_number = $data->data->packingListNumber ?? null;
             $order->bill_of_lading_number = $data->data->billOfLanding ?? null;
 
+            $order->travel_permission = $data->data->travelPermission ?? null;
+            $order->airway_bill = $data->data->airwayBill ?? null;
+            $order->license_plate = $data->data->licensePlate ?? null;
+            $order->inter_island = $data->data->interIsland ?? null;
+            $order->license_plateinter = $data->data->licensePlateInter ?? null;
+
             $order->ship_name = $data->data->shipName ?? null;
             $order->vessel_group = $data->data->vesselGroup ?? null;
             $order->container_load = $data->data->containerLoad ?? null;
