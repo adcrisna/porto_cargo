@@ -71,10 +71,11 @@
                                 </td>
                                 <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-default border-primary mt-1" style="width: 90px"
-                                        data-bs-toggle="modal" data-bs-target="#detailModal">Details</a>
+                                    <button class="btn btn-default border-primary detail-btn"
+                                        data-item-id="{{ $item->id }}" style="width: 90px">Detail</button>
                                     @if (Auth::user()->account_type == 'retail' && $item->transaction->payment_status == 'unpaid')
-                                        <a href="{{ @$item->transaction->payment_link }}" class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
+                                        <a href="{{ @$item->transaction->payment_link }}"
+                                            class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
                                     @endif
                                 </td>
                             </tr>
@@ -88,7 +89,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary" id="exampleModalLabel">Details</h5>
+                    <h5 class="modal-title text-primary" id="detailModalLabel">Details</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row mt-2" style="justify-content: center">
@@ -99,7 +100,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: PT Xyz Terus</p>
+                                        <p class="text-dark" style="font-size:12px" id="companyName">:
+                                            <span id="item-company_name"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -107,7 +110,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 086969696969</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-phone_number"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -115,7 +119,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: xyzterus@gmail.com</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-company_email"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -123,7 +128,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: JL. Xyz No.69 </p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-insured_address"></span> </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -131,7 +137,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Sea</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-conveyance"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -139,7 +145,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Doggy Style</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-goods_type"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -147,7 +153,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 7 Februari 2023</p>
+                                        <p class="text-dark" style="font-size:12px">:
+                                            <span id="item-estimated_time_of_departure"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -155,7 +163,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 14 Februari 2023</p>
+                                        <p class="text-dark" style="font-size:12px">:
+                                            <span id="item-estimated_time_of_arrival"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -163,7 +173,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Jawa</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-point_of_origin"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -171,7 +182,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Kalimantan</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-point_of_destination"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -179,7 +192,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: IDR 1.696.969.696</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-sum_insured"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -187,7 +201,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 696969</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-invoice_number"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -195,71 +210,143 @@
                                         <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 696969</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-packing_list_number"></span>
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 69696</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Maria Ozawa</p>
+                                <div id="typeAir">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Airways Bill</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-airway_bill"></span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                                <div id="typeLand">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Travel Permission Letter
+                                                    Number</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-travel_permission"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Mother Vessel</p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>License Plate</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-license_plate"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Inter Island</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-inter_island"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>License Plate Inter</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-license_plateinter"></span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                                <div id="typeSea">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-bill_of_lading_number"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Full Conainer Loaded</p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-ship_name"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-vessel_group"></span></p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Steel</p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-container_load"></span></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-vessel_material"></span></p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: General Cargo</p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-vessel_type"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-classified"></span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: Yes</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 2023</p>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-dark" style="font-size:12px">: <span
+                                                    id="item-built_year"></span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -267,7 +354,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Transipment</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: No</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-transhipment"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -275,7 +363,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Coverage</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: ICC A</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-coverage"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -283,8 +372,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 1% of total sum insured per any one
-                                            occurrence any one conveyance</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-deductibles"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -292,7 +381,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Total Sum Insurance</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-total_sum_insured"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -300,7 +390,7 @@
                                         <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: ICC A 0.1%</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-rate"></span></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -308,8 +398,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00 x 0,1% = IDR
-                                            1.000.0000,00</p>
+                                        <p class="text-dark" style="font-size:12px">: <span
+                                                id="item-premium_calculation"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -317,7 +408,9 @@
                                         <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: 7 Days After Sailling Date</p>
+                                        <p class="text-dark" style="font-size:12px">:
+                                            <span id="item-premium_payment_warranty"></span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -325,7 +418,8 @@
                                         <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-dark" style="font-size:12px">: ZURICH ASURANSI INDONESIA, Tbk</p>
+                                        <p class="text-dark" style="font-size:12px">: <span id="item-security"></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -353,6 +447,86 @@
     <script>
         new DataTable('#example', {
             responsive: true
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            const rupiah = (number) => {
+                return new Intl.NumberFormat("id-ID", {
+                    style: 'currency',
+                    currency: "IDR",
+                    minimumFractionDigits: 0,
+                }).format(number);
+            }
+
+            $('.detail-btn').click(function() {
+                var itemId = $(this).data('item-id');
+                console.log(itemId);
+
+                $.ajax({
+                    url: '/payment_detail/' + itemId,
+                    method: 'GET',
+                    success: function(data) {
+
+                        if (data.conveyance == 'Land') {
+                            $("#typeLand").css("display", "block");
+                            $("#typeSea").css("display", "none");
+                            $("#typeAir").css("display", "none");
+                        } else if (data.conveyance == 'Sea') {
+                            $("#typeLand").css("display", "none");
+                            $("#typeSea").css("display", "block");
+                            $("#typeAir").css("display", "none");
+                        } else if (data.conveyance == 'Air') {
+                            $("#typeLand").css("display", "none");
+                            $("#typeSea").css("display", "none");
+                            $("#typeAir").css("display", "block");
+                        }
+
+                        $('#item-id').text(data.id);
+                        $('#item-company_name').text(data.company_name);
+                        $('#item-phone_number').text(data.phone_number);
+                        $('#item-company_email').text(data.company_email);
+                        $('#item-insured_address').text(data.insured_address);
+                        $('#item-conveyance').text(data.conveyance);
+                        $('#item-goods_type').text(data.goods_type);
+                        $('#item-estimated_time_of_departure').text(data
+                            .estimated_time_of_departure);
+                        $('#item-estimated_time_of_arrival').text(data
+                            .estimated_time_of_arrival);
+                        $('#item-point_of_origin').text(data.point_of_origin);
+                        $('#item-point_of_destination').text(data.point_of_destination);
+                        $('#item-sum_insured').text(rupiah(data.sum_insured));
+                        $('#item-invoice_number').text(data.invoice_number);
+                        $('#item-packing_list_number').text(data.packing_list_number);
+                        $('#item-bill_of_lading_number').text(data.bill_of_lading_number);
+                        $('#item-ship_name').text(data.ship_name);
+                        $('#item-vessel_group').text(data.vessel_group);
+                        $('#item-container_load').text(data.container_load);
+                        $('#item-vessel_material').text(data.vessel_material);
+                        $('#item-vessel_type').text(data.vessel_type);
+                        $('#item-classified').text(data.classified);
+                        $('#item-built_year').text(data.built_year);
+                        $('#item-transhipment').text(data.transhipment);
+                        $('#item-coverage').text(data.coverage);
+                        $('#item-deductibles').text(data.deductibles);
+                        $('#item-total_sum_insured').text(rupiah(data
+                            .total_sum_insured));
+                        $('#item-rate').text(data.rate);
+                        $('#item-premium_calculation').text(data.premium_calculation);
+                        $('#item-premium_payment_warranty').text(data.premium_payment_warranty);
+                        $('#item-security').text(data.security);
+                        $('#item-travel_permission').text(data.travel_permission);
+                        $('#item-license_plate').text(data.license_plate);
+                        $('#item-license_plateinter').text(data.license_plateinter);
+                        $('#item-inter_island').text(data.inter_island);
+                        $('#item-airway_bill').text(data.airway_bill);
+                        $('#detailModal').modal('show');
+                    },
+                    error: function() {
+                        alert('Gagal mendapatkan data.');
+                    }
+                });
+            });
         });
     </script>
 @endsection

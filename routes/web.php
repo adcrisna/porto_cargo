@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
 
     Route::controller(PaymentController::class)->group(function () {
         Route::get('/payment', 'index')->name('payment.index');
+        Route::get('/payment_detail/{id}', 'detail')->name('payment.detail');
     });
 
     Route::controller(ShipmentController::class)->group(function () {

@@ -22,10 +22,16 @@ class PaymentController extends Controller
 
         $order = Orders::where('user_id', Auth::user()->id);
         $data = $order->get();
+        // return $data;
         // if (Auth::user()->account_type === 'verify') {
         // } else {
         //     $data = $order->get();
         // }
         return view('Frontend.payment' , compact('data'));
+    }
+    public function detail($id)
+    {
+        $item = Orders::findOrFail($id);
+        return response()->json($item);
     }
 }
