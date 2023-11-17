@@ -68,6 +68,12 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
 
     Route::controller(ReportController::class)->group(function () {
         Route::get('/report', 'index')->name('report.index');
+        Route::prefix('excel')->group(function () {
+            Route::post('/claim', 'postClaim')->name('report.claim');
+            Route::post('/shipment', 'postShipment')->name('report.shipment');
+            Route::post('/payment', 'postPayment')->name('report.payment');
+        });
+
     });
 
     Route::controller(ClaimController::class)->group(function () {

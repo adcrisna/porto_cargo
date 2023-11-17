@@ -73,13 +73,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
-                            </tr>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td class=" text-center">{{ @$item->id }}</td>
+                                <td class=" text-center">{{ @$item->company_name }}</td>
+                                <td class=" text-center">{{ @$item->point_of_origin }}</td>
+                                <td class=" text-center">{{ @$item->point_of_destination }}</td>
+                                <td class=" text-center">
+                                    @if ($item->transaction)
+                                        {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
+                                        - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -96,26 +105,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($payment as $item)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
+                                <td>{{ $item->transaction->id }}</td>
+                                <td>{{ $item->company_name }}</td>
+                                <td>{{ $item->point_of_origin }}</td>
+                                <td>{{ $item->point_of_destination }}</td>
                                 <td>
                                     @php
-                                        $data = 'Expired';
+                                        $status = $item->transaction->payment_status;
                                     @endphp
-                                    @if ($data == 'Unpaid')
+                                    @if ($status == 'unpaid')
                                         <button class="btn btn-default border-danger text-danger">Unpaid</button>
-                                    @elseif ($data == 'Paid')
+                                    @elseif ($status == 'paid')
                                         <button class="btn btn-default border-success text-success">Paid</button>
-                                    @elseif ($data == 'Expired')
+                                    @else
                                         <button class="btn btn-default border-warning text-warning">Expired</button>
                                     @endif
 
                                 </td>
-                                <td>$320,800</td>
+                                <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -131,22 +142,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($claim as $item)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>
-                                    @php
-                                        $data = 'Rejected';
-                                    @endphp
-                                    @if ($data == 'Rejected')
-                                        <button class="btn btn-default border-danger text-danger">Rejected</button>
-                                    @elseif ($data == 'Approved')
-                                        <button class="btn btn-default border-success text-success">Approved</button>
-                                    @endif
-                                </td>
+                                <td>CLM-{{ $item->id }}</td>
+                                <td>{{ $item->transaction->order->company_name }}</td>
+                                <td>{{ $item->transaction->order->point_of_origin }}</td>
+                                <td>{{ $item->transaction->order->point_of_destination }}</td>
+                                <td>{{ $item->claim_status }}</td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -160,7 +164,7 @@
                     <h5 class="modal-title" id="modalReportClaimLabel">Download Report Claim</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="">
+                <form action="{{ route('report.claim') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -195,7 +199,7 @@
                     <h5 class="modal-title" id="modalReportPaymentLabel">Download Report Payment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="">
+                <form action="{{ route('report.payment') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -230,7 +234,7 @@
                     <h5 class="modal-title" id="modalReportShipmentLabel">Download Report Shipment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="">
+                <form action="{{ route('report.shipment') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
