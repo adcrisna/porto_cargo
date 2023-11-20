@@ -116,27 +116,18 @@
             }
         }
 
-
-        .profile-dropdown {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding: 10px;
-            border: 1px solid #3156A5;
-            border-radius: 5pxrgb(204, 204, 204);
-            border-radius: 10px;
-            width: 160px;
-            height: 50px;
-            margin-right: 20px;
+        .auth {
+            margin-left: 750px;
+            margin-top: 1px;
         }
 
-        /* Style untuk foto pengguna */
-        .profile-dropdown img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            float: right;
+        @media (max-width: 768px) {
+            .auth {
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 100px;
+            }
         }
     </style>
     @yield('css')
@@ -158,7 +149,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
+            {{-- <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quote</a>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                 <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
@@ -172,34 +163,15 @@
                 </div>
                 <a href="{{ route('payment.index') }}" class="nav-item nav-link">Payment</a>
                 <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
-            </div>
+            </div> --}}
             &nbsp;
-            @if (Auth::check())
-                <div class="profile-dropdown">
-                    <div class="nav-item dropdown">
-                        <div class="row">
-                            <div class="col-sm-2 mt-2">
-                                <span class="dropdown-toggle" style="color: #3156A5"></span>
-                            </div>
-                            <div class="col-sm-5" style="margin-right: 20px">
-                                <a href="#" class="nav-link" data-bs-toggle="dropdown"
-                                    style="font-size: 12px">{{ strtoupper(Auth::user()->name) }}</a>
-                            </div>
-                        </div>
-                        <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border: 1px solid #3156A5">
-                            <a href="#" class="dropdown-item">Account Settings</a>
-                            <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
-                        </div>
-                    </div>
-                    <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
-                </div>
-            @else
+            <div class="auth">
                 <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
                     style="height: 40px">Login</a>
                 &nbsp; &nbsp;
                 <a class="btn btn-primary px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
                 &nbsp; &nbsp; &nbsp; &nbsp;
-            @endif
+            </div>
         </div>
     </nav>
     <div class="bgContent">

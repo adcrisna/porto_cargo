@@ -70,7 +70,7 @@
         <div class="col-lg-6 d-flex justify-content-center text-center">
             <div class="container">
                 <div class="text-overlay">
-                    <h2 class="text-primary">Let's get your goods insured</h2>
+                    <h2 class="text-primary">Let's get your goods insured!</h2>
                     <p style="font-size: 22px">Cargo Insurance Solution</p>
                 </div>
                 <img src="{{ asset('images/Home Page.png') }}" alt="Gambar Responsif" class="responsive-image">
@@ -128,11 +128,11 @@
                                 user
                                 registration.<br>Your account will be active after verification and notified by email.</p>
                             <br>
-                            <button type="submit" class="btn btn-primary" id="non_verify" style="width: 260px">Processed
+                            <button type="submit" class="btn btn-primary" id="non_verify" style="width: 260px">Proceed
                                 Without
                                 Verification</button>
                             <p></p>
-                            <p style="font-size: 10px; color:rgb(126, 124, 124)">You can processed without verification. Get
+                            <p style="font-size: 10px; color:rgb(126, 124, 124)">You can Proceed without verification. Get
                                 your quote and activate<br>your insurance plan but payment must be completed before <br>
                                 certificate is issued.</p>
                         </center>

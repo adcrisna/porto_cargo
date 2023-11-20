@@ -158,17 +158,20 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Company Name</label>
-                                <input type="text" class="form-control" name="companyName" id="companyName" required>
+                                <input type="text" class="form-control" name="companyName" id="companyName"
+                                    value="{{ Auth::user()->name }}" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Phone Number</label>
-                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" required>
+                                <input type="number" class="form-control" name="phoneNumber" id="phoneNumber"
+                                    value="{{ Auth::user()->phone_number }}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Company Email</label>
-                                <input type="email  " class="form-control" name="companyEmail" id="companyEmail" required>
+                                <input type="email  " class="form-control" name="companyEmail" id="companyEmail"
+                                    value="{{ Auth::user()->email }}" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Insurance Address</label>

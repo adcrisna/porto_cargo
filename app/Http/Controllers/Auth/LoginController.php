@@ -32,7 +32,7 @@ class LoginController extends Controller
         if (auth()->attempt($request->only('email', 'password'))) {
             return redirect()->route('quote.index');
         }
-        return redirect()->route('auth.login')->with('error', 'Username or password doesnt macth!.');
+        return redirect()->route('auth.login')->with('error', 'Username and password does not match!');
     }
 
     public function postregister(Request $request) {

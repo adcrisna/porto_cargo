@@ -81,7 +81,7 @@
             <br>
             <br>
             <h1 class="display-4 text-white mt-5">Stay Safe <br> Stay Insured</h1>
-            <p class="text-white">Fast, Secure, and Convenient Cargo Insurence Solution</p>
+            <p class="text-white">Fast, Secure, and Convenient Cargo Insurance Solution</p>
             <br>
             <br>
             <a class="btn btn-primary border-white px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
