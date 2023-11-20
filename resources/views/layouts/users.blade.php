@@ -60,7 +60,7 @@
             cursor: pointer;
             padding: 10px;
             border: 1px solid #3156A5;
-            border-radius: 5pxrgb(204, 204, 204);
+            border-radius: 5px rgb(204, 204, 204);
             border-radius: 10px;
             width: 160px;
             height: 50px;
@@ -87,6 +87,34 @@
                 margin-top: 0px;
                 margin-bottom: 10px;
                 margin-left: 100px;
+            }
+
+            .profile-dropdown {
+                margin-bottom: 10px;
+                margin-left: 10px;
+                width: 100%;
+            }
+
+            /* Style untuk foto pengguna */
+            .profile-dropdown img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                float: right;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .dropdown {
+                width: 100%;
+            }
+        }
+
+        /* Gaya untuk ponsel */
+        @media only screen and (max-width: 480px) {
+            .dropdown {
+                width: 100%;
             }
         }
     </style>

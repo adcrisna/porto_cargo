@@ -54,66 +54,26 @@
             }
         }
 
-        #upFooter {
-            background-color: black;
+        .profile-dropdown {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #3156A5;
+            border-radius: 5px rgb(204, 204, 204);
+            border-radius: 10px;
+            width: 160px;
             height: 50px;
+            margin-right: 20px;
         }
 
-        #footer {
-            background-color: #3156A5;
-            height: 38%;
-        }
-
-        .logoFooter {
-            margin-left: 120px;
-            margin-top: 30px;
-        }
-
-        .footerPolicy {
-            margin-left: 110px;
-            margin-top: 180px;
-        }
-
-        .logoOjk {
-            margin-top: 200px;
-        }
-
-        .ojkImage {
+        /* Style untuk foto pengguna */
+        .profile-dropdown img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
             float: right;
-            margin-right: 30px;
-        }
-
-        .mariImage {
-            float: right;
-            margin-top: 12px;
-            margin-right: 40px
-        }
-
-        @media (max-width: 768px) {
-            .logoFooter {
-                margin-left: 90px;
-                margin-top: 30px;
-            }
-
-            .footerPolicy {
-                margin-left: 40px;
-                margin-top: 80px;
-            }
-
-            .logoOjk {
-                margin-top: 50;
-            }
-
-            .ojkImage {
-                float: right;
-                margin-right: 30px;
-            }
-
-            .mariImage {
-                float: right;
-                margin-top: 12px;
-                margin-right: 70px
-            }
         }
 
         .auth {
@@ -127,6 +87,34 @@
                 margin-top: 0px;
                 margin-bottom: 10px;
                 margin-left: 100px;
+            }
+
+            .profile-dropdown {
+                margin-bottom: 10px;
+                margin-left: 10px;
+                width: 100%;
+            }
+
+            /* Style untuk foto pengguna */
+            .profile-dropdown img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                float: right;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .dropdown {
+                width: 100%;
+            }
+        }
+
+        /* Gaya untuk ponsel */
+        @media only screen and (max-width: 480px) {
+            .dropdown {
+                width: 100%;
             }
         }
     </style>
@@ -149,29 +137,51 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            {{-- <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quote</a>
-                <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
-                <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
-                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="{{ route('claim.new') }}" class="dropdown-item">New Claim</a>
-                        <a href="{{ route('claim.submitted') }}" class="dropdown-item">Submited Claim</a>
-                        <a href="{{ route('claim.closed') }}" class="dropdown-item">Closed Claim</a>
+            @if (Auth::check())
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quotation</a>
+                    <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                    <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="{{ route('claim.new') }}" class="dropdown-item">New Claim</a>
+                            <a href="{{ route('claim.submitted') }}" class="dropdown-item">Submited Claim</a>
+                            <a href="{{ route('claim.closed') }}" class="dropdown-item">Closed Claim</a>
+                        </div>
                     </div>
+                    <a href="{{ route('payment.index') }}" class="nav-item nav-link">Payment</a>
+                    <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
                 </div>
-                <a href="{{ route('payment.index') }}" class="nav-item nav-link">Payment</a>
-                <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
-            </div> --}}
-            &nbsp;
-            <div class="auth">
-                <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
-                    style="height: 40px">Login</a>
-                &nbsp; &nbsp;
-                <a class="btn btn-primary px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
-                &nbsp; &nbsp; &nbsp; &nbsp;
-            </div>
+                &nbsp;
+                <div class="profile-dropdown">
+                    <div class="nav-item dropdown">
+                        <div class="row">
+                            <div class="col-sm-2 mt-2">
+                                <span class="dropdown-toggle" style="color: #3156A5"></span>
+                            </div>
+                            <div class="col-sm-5" style="margin-right: 20px">
+                                <a href="#" class="nav-link" data-bs-toggle="dropdown"
+                                    style="font-size: 12px">{{ strtoupper(Auth::user()->name) }}</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border: 1px solid #3156A5">
+                            <a href="#" class="dropdown-item">Account Settings</a>
+                            <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
+                        </div>
+                    </div>
+                    <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
+                </div>
+            @else
+                <div class="auth">
+                    <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
+                        style="height: 40px">Login</a>
+                    &nbsp; &nbsp;
+                    <a class="btn btn-primary px-4" href="{{ route('auth.register') }}"
+                        style="height: 40px">Register</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
+            @endif
         </div>
     </nav>
     <div class="bgContent">
@@ -183,73 +193,19 @@
         @yield('content')
     </div>
 
-    <div class="footer wow fadeIn" data-wow-delay="0.1s">
-        <div id="upFooter"></div>
-        <footer id="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <img class="footer-logo-slv logoFooter"
-                            src="https://salvus.co.id/assets/new_asset_2023/img/salvus-white.png" alt=""
-                            width="185" style="margin-bottom: 8px;" srcset="">
-                    </div>
-                </div>
-                {{-- <div class="row">
-                    <div class="col-md-6 col-sm-6" style="margin-bottom: 50px;">
-                        <div class="footer-sosmed">
-                            <table width="50%">
-                                <tbody>
-                                    <tr>
-                                        <td><a href="https://www.instagram.com/salvus.co.id/"><img
-                                                    src="https://salvus.co.id/assets/new_asset_2023/img/instagram.png"
-                                                    alt="" width="20" srcset=""></a></td>
-                                        <td><a href="https://www.facebook.com/salvusinti"><img
-                                                    src="https://salvus.co.id/assets/new_asset_2023/img/facebook.png"
-                                                    alt="" width="20" srcset=""></a></td>
-                                        <td><a href="https://www.linkedin.com/company/salvusinti"><img
-                                                    src="https://salvus.co.id/assets/new_asset_2023/img/linkedin.png"
-                                                    alt="" width="20" srcset=""></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> --}}
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="footerPolicy">
-                            <table width="100%">
-                                <tbody>
-                                    <tr>
-                                        <td style="color: #f1f7f7">Terms of Use</td>
-                                        <td style="color: #f1f7f7">Privacy Notice</td>
-                                        <td style="color: #f1f7f7">Notice Cookie</td>
-                                        <td style="color: #f1f7f7">Manage Cookies</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" style="color: #f1f7f7">© 2023 Copyright PT Salvus Inti</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 logoOjk">
-                        <img src="https://salvus.co.id/assets/new_asset/img/mari-berasuransi.png"
-                            class="footer-logo2 mariImage" alt="" width="80" srcset="">
-                        <img src="https://salvus.co.id/assets/new_asset/img/ojk.png" class="footer-logo ojkImage"
-                            alt="" width="140" srcset="">
-                    </div>
-                </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('template/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('template/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('template/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('template/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('template/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('template/lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('template/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
-            </div>
-        </footer>
-    </div>
-    @include('layouts.js')
-
-
+    <script src="{{ asset('template/js/main.js') }}"></script>
+    @yield('javascript')
 </body>
 
 </html>
