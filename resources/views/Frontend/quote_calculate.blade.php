@@ -631,11 +631,11 @@
             }
 
             $('#ok_risk').click(function() {
-                $('#loader_calculate').removeClass('d-none').addClass('d-block');
-                $('#specialRisk').addClass('d-none');
+                // $('#loader_calculate').removeClass('d-none').addClass('d-block');
+                // $('#specialRisk').addClass('d-none');
                 setTimeout(function() {
                     $('#loader_calculate').removeClass('d-block').addClass('d-none');
-                    $('#yourInsurancePlan').addClass('d-block');
+                    $('#sendtoconfirm').submit();
                 }, 400);
             });
         });

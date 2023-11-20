@@ -27,9 +27,9 @@ class QuoteController extends Controller
         $data =
             [
                 "data" => json_decode($request->insured_detail),
-                "product_id" => $request->product_id,
-                "icc_selected" => $request->icc_selected,
-                "premium_amount" => $request->premium_amount,
+                "product_id" => $request->product_id ?? null,
+                "icc_selected" => $request->icc_selected ?? null,
+                "premium_amount" => $request->premium_amount ?? null,
                 "is_risk" => $request->is_risk,
                 "account_type" => Auth::user()->account_type,
             ];
@@ -85,10 +85,10 @@ class QuoteController extends Controller
     }
 
     function saved(Request $request) {
-
         DB::beginTransaction();
         try {
             $data = json_decode($request['data']);
+            // return $data->is_risk;
             $product = Products::find($data->product_id);
 
             $order = new Orders;
@@ -130,9 +130,9 @@ class QuoteController extends Controller
 
             $order->deductibles =  null;
             $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
-            $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'];  // ke 0.0
+            $order->rate = isset($product) ? $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] : null;  // ke 0.0
             $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
-            $order->premium_calculation =  $data->data->sumInsured . ' x ' . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ' = ' . $data->premium_amount;
+            $order->premium_calculation = isset($product) ?  $data->data->sumInsured . ' x ' . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ' = ' . $data->premium_amount : null;
             $order->premium_payment_warranty = '7 days After Sailling Date';
             $order->security = null;
 
@@ -147,7 +147,7 @@ class QuoteController extends Controller
             $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
             $transaction->start_policy_date = date('Y-m-d');
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
-            $transaction->risk_status = $data->is_risk == 1 ? 'follow_up' : null;
+            $transaction->risk_status = $data->is_risk === "1" ? 'follow_up' : null;
             $transaction->payment_status = 'unpaid';
 
             // return $transaction;
@@ -156,7 +156,7 @@ class QuoteController extends Controller
             DB::commit();
 
 
-            if (Auth::user()->account_type == 'retail') {
+            if (Auth::user()->account_type == 'retail' && $data->is_risk !== "1") {
                 $trx_id = $transaction->id;
                 $pay_method = $request["payment_method"];
                 $pay_total = $data->premium_amount;
@@ -167,7 +167,7 @@ class QuoteController extends Controller
                     'type' => 'retail',
                     'link' => $to_xendit
                 ]);
-            }else{
+            }else {
                 return response()->json([
                     'type' => 'verify',
                     'message' => 'success',

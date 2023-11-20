@@ -65,7 +65,7 @@
                                     @elseif ($status == 'paid')
                                         <button class="btn btn-default border-success text-success">Paid</button>
                                     @else
-                                        <button class="btn btn-default border-warning text-warning">Expired</button>
+                                        <button class="btn btn-default border-warning text-warning">Pending</button>
                                     @endif
 
                                 </td>
@@ -73,7 +73,7 @@
                                 <td>
                                     <button class="btn btn-default border-primary detail-btn"
                                         data-item-id="{{ $item->id }}" style="width: 90px">Detail</button>
-                                    @if (Auth::user()->account_type == 'retail' && $item->transaction->payment_status == 'unpaid')
+                                    @if (Auth::user()->account_type == 'retail' && $item->transaction->payment_status == 'pending')
                                         <a href="{{ @$item->transaction->payment_link }}"
                                             class="btn btn-sm btn-primary mt-1" style="width: 90px">Pay</a>
                                     @endif

@@ -481,7 +481,7 @@
     </form>
 
     <div id="payment">
-        @if ($data['account_type'] == 'retail')
+        @if ($data['account_type'] == 'retail' && $data['is_risk'] !== '1')
             <div class="row mt-2" style="justify-content: center">
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
@@ -561,19 +561,19 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    {{-- <script>
-    $(document).ready(function() {
-        $('#load_save').hide();
-        $('#confirm').click(function() {
-            $('#post_data').submit();
-            // $('#load_save').show();
-            // setTimeout(function() {
-            //     $('#load_save').hide();
-            //     $('#modalSuccess').modal('show');
-            // }, 3000);
-        });
-    });
-</script> --}}
+    <script>
+    // $(document).ready(function() {
+    //     $('#load_save').hide();
+    //     $('#confirm').click(function() {
+    //         $('#post_data').submit();
+    //         // $('#load_save').show();
+    //         // setTimeout(function() {
+    //         //     $('#load_save').hide();
+    //         //     $('#modalSuccess').modal('show');
+    //         // }, 3000);
+    //     });
+    // });
+</script>
     <script>
         $(document).ready(function() {
             $("#iAggre").change(function() {
@@ -625,7 +625,7 @@
     </script>
 
 
-    <script>
+    {{-- <script>
         $(document).on('contextmenu', function() {
             return false;
         });
@@ -646,5 +646,5 @@
                 return false;
             }
         });
-    </script>
+    </script> --}}
 @endsection
