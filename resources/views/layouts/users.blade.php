@@ -44,9 +44,6 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
 
             .newBackground,
             .content {
@@ -81,7 +78,7 @@
             margin-top: 1px;
         }
 
-        @media (max-width: 768px) {
+        @media only screen and (max-width: 768px) {
             .auth {
                 margin-left: 0px;
                 margin-top: 0px;
@@ -90,31 +87,23 @@
             }
 
             .profile-dropdown {
-                margin-bottom: 10px;
                 margin-left: 10px;
-                width: 100%;
-            }
-
-            /* Style untuk foto pengguna */
-            .profile-dropdown img {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                object-fit: cover;
-                float: right;
-            }
-        }
-
-        @media only screen and (max-width: 768px) {
-            .dropdown {
-                width: 100%;
+                margin-bottom: 20px;
             }
         }
 
         /* Gaya untuk ponsel */
         @media only screen and (max-width: 480px) {
-            .dropdown {
-                width: 100%;
+            .auth {
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 100px;
+            }
+
+            .profile-dropdown {
+                margin-left: 10px;
+                margin-bottom: 20px;
             }
         }
     </style>
