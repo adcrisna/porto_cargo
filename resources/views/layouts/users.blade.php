@@ -96,7 +96,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quote</a>
+                <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quotation</a>
                 <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                 <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
                 <div class="nav-item dropdown">
