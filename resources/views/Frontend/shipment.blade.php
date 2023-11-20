@@ -71,7 +71,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <a href="">
-                                                <span class="badge bg-white text-primary" style="border: 1px solid #007BFF;">
+                                                <span class="badge bg-white text-primary"
+                                                    style="border: 1px solid #007BFF;">
                                                     <i class="fa fa-download p-1"></i>Policy Summary
                                                 </span>
                                             </a>
@@ -88,9 +89,9 @@
 @endsection
 
 @section('javascript')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    </script> --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>

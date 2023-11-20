@@ -76,17 +76,17 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td class=" text-center">{{ @$item->id }}</td>
-                                <td class=" text-center">{{ @$item->company_name }}</td>
-                                <td class=" text-center">{{ @$item->point_of_origin }}</td>
-                                <td class=" text-center">{{ @$item->point_of_destination }}</td>
-                                <td class=" text-center">
-                                    @if ($item->transaction)
-                                        {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
-                                        - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
+                                    <td class=" text-center">{{ @$item->company_name }}</td>
+                                    <td class=" text-center">{{ @$item->point_of_origin }}</td>
+                                    <td class=" text-center">{{ @$item->point_of_destination }}</td>
+                                    <td class=" text-center">
+                                        @if ($item->transaction)
+                                            {{ date('Y-m-d', strtotime($item->transaction->start_policy_date)) }}
+                                            - {{ date('Y-m-d', strtotime($item->transaction->end_policy_date)) }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -106,27 +106,27 @@
                         </thead>
                         <tbody>
                             @foreach ($payment as $item)
-                            <tr>
-                                <td>{{ $item->transaction->id }}</td>
-                                <td>{{ $item->company_name }}</td>
-                                <td>{{ $item->point_of_origin }}</td>
-                                <td>{{ $item->point_of_destination }}</td>
-                                <td>
-                                    @php
-                                        $status = $item->transaction->payment_status;
-                                    @endphp
-                                    @if ($status == 'unpaid')
-                                        <button class="btn btn-default border-danger text-danger">Unpaid</button>
-                                    @elseif ($status == 'paid')
-                                        <button class="btn btn-default border-success text-success">Paid</button>
-                                    @else
-                                        <button class="btn btn-default border-warning text-warning">Expired</button>
-                                    @endif
+                                <tr>
+                                    <td>{{ $item->transaction->id }}</td>
+                                    <td>{{ $item->company_name }}</td>
+                                    <td>{{ $item->point_of_origin }}</td>
+                                    <td>{{ $item->point_of_destination }}</td>
+                                    <td>
+                                        @php
+                                            $status = $item->transaction->payment_status;
+                                        @endphp
+                                        @if ($status == 'unpaid')
+                                            <button class="btn btn-default border-danger text-danger">Unpaid</button>
+                                        @elseif ($status == 'paid')
+                                            <button class="btn btn-default border-success text-success">Paid</button>
+                                        @else
+                                            <button class="btn btn-default border-warning text-warning">Expired</button>
+                                        @endif
 
-                                </td>
-                                <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
-                            </tr>
-                        @endforeach
+                                    </td>
+                                    <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -143,14 +143,14 @@
                         </thead>
                         <tbody>
                             @foreach ($claim as $item)
-                            <tr>
-                                <td>CLM-{{ $item->id }}</td>
-                                <td>{{ $item->transaction->order->company_name }}</td>
-                                <td>{{ $item->transaction->order->point_of_origin }}</td>
-                                <td>{{ $item->transaction->order->point_of_destination }}</td>
-                                <td>{{ $item->claim_status }}</td>
-                            </tr>
-                        @endforeach
+                                <tr>
+                                    <td>CLM-{{ $item->id }}</td>
+                                    <td>{{ $item->transaction->order->company_name }}</td>
+                                    <td>{{ $item->transaction->order->point_of_origin }}</td>
+                                    <td>{{ $item->transaction->order->point_of_destination }}</td>
+                                    <td>{{ $item->claim_status }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -264,9 +264,9 @@
 @endsection
 
 @section('javascript')
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    </script> --}}
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
