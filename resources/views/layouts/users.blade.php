@@ -59,12 +59,11 @@
             border: 1px solid #3156A5;
             border-radius: 5px rgb(204, 204, 204);
             border-radius: 10px;
-            width: 160px;
+            width: 180px;
             height: 50px;
             margin-right: 20px;
         }
 
-        /* Style untuk foto pengguna */
         .profile-dropdown img {
             width: 40px;
             height: 40px;
@@ -78,7 +77,7 @@
             margin-top: 1px;
         }
 
-        @media only screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             .auth {
                 margin-left: 0px;
                 margin-top: 0px;
@@ -87,23 +86,10 @@
             }
 
             .profile-dropdown {
-                margin-left: 10px;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Gaya untuk ponsel */
-        @media only screen and (max-width: 480px) {
-            .auth {
-                margin-left: 0px;
-                margin-top: 0px;
                 margin-bottom: 10px;
-                margin-left: 100px;
-            }
-
-            .profile-dropdown {
                 margin-left: 10px;
-                margin-bottom: 20px;
+                height: 60px;
+                ;
             }
         }
     </style>
@@ -145,18 +131,18 @@
                 &nbsp;
                 <div class="profile-dropdown">
                     <div class="nav-item dropdown">
-                        <div class="row">
-                            <div class="col-sm-2 mt-2">
-                                <span class="dropdown-toggle" style="color: #3156A5"></span>
+                        <div class="row mt-3">
+                            <div class="col-sm-1" style="margin: 0px !important">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                    style="padding: 0px !important"></a>
+                                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                                    <a href="#" class="dropdown-item">Account Settings</a>
+                                    <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
+                                </div>
                             </div>
-                            <div class="col-sm-5" style="margin-right: 20px">
-                                <a href="#" class="nav-link" data-bs-toggle="dropdown"
-                                    style="font-size: 12px">{{ strtoupper(Auth::user()->name) }}</a>
+                            <div class="col-sm-5" style="margin-right: 10px">
+                                <p style="font-size: 10px">{{ strtoupper(Auth::user()->name) }}</p>
                             </div>
-                        </div>
-                        <div class="dropdown-menu rounded-0 rounded-bottom m-0" style="border: 1px solid #3156A5">
-                            <a href="#" class="dropdown-item">Account Settings</a>
-                            <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
                         </div>
                     </div>
                     <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
