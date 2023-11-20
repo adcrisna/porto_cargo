@@ -75,6 +75,20 @@
             object-fit: cover;
             float: right;
         }
+
+        .auth {
+            margin-left: 750px;
+            margin-top: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .auth {
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 100px;
+            }
+        }
     </style>
     @yield('css')
 </head>
@@ -95,23 +109,23 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quotation</a>
-                <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
-                <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
-                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="{{ route('claim.new') }}" class="dropdown-item">New Claim</a>
-                        <a href="{{ route('claim.submitted') }}" class="dropdown-item">Submited Claim</a>
-                        <a href="{{ route('claim.closed') }}" class="dropdown-item">Closed Claim</a>
-                    </div>
-                </div>
-                <a href="{{ route('payment.index') }}" class="nav-item nav-link">Payment</a>
-                <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
-            </div>
-            &nbsp;
             @if (Auth::check())
+                <div class="navbar-nav ms-auto p-4 p-lg-0">
+                    <a href="{{ route('quote.index') }}" class="nav-item nav-link">Quotation</a>
+                    <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                    <a href="{{ route('report.index') }}" class="nav-item nav-link">Report</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Claim</a>
+                        <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                            <a href="{{ route('claim.new') }}" class="dropdown-item">New Claim</a>
+                            <a href="{{ route('claim.submitted') }}" class="dropdown-item">Submited Claim</a>
+                            <a href="{{ route('claim.closed') }}" class="dropdown-item">Closed Claim</a>
+                        </div>
+                    </div>
+                    <a href="{{ route('payment.index') }}" class="nav-item nav-link">Payment</a>
+                    <a href="{{ route('shipment.index') }}" class="nav-item nav-link">Shipment</a>
+                </div>
+                &nbsp;
                 <div class="profile-dropdown">
                     <div class="nav-item dropdown">
                         <div class="row">
@@ -131,11 +145,14 @@
                     <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
                 </div>
             @else
-                <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
-                    style="height: 40px">Login</a>
-                &nbsp; &nbsp;
-                <a class="btn btn-primary px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
-                &nbsp; &nbsp; &nbsp; &nbsp;
+                <div class="auth">
+                    <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
+                        style="height: 40px">Login</a>
+                    &nbsp; &nbsp;
+                    <a class="btn btn-primary px-4" href="{{ route('auth.register') }}"
+                        style="height: 40px">Register</a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
             @endif
         </div>
     </nav>
