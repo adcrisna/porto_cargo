@@ -271,7 +271,8 @@
                             </div>
                             <div class="col-sm-4">
                                 <label style="color: rgb(126, 124, 124)"></label>
-                                <input type="number" class="form-control" name="sumInsured" id="sumInsured" required>
+                                <input type="number" class="form-control" name="sumInsured" min="100000"
+                                    id="sumInsured" required>
                             </div>
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
