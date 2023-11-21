@@ -88,7 +88,7 @@
             .profile-dropdown {
                 margin-bottom: 10px;
                 margin-left: 10px;
-                height: 60px;
+                height: 65px;
                 ;
             }
         }
@@ -141,7 +141,8 @@
                                 </div>
                             </div>
                             <div class="col-sm-5" style="margin-right: 10px">
-                                <p style="font-size: 10px">{{ strtoupper(Auth::user()->name) }}</p>
+                                <p style="font-size: 10px !important; margin-top: 5px;">
+                                    {{ strtoupper(Auth::user()->name) }}</p>
                             </div>
                         </div>
                     </div>
