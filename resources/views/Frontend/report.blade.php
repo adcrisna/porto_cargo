@@ -23,9 +23,17 @@
             text-align: center;
         }
 
+        .selectReport {
+            width: 30%;
+        }
+
         @media screen and (max-width: 768px) {
             .card {
                 max-width: 80%;
+            }
+
+            .selectReport {
+                width: 42%;
             }
         }
     </style>
@@ -39,7 +47,7 @@
             <div class="card-body text-primary">
                 <div class="row">
                     <div class="col-sm-6">
-                        <select name="selectReport" class="form-select" id="selectReport" style="width: 30%">
+                        <select name="selectReport" class="form-select selectReport" id="selectReport">
                             <option value="Shipment">Shipment</option>
                             <option value="Payment">Payment</option>
                             <option value="Claim">Claim</option>
