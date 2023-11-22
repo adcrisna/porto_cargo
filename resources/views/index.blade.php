@@ -87,7 +87,7 @@
             <a class="btn btn-primary border-white px-4" href="{{ route('auth.register') }}" style="height: 40px">Register</a>
         </div>
     </div>
-    <div class="content1">
+    {{-- <div class="content1">
         <center>
             <h2 class="text-dark">Lorem Ipsum dolor</h2>
             <br>
@@ -129,7 +129,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('javascript')

@@ -179,8 +179,14 @@
     <script src="{{ asset('template/lib/tempusdominus/js/moment.min.js') }}"></script>
     <script src="{{ asset('template/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
     <script src="{{ asset('template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
     <script src="{{ asset('template/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(".close").click(function() {
+                $("#alert").hide();
+            });
+        });
+    </script>
     @yield('javascript')
 </body>
 

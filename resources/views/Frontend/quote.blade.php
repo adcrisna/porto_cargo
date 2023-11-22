@@ -143,8 +143,8 @@
     <div class="row">
         <img src="{{ asset('images/Quote.png') }}" alt="Gambar Responsif" class="responsive-image imageQuote">
         <div class="textQuote">
-            <h2 class="text-primary">Quote</h2>
-            <p style="font-size: 22px" class="text-primary">Let's get your quote now!</p>
+            <h2 class="text-primary">Quotation</h2>
+            <p style="font-size: 22px" class="text-primary">Let's get your quotation now!</p>
         </div>
     </div>
     <form action="{{ route('quote.calculation') }}" method="POST">
@@ -332,13 +332,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <label style="color: rgb(126, 124, 124)">Ship Name</label>
-                                    <select class="form-select" name="shipName" id="shipName">
-                                        <option selected disabled>- Select -</option>
-                                        <option value="star ship">Star Ship</option>
-                                        {{-- <option value="IDR">IDR</option> --}}
-                                        {{-- <option value="USD">USD</option> --}}
-                                        {{-- <option value="YEN">YEN</option> --}}
-                                    </select>
+                                    <input type="text" class="form-control" name="shipName" id="shipName">
                                 </div>
                             </div>
                             <div class="row">
