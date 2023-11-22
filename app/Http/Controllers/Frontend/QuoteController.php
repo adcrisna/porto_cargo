@@ -44,7 +44,15 @@ class QuoteController extends Controller
         }
 
         $data = $request->all();
-        $products = Products::with('rate')->get();
+
+        $userId = Auth::id();
+        $userProductIds = User::findOrFail($userId)->product_list ?? [];
+        $products = Products::with('rate');
+        if (Auth::user()->account_type == 'verify') {
+            $products = $products->whereIn('id', $userProductIds)->get();
+        }else {
+            $products = $products->where('account_type','retail')->get();
+        }
 
         $result = [];
 
@@ -54,16 +62,21 @@ class QuoteController extends Controller
                 'product_data' => $product,
                 'additional_sum' => floatval($additionalCostSum),
                 'icc_price' => [
-                    'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], floatval($product->rate->icc_a['premium_value']),$additionalCostSum) : null,
-                    'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], floatval($product->rate->icc_b['premium_value']),$additionalCostSum) : null,
-                    'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], floatval($product->rate->icc_c['premium_value']),$additionalCostSum) : null,
+                    'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a,$additionalCostSum) : null,
+                    'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b,$additionalCostSum) : null,
+                    'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c,$additionalCostSum) : null,
                 ],
             ];
 
             $result[] = $productData;
         }
 
+        // return $result;
 
+        // usort($result, function ($a, $b) {
+        //     return $a['product_data']['icc_price']['a'] - $b['product_data']['icc_price']['a'];
+        // });
+        // return $result;
         if ($request->goodsType === 'other' || (isset($request->builtYear) && $this->builtYear($request->builtYear) >= 23)) {
             $is_risk = 1;
         }else {
@@ -75,7 +88,19 @@ class QuoteController extends Controller
     }
 
     function calculatePrice($sumInsured, $rate, $additionalCostSum) {
-        return ceil(($sumInsured * $rate)+$additionalCostSum);
+        if ($rate['premium_type'] == 'fixed') {
+            return $sum =  ceil($rate['premium_value']+$additionalCostSum);
+        }else {
+            $sum_rate = ceil(($sumInsured * $rate['premium_value']));
+            if ($sum_rate < 100000) {
+                $sum = 100000 +$additionalCostSum;
+            }else{
+                $sum = $sum_rate +$additionalCostSum;
+            }
+        }
+        return $sum;
+        // ceil(($sumInsured * $rate)+$additionalCostSum);
+        // return ceil(($sumInsured * $rate)+$additionalCostSum);
     }
 
     function builtYear($builtYear) {

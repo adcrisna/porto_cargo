@@ -1,0 +1,13 @@
+Menu Verify Account, List hanya memunculkan akun yang VA saja ✅
+Validasi Comisi & Discount ✅
+Tambah Form Security dan deductibles di Create product ✅
+Accout setting dibuat seperti detail & edit profile user ✅
+Pada saat approval account verify tambah setting (pemilihan) produk untuk akun tsb ✅
+Net & Premiun ditambah pilihan fix rate (jika dipilih fixed, maka akan muncul langsung harga nya) ✅
+Nett Price & Premium/Price (Percentage) jika hasil kurang dr 100rb, maka harga produk yang di tampilkan (dibulatkan) menjadi 100rb sebelum ditambah additional discount ✅
+Nett Price & Premium/Price (Fixed) di form input ditambah validasi kurang dari 100rb ✅
+Sorting Product dari ICC A paling kecil preminya ke paling tinggi (atas ke bawah)
+(tidak bisa di sorting karena untuk icc itu dinamis data nya dan memalu proses calculate terlebih dahulu ,
+misal icc A itu bisa di nonaktifkan di dashboard maka hanay tersisa ICC B dan C dengan begitu  sorting tidak berjalan)
+
+Email template
