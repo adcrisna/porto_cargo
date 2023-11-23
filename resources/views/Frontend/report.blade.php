@@ -172,21 +172,21 @@
                     <h5 class="modal-title" id="modalReportClaimLabel">Download Report Claim</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('report.claim') }}" method="POST">
+                <form action="{{ route('report.claim') }}" method="POST" target="_blank">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">Start Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="startDate" id="startDate" required>
+                                    name="tanggalAwal" id="tanggalAwal" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">End Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="endDate" id="endDate" required>
+                                    name="tanggalAkhir" id="tanggalAkhir" required>
                             </div>
                         </div>
                     </div>
@@ -207,21 +207,21 @@
                     <h5 class="modal-title" id="modalReportPaymentLabel">Download Report Payment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('report.payment') }}" method="POST">
+                <form action="{{ route('report.payment') }}" method="POST" target="_blank">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">Start Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="startDate" id="startDate" required>
+                                    name="tanggalAwal" id="tanggalAwal" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">End Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="endDate" id="endDate" required>
+                                    name="tanggalAkhir" id="tanggalAkhir" required>
                             </div>
                         </div>
                     </div>
@@ -242,21 +242,21 @@
                     <h5 class="modal-title" id="modalReportShipmentLabel">Download Report Shipment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('report.shipment') }}" method="POST">
+                <form action="{{ route('report.shipment') }}" method="POST" target="_blank">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">Start Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="startDate" id="startDate" required>
+                                    name="tanggalAwal" id="tanggalAwal" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label style="color: rgb(126, 124, 124)">End Date</label>
                             <div class="input-group ">
                                 <input type="date" class="form-control rounded-input datepicker col-sm-12"
-                                    name="endDate" id="endDate" required>
+                                    name="tanggalAkhir" id="tanggalAkhir" required>
                             </div>
                         </div>
                     </div>

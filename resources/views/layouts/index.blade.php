@@ -92,6 +92,68 @@
                 ;
             }
         }
+
+        #upFooter {
+            background-color: black;
+            height: 50px;
+        }
+
+        #footer {
+            background-color: #3156A5;
+            height: 38%;
+        }
+
+        .logoFooter {
+            margin-left: 120px;
+            margin-top: 30px;
+        }
+
+        .footerPolicy {
+            margin-left: 110px;
+            margin-top: 180px;
+        }
+
+        .logoOjk {
+            margin-top: 200px;
+        }
+
+        .ojkImage {
+            float: right;
+            margin-right: 30px;
+        }
+
+        .mariImage {
+            float: right;
+            margin-top: 12px;
+            margin-right: 40px
+        }
+
+        @media (max-width: 768px) {
+            .logoFooter {
+                margin-left: 90px;
+                margin-top: 30px;
+            }
+
+            .footerPolicy {
+                margin-left: 40px;
+                margin-top: 80px;
+            }
+
+            .logoOjk {
+                margin-top: 50;
+            }
+
+            .ojkImage {
+                float: right;
+                margin-right: 30px;
+            }
+
+            .mariImage {
+                float: right;
+                margin-top: 12px;
+                margin-right: 70px
+            }
+        }
     </style>
     @yield('css')
 </head>
@@ -168,6 +230,68 @@
         </div>
         @yield('content')
     </div>
+    <div id="upFooter"></div>
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <img class="footer-logo-slv logoFooter"
+                        src="https://salvus.co.id/assets/new_asset_2023/img/salvus-white.png" alt=""
+                        width="185" style="margin-bottom: 8px;" srcset="">
+                </div>
+            </div>
+            {{-- <div class="row">
+                    <div class="col-md-6 col-sm-6" style="margin-bottom: 50px;">
+                        <div class="footer-sosmed">
+                            <table width="50%">
+                                <tbody>
+                                    <tr>
+                                        <td><a href="https://www.instagram.com/salvus.co.id/"><img
+                                                    src="https://salvus.co.id/assets/new_asset_2023/img/instagram.png"
+                                                    alt="" width="20" srcset=""></a></td>
+                                        <td><a href="https://www.facebook.com/salvusinti"><img
+                                                    src="https://salvus.co.id/assets/new_asset_2023/img/facebook.png"
+                                                    alt="" width="20" srcset=""></a></td>
+                                        <td><a href="https://www.linkedin.com/company/salvusinti"><img
+                                                    src="https://salvus.co.id/assets/new_asset_2023/img/linkedin.png"
+                                                    alt="" width="20" srcset=""></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> --}}
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="footerPolicy">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td style="color: #f1f7f7">Terms of Use</td>
+                                    <td style="color: #f1f7f7">Privacy Notice</td>
+                                    <td style="color: #f1f7f7">Notice Cookie</td>
+                                    <td style="color: #f1f7f7">Manage Cookies</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="color: #f1f7f7">© 2023 Copyright PT Salvus Inti</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 logoOjk">
+                    <img src="https://salvus.co.id/assets/new_asset/img/mari-berasuransi.png"
+                        class="footer-logo2 mariImage" alt="" width="80" srcset="">
+                    <img src="https://salvus.co.id/assets/new_asset/img/ojk.png" class="footer-logo ojkImage"
+                        alt="" width="140" srcset="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

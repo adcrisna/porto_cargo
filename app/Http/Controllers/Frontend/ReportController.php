@@ -14,6 +14,10 @@ use App\Models\Transactions;
 use App\Models\Claims;
 use Carbon\Carbon;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ShipmentReport;
+use App\Exports\PaymentReport;
+use App\Exports\ClaimReport;
 
 
 
@@ -33,16 +37,14 @@ class ReportController extends Controller
 
 
     function postClaim(Request $request) {
-        return "REPORT DATA ON PROGRESS..";
+        return Excel::download(new ClaimReport($request->tanggalAwal, $request->tanggalAkhir), 'report_claim.xlsx');
     }
-
 
     function postShipment(Request $request) {
-        return "REPORT DATA ON PROGRESS..";
+        return Excel::download(new ShipmentReport($request->tanggalAwal, $request->tanggalAkhir), 'report_shipment.xlsx');
     }
 
-
     function postPayment(Request $request) {
-        return "REPORT DATA ON PROGRESS..";
+        return Excel::download(new PaymentReport($request->tanggalAwal, $request->tanggalAkhir), 'report_payment.xlsx');
     }
 }
