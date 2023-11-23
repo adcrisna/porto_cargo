@@ -5,11 +5,6 @@
     <meta charset="utf-8">
     <title>Premium Note</title>
     <style account="text/css">
-        @font-face {
-            font-family: SourceSansPro;
-            src: url(SourceSansPro-Regular.ttf);
-        }
-
         .logoSalvus {
             float: left;
             height: 30px;
@@ -171,7 +166,36 @@
                         kirimkan ini. perusahaan asuransi berhak membatalkan pertanggungan dan menolak klaim.</i></p>
             </div>
             <div class="box3">
-
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="font-size: 12px; width: 200px;">PREMIUM AMOUNT</td>
+                            <td style="font-size: 12px">: </td>
+                            <td style="font-size: 12px">IDR 240.000.00</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 12px; width: 200px;">POLICY COST</td>
+                            <td style="font-size: 12px">: </td>
+                            <td style="font-size: 12px">IDR 20.000.00</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 12px; width: 200px;">DISCOUNT</td>
+                            <td style="font-size: 12px">: </td>
+                            <td style="font-size: 12px">IDR 0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 12px; width: 200px;">ADITIONAL DISCOUNT</td>
+                            <td style="font-size: 12px">: </td>
+                            <td style="font-size: 12px; border-bottom: 1px black solid">IDR -0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 12px; width: 200px;">TOTAL</td>
+                            <td style="font-size: 12px">: </td>
+                            <td style="font-size: 12px">IDR 260.000.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
             </div>
         </main>
     </div>
