@@ -143,8 +143,8 @@
     <div class="row">
         <img src="{{ asset('images/Quote.png') }}" alt="Gambar Responsif" class="responsive-image imageQuote">
         <div class="textQuote">
-            <h2 class="text-primary">Quote</h2>
-            <p style="font-size: 22px" class="text-primary">Let's get your quote now!</p>
+            <h2 class="text-primary">Quotation</h2>
+            <p style="font-size: 22px" class="text-primary">Let's get your quotation now!</p>
         </div>
     </div>
     <form action="{{ route('quote.confirmation') }}" class="d-none" id="sendtoconfirm" method="post">
