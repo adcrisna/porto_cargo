@@ -47,7 +47,7 @@
             <tr>
                 <td>{{ @$value->transaction->pn_number }}</td>
                 <td>{{ @$value->product->contract_id }}</td>
-                <td>{{ $value->product_id }}</td>
+                <td>{{ @$value->product_id }}</td>
                 <td>{{ $value->company_name }}</td>
                 <td>{{ $value->phone_number }}</td>
                 <td>{{ $value->company_email }}</td>
@@ -77,12 +77,12 @@
                 <td>{{ $value->inter_island }}</td>
                 <td>{{ $value->airway_bill }}</td>
                 <td>{{ $value->coverage }}</td>
-                <td>{{ $value->deductibles }}</td>
+                <td>{{ @$value->product->deductibles }}</td>
                 <td>{{ $value->total_sum_insured }}</td>
                 <td>{{ $value->rate }}</td>
                 <td>{{ $value->premium_amount }}</td>
                 <td>{{ $value->premium_payment_warranty }}</td>
-                <td>{{ $value->security }}</td>
+                <td>{{ @$value->product->security }}</td>
                 <td>{{ @$value->transaction->payment_status }}</td>
             </tr>
         @endforeach
