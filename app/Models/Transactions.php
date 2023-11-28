@@ -18,4 +18,11 @@ class Transactions extends Model
     {
         return $this->belongsTo('App\Models\Orders', 'order_id');
     }
+
+    public function claim()
+    {
+        return $this->hasMany('App\Models\Claims', 'transaction_id', 'id');
+    }
+
+
 }

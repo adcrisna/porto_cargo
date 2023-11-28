@@ -393,7 +393,7 @@
                                 <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: -
+                                <p class="text-dark" style="font-size:12px">: {{ $product->deductibles ?? null }}
                                 </p>
                             </div>
                         </div>
@@ -455,8 +455,7 @@
                                 <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: -
-                                </p>
+                                <p class="text-dark" style="font-size:12px">: {{ $product->security ?? null }}</p>
                             </div>
                         </div>
                     @endif

@@ -18,13 +18,22 @@ use Auth;
 class ClaimController extends Controller
 {
     function newClaim() {
+        $userId = Auth::user()->id;
 
-        $order = Orders::where('user_id', Auth::user()->id);
-        $data = $order->with('transaction')->whereHas('transaction', function ($query) {
-            $query->where('payment_status', 'paid');
-        })->get();
+        $data = Orders::where('user_id', $userId)
+            ->with('transaction')
+            ->whereHas('transaction', function ($query) {
+                $query->where('payment_status', 'paid');
+            })
+            ->whereDoesntHave('transaction.claim', function ($query) {
+                $query->where('transaction_id', '>', 0);
+            })
+            ->get();
+        // return $data;
         return view('Frontend.claim.new_claim', compact('data'));
     }
+
+
     function formClaim($id) {
         $order = Orders::where('id', $id)->with('transaction')->first();
         return view('Frontend.claim.form_claim', compact('order'));
