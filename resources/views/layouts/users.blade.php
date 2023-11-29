@@ -73,7 +73,7 @@
         }
 
         .auth {
-            margin-left: 850px;
+            margin-left: 800px;
             margin-top: 1px;
         }
 
