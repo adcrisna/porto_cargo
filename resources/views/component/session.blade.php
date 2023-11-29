@@ -1,6 +1,6 @@
 @if ($message = Session::get('success'))
     <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <strong style="margin-left: 35%">{{ $message }}</strong>
         <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close" style="float: right">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
 
 @if ($message = Session::get('error'))
     <div class="alert mt-5 alert-danger alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <strong style="margin-left: 35%">{{ $message }}</strong>
         <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
             style="float: right">
             <span aria-hidden="true">&times;</span>
@@ -23,7 +23,7 @@
 
 @if ($message = Session::get('warning'))
     <div class="alert mt-5 alert-warning alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <strong style="margin-left: 35%">{{ $message }}</strong>
         <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
             style="float: right">
             <span aria-hidden="true">&times;</span>
@@ -35,7 +35,7 @@
 
 @if ($message = Session::get('info'))
     <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <strong style="margin-left: 35%">{{ $message }}</strong>
         <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
             style="float: right">
             <span aria-hidden="true">&times;</span>
