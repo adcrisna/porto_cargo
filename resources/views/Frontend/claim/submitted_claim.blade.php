@@ -57,7 +57,7 @@
                                 <td>{{ $item->transaction->order->point_of_destination }}</td>
                                 <td>{{ $item->claim_status }}</td>
                                 <td>
-                                    <a href="{{ route('claim.detailSubmitted') }}" class="btn btn-sm btn-primary"
+                                    <a href="{{ route('claim.detailSubmitted', $item->id) }}" class="btn btn-sm btn-primary"
                                         style="width: 120px">Claim
                                         Details</a>
                                 </td>

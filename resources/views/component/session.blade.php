@@ -1,9 +1,9 @@
 @if ($message = Session::get('success'))
     <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong>{{ $message }}</strong>
-        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close" style="float: right">
             <span aria-hidden="true">&times;</span>
-        </button> --}}
+        </button>
     </div>
 @endif
 
@@ -11,10 +11,11 @@
 
 @if ($message = Session::get('error'))
     <div class="alert mt-5 alert-danger alert-dismissible fade show" id="alert" role="alert">
-        <strong>{{ $message }}</strong>
-        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
+            style="float: right">
             <span aria-hidden="true">&times;</span>
-        </button> --}}
+        </button>
     </div>
 @endif
 
@@ -22,10 +23,11 @@
 
 @if ($message = Session::get('warning'))
     <div class="alert mt-5 alert-warning alert-dismissible fade show" id="alert" role="alert">
-        <strong>{{ $message }}</strong>
-        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
+            style="float: right">
             <span aria-hidden="true">&times;</span>
-        </button> --}}
+        </button>
     </div>
 @endif
 
@@ -33,10 +35,11 @@
 
 @if ($message = Session::get('info'))
     <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong>{{ $message }}</strong>
-        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+        <strong style="margin-left: 40%">{{ $message }}</strong>
+        <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
+            style="float: right">
             <span aria-hidden="true">&times;</span>
-        </button> --}}
+        </button>
     </div>
 @endif
 
@@ -50,8 +53,9 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-        {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right">
+        <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
+            style="float: right">
             <span aria-hidden="true">&times;</span>
-        </button> --}}
+        </button>
     </div>
 @endif

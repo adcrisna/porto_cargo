@@ -42,7 +42,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Company Name</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: PT Xyz Terus</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->company_name }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -50,7 +50,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Phone Number</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 086969696969</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->phone_number }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -58,7 +58,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Company Email</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: ngetodterus@gmail.com</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->company_email }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -66,7 +66,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Insured Address</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: JL. Xyz No.69 </p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->insured_address }} </p>
                     </div>
                 </div>
                 <div class="row">
@@ -74,7 +74,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Conveyance</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Sea</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->conveyance }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -82,7 +82,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Goods Type</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Doggy Style</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->goods_type }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -90,7 +90,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 7 Februari 2023</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            {{ $data->transaction->order->estimated_time_of_departure }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -98,7 +99,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 14 Februari 2023</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            {{ $data->transaction->order->estimated_time_of_arrival }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -106,7 +108,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Point of Origin</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Jawa</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->point_of_origin }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +116,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Point of Destination</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Kalimantan</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->point_of_destination }}
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -122,7 +125,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: IDR 1.696.969.696</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->sum_insured }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -130,7 +133,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Invoice Number</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 696969</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->invoice_number }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -138,79 +141,134 @@
                         <p class="text-dark" style="font-size:12px"><b>Packing List Number</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 696969</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->packing_list_number }}
+                        </p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                @if ($data->transaction->order->conveyance == 'Sea')
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Bill of Landing Number</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">:
+                                {{ $data->transaction->order->bill_of_lading_number }}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 69696</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->ship_name }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Ship Name</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->vessel_group }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Maria Ozawa</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->container_load }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Vessel Group</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">:
+                                {{ $data->transaction->order->vessel_material }}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Mother Vessel</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->vessel_type }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Container Load</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->classified }}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Full Conainer Loaded</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->built_year }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Vessel Material</b></p>
+                @elseif ($data->transaction->order->conveyance == 'Land')
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Travel Permission</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">:
+                                {{ $data->transaction->order->travel_permission }}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Steel</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Licence Plate</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->license_plate }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Vessel Type</b></p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Licence Plat Inter</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">:
+                                {{ $data->transaction->order->license_plateinter }}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: General Cargo</p>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Inter Island</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->inter_island }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Classified</b></p>
+                @elseif ($data->transaction->order->conveyance == 'Air')
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="text-dark" style="font-size:12px"><b>Airway Bill</b></p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->airway_bill }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Yes</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Built Year</b></p>
-                    </div>
-                    <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 2023</p>
-                    </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-sm-3">
                         <p class="text-dark" style="font-size:12px"><b>Transipment</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: No</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->transhipment }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -218,7 +276,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Coverage</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: ICC A</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->coverage }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -226,8 +284,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 1% of total sum insured per any one
-                            occurrence any one conveyance</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->deductibles }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -235,7 +292,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Total Sum Insurance</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->total_sum_insured }}
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -243,7 +301,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: ICC A 0.1%</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->rate }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -251,8 +309,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: IDR 1.000.000.000,00 x 0,1% = IDR
-                            1.000.0000,00</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            {{ $data->transaction->order->premium_calculation }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -260,7 +318,8 @@
                         <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 7 Days After Sailling Date</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            {{ $data->transaction->order->premium_payment_warranty }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -268,15 +327,15 @@
                         <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: ZURICH ASURANSI INDONESIA, Tbk</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->transaction->order->security }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
-                        <p class="text-dark" style="font-size:12px"><b>Chronologu</b></p>
+                        <p class="text-dark" style="font-size:12px"><b>Chronology</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: Lorem Ipsum</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->chronology }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -284,7 +343,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Date of Loss</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: 25 November 2022</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->date_of_loss }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -292,7 +351,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Ammount of Loss</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: IDR 5.000.000</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->amount_of_loss }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -300,7 +359,10 @@
                         <p class="text-dark" style="font-size:12px"><b>Invoice</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: invoice.pdf</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            <a href="{{ $data->invoice }}" class="btn btn-warning" target="_blank"
+                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -308,7 +370,7 @@
                         <p class="text-dark" style="font-size:12px"><b>Bill of Landing</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: billoflanding.pdf</p>
+                        <p class="text-dark" style="font-size:12px">: {{ $data->bill_of_lading }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -316,7 +378,10 @@
                         <p class="text-dark" style="font-size:12px"><b>Police Investigation Report</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: police_investigation_report.pdf</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            <a href="{{ $data->police_investigation_report }}" class="btn btn-warning" target="_blank"
+                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -324,7 +389,10 @@
                         <p class="text-dark" style="font-size:12px"><b>Packing List</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: packing_list.pdf</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            <a href="{{ $data->packing_list }}" class="btn btn-warning" target="_blank"
+                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -332,7 +400,12 @@
                         <p class="text-dark" style="font-size:12px"><b>Photos of Damage Items</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: photos_of_damage_items.pdf</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            @foreach ($data->photos_of_damaged_items as $value)
+                                <a href="{{ $value['file_path'] }}" class="btn btn-warning" target="_blank"
+                                    rel="photo_of_damage"><i class="fa fa-download"></i>Download</a>
+                            @endforeach
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -340,7 +413,12 @@
                         <p class="text-dark" style="font-size:12px"><b>Photos of Unloading Process</b></p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-dark" style="font-size:12px">: photos_of_unloading_process.pdf</p>
+                        <p class="text-dark" style="font-size:12px">:
+                            @foreach ($data->photos_of_unloading_process as $value)
+                                <a href="{{ $value['file_path'] }}" class="btn btn-warning" target="_blank"
+                                    rel="photo_of_damage"><i class="fa fa-download"></i>Download</a>
+                            @endforeach
+                        </p>
                     </div>
                 </div>
             </div>

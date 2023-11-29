@@ -44,6 +44,8 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/register', 'register')->name('auth.register');
     Route::post('/postregister', 'postregister')->name('auth.postregister');
     Route::get('/verification', 'waitVerif')->name('auth.verif');
+    Route::get('/profile', 'profile')->name('auth.profile');
+    Route::post('/update_profile', 'updateProfile')->name('auth.updateProfile');
     Route::get('/logout', 'logout')->name('auth.logout');
 });
 
@@ -82,7 +84,7 @@ Route::group(['middleware' => ['auth','verify_account']],function() {
         Route::get('/form_claim/{id}', 'formClaim')->name('claim.form');
         Route::post('/form_claim', 'postClaim')->name('post.claim');
         Route::get('/submitted_claim', 'submittedClaim')->name('claim.submitted');
-        Route::get('/submitted_detail', 'submittedDetail')->name('claim.detailSubmitted');
+        Route::get('/submitted_detail/{id}', 'submittedDetail')->name('claim.detailSubmitted');
         Route::get('/closed_claim', 'closedClaim')->name('claim.closed');
     });
 });

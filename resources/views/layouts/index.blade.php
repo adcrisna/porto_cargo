@@ -73,7 +73,7 @@
         }
 
         .auth {
-            margin-left: 750px;
+            margin-left: 850px;
             margin-top: 1px;
         }
 
@@ -198,8 +198,8 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                                     style="padding: 0px !important"></a>
                                 <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                                    <a href="#" class="dropdown-item">Account Settings</a>
-                                    <a href="{{ route('auth.logout') }}" class="dropdown-item">Keluar</a>
+                                    <a href="{{ route('auth.profile') }}" class="dropdown-item">Account Settings</a>
+                                    <a href="{{ route('auth.logout') }}" class="dropdown-item">Log Out</a>
                                 </div>
                             </div>
                             <div class="col-sm-5" style="margin-right: 10px">

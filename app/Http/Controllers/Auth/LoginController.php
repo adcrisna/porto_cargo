@@ -12,6 +12,7 @@ use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
+use Auth;
 
 
 class LoginController extends Controller
@@ -57,6 +58,40 @@ class LoginController extends Controller
 
             DB::commit();
             return redirect()->route('auth.login')->with('info', 'Resgistration Successfully!.');
+        } catch (ValidationException $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
+    }
+
+    function profile() {
+        $profile = User::find(Auth::user()->id);
+        return view('Frontend.profile', compact('profile'));
+    }
+
+    public function updateProfile(Request $request) {
+        try {
+            DB::beginTransaction();
+
+            if (empty($request->password)) {
+                $user = User::find($request->id);
+                $user->name = $request->name;
+                $user->email = strtolower($request->email);
+                $user->type =  $request->nametype;
+                $user->phone_number =  $request->phone_number;
+                $user->save();
+            } else {
+                $user = User::find($request->id);
+                $user->name = $request->name;
+                $user->email = strtolower($request->email);
+                $user->password = bcrypt($request->password);
+                $user->type =  $request->nametype;
+                $user->phone_number =  $request->phone_number;
+                $user->save();
+            }
+
+            DB::commit();
+            return redirect()->route('auth.profile')->with('info', 'Update Profile Successfully!.');
         } catch (ValidationException $e) {
             DB::rollback();
             return redirect()->back()->withErrors($e->errors())->withInput();

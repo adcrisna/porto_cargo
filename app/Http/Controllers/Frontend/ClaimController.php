@@ -114,8 +114,9 @@ class ClaimController extends Controller
         return view('Frontend.claim.submitted_claim' , compact('data'));
     }
 
-    function submittedDetail() {
-        return view('Frontend.claim.detail_submitted');
+    function submittedDetail($id) {
+        $data = Claims::find($id);
+        return view('Frontend.claim.detail_submitted', compact('data'));
     }
 
     function closedClaim() {

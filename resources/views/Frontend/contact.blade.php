@@ -151,7 +151,10 @@
                                 </div>
                             </div>
                             <div>
-                                <img src="{{ asset('images/boxWa.png') }}" alt="Gambar" class="responsive-image boxWa">
+                                <a target="_blank"
+                                    href="https://api.whatsapp.com/send/?phone=6282113353479&text&type=phone_number&app_absent=0">
+                                    <img src="{{ asset('images/boxWa.png') }}" alt="Gambar"
+                                        class="responsive-image boxWa"></a>
                             </div>
                         </div>
                     </div>
