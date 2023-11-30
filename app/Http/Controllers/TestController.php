@@ -22,7 +22,9 @@ class TestController extends Controller
     }
     function pdfPolicySummary()
     {
-        $pdf = Pdf::loadView('pdf.policy_summary');
+        $data= Transactions::find(1);
+
+        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
         return $pdf->stream();
     }
     function compensationOffer()

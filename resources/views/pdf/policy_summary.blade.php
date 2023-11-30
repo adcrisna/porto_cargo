@@ -77,19 +77,20 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Nomor Ringkasan Polis <br>
                                     <i style="font-size: 12px !important">Policy Summary
                                         Number</i>
                                 </p>
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
-                            <td>
-                                <p style="margin-top: 18px; font-size: 14px;">7258874</p>
+                            <td style="width: 300px">
+                                <p style="margin-top: 18px; font-size: 14px;">{{ @$data->policy_number }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p
                                     style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
                                     Nama Asuransi <br> <i style="font-size: 12px !important">Insurer
@@ -99,15 +100,16 @@
                             <td
                                 style="margin-top: 25px; margin-left: 20px; width: 20px; margin :0px !important; padding: 0px !important">
                                 : </td>
-                            <td>
+                            <td style="width: 300px">
                                 <p
                                     style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                    PT. Malacca Trust Wuwungan Insurance Tbk
+                                    {{ @$data->order->company_name }}
                                 </p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p
                                     style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
                                     Alamat Tertanggung <br>
@@ -121,13 +123,12 @@
                             <td>
                                 <p
                                     style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                    Jl. Rawa Sumur 2, Blok BB No. 8A-8B,
-                                    Kawasan Industri
-                                    Pulo Gadung, Jakarta Timur</p>
+                                    {{ @$data->order->insured_address }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Periode Polis <br> <i
                                         style="font-size: 12px !important">Policy
                                         Period </i><br>
@@ -135,11 +136,15 @@
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">25-06-2023 - 26-06-2023</p>
+                                <p style="margin-top: 18px; font-size: 14px;">
+                                    {{ date('d-m-Y', strtotime(@$data->start_policy_date)) }} -
+                                    {{ date('d-m-Y', strtotime(@$data->end_policy_date)) }}
+                                </p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Periode
                                     Diterbitkan<br><i style="font-size: 12px !important">Policy Period
                                     </i><br>
@@ -147,22 +152,26 @@
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">25/6/2023</p>
+                                <p style="margin-top: 18px; font-size: 14px;">
+                                    {{ date('d/m/Y', strtotime(@$data->start_policy_date)) }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Jaminan
                                     Asuransi<br><i style="font-size: 12px !important">Coverage Insurance
                                     </i></p>
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">Institute Cargo Clause "A"</p>
+                                <p style="margin-top: 18px; font-size: 14px;">Institute Cargo Clause
+                                    {{ @$data->order->coverage }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p
                                     style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
                                     Perjalanan<br><i style="font-size: 12px !important">Voyage
@@ -174,12 +183,13 @@
                             <td>
                                 <p
                                     style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                    From Jakarta, Indonesia to Surabaya,
-                                    Indonesia <br> From Surabaya, Indonesia to Angansa, Kalimantan, Indonesia</p>
+                                    From {{ @$data->order->point_of_origin }} to
+                                    {{ @$data->order->point_of_destination }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p
                                     style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
                                     Barang yang
@@ -192,12 +202,12 @@
                             <td>
                                 <p
                                     style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                    Set of Grouting Compound "Standart" for
-                                    the Installation of Lineas WIM Sensors</p>
+                                    {{ @$data->order->product->product_name }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p
                                     style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
                                     Total Sum Insured<br></p>
@@ -208,11 +218,12 @@
                             <td>
                                 <p
                                     style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                    IDR 1.268.596.510</p>
+                                    IDR {{ number_format(@$data->order->total_sum_insured ?? 0, 0, ',', '.') }}</p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px; ">Perhitungan Premi<br><i
                                         style="font-size: 12px !important">Premi
                                         Calculation
@@ -220,31 +231,35 @@
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">IDR 1.268.596.510 x 0.1% = IDR 1.268.530
+                                <p style="margin-top: 18px; font-size: 14px;">{{ @$data->order->premium_calculation }}
                                 </p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Kendaraan<br><i
                                         style="font-size: 12px !important">Conveyance
                                     </i></p>
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">By land (truck) and sea vessel conveyance
+                                <p style="margin-top: 18px; font-size: 14px;">By {{ @$data->order->conveyance }}
                                 </p>
                             </td>
                         </tr>
+                        <br>
                         <tr>
-                            <td style="width: 310px">
+                            <td style="width: 300px">
                                 <p style="color: #2156A5; float: right; font-size: 14px;">Premi & Biaya
                                     Polis<br><i style="font-size: 12px !important">Premium & Policy Cost
                                     </i></p>
                             </td>
                             <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                             <td>
-                                <p style="margin-top: 18px; font-size: 14px;">IDR 1.268.530 + Rp 60.000</p>
+                                <p style="margin-top: 18px; font-size: 14px;">IDR
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }} + Rp 60.000
+                                </p>
                             </td>
                         </tr>
                     </tbody>
