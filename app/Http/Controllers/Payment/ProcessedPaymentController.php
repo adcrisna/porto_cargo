@@ -23,7 +23,7 @@ class ProcessedPaymentController extends Controller
     function callback(Request $request ) {
         $data = $request->all();
         $parts = explode('_', $data['external_id']);
-        $transaction = Transactions::find(2);
+        $transaction = Transactions::find($parts[1]);
         $transaction->payment_status = strtolower($data['status']);
         $transaction->callback_status = $data;
         $transaction->payment_date = Carbon::parse($data['created'])->format('Y-m-d H:i:s');
