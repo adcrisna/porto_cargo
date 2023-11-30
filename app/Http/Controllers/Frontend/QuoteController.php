@@ -13,8 +13,9 @@ use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
 use Carbon\Carbon;
-use Auth,Str;
+use Auth,Str,Storage;
 use Xendit\Xendit;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class QuoteController extends Controller
 {
@@ -174,7 +175,10 @@ class QuoteController extends Controller
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
             $transaction->risk_status = $data->is_risk === "1" ? 'follow_up' : null;
             $transaction->payment_status = 'unpaid';
-
+            if (Auth::user()->account_type == 'verify' && $data->is_risk !== "1") {
+                $transaction->doc_policy = $this->psummary($transaction);
+                $transaction->doc_premium = $this->pnote($transaction);
+            }
             // return $transaction;
             $transaction->save();
 
@@ -227,5 +231,45 @@ class QuoteController extends Controller
 
         return $createInvoice['invoice_url'];
 
+    }
+
+
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param Type $var Description
+     * @return type
+     * @throws conditon
+     **/
+    public function pnote($transaction)
+    {
+        $pdf = Pdf::loadView('pdf.premium_note');
+        $pdfFileName = 'premium_note_' . date('Ymd_His') . '.pdf';
+        $pdfFilePath = 'doc_trx/' . $pdfFileName;
+        Storage::disk('public')->put($pdfFilePath, $pdf->output());
+        return asset('storage/' . $pdfFilePath);
+    }
+
+
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param Type $var Description
+     * @return type
+     * @throws conditon
+     **/
+    public function psummary($transaction)
+    {
+        $pdf = Pdf::loadView('pdf.policy_summary');
+        $pdfFileName = 'policy_summary_' . date('Ymd_His') . '.pdf';
+        $pdfFilePath = 'doc_trx/' . $pdfFileName;
+        Storage::disk('public')->put($pdfFilePath, $pdf->output());
+        return asset('storage/' . $pdfFilePath);
     }
 }
