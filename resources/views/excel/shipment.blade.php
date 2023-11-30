@@ -86,8 +86,8 @@
                 <td>{{ $value->premium_payment_warranty }}</td>
                 <td>{{ @$value->product->security }}</td>
                 <td>{{ @$value->transaction->start_policy_date }} - {{ @$value->transaction->end_policy_date }}</td>
-                <td></td>
-                <td></td>
+                <td>{{ @$value->transaction->doc_premium }}</td>
+                <td>{{ @$value->transaction->doc_policy }}</td>
             </tr>
         @endforeach
     </tbody>
