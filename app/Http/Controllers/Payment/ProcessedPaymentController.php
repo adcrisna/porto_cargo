@@ -41,7 +41,7 @@ class ProcessedPaymentController extends Controller
      * @return type
      * @throws conditon
      **/
-    public function pnote($transaction)
+    public function pnote($data)
     {
         $pdf = Pdf::loadView('pdf.premium_note');
         $pdfFileName = 'premium_note_' . date('Ymd_His') . '.pdf';
@@ -61,9 +61,9 @@ class ProcessedPaymentController extends Controller
      * @return type
      * @throws conditon
      **/
-    public function psummary($transaction)
+    public function psummary($data)
     {
-        $pdf = Pdf::loadView('pdf.policy_summary');
+        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
         $pdfFileName = 'policy_summary_' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
         Storage::disk('public')->put($pdfFilePath, $pdf->output());

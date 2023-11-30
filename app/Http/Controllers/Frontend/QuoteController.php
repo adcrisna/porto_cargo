@@ -114,7 +114,7 @@ class QuoteController extends Controller
         DB::beginTransaction();
         try {
             $data = json_decode($request['data']);
-            // return $data->is_risk;
+            // return $data;
             $product = Products::find($data->product_id);
 
             $order = new Orders;
@@ -175,12 +175,15 @@ class QuoteController extends Controller
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
             $transaction->risk_status = $data->is_risk === "1" ? 'follow_up' : null;
             $transaction->payment_status = 'unpaid';
-            if (Auth::user()->account_type == 'verify' && $data->is_risk !== "1") {
-                $transaction->doc_policy = $this->psummary($transaction);
-                $transaction->doc_premium = $this->pnote($transaction);
-            }
             // return $transaction;
             $transaction->save();
+
+            if (Auth::user()->account_type == 'verify' && $data->is_risk !== "1") {
+                $trans_update = Transactions::find($transaction->id);
+                $trans_update->doc_policy = $this->psummary($transaction);
+                $trans_update->doc_premium = $this->pnote($transaction);
+                $trans_update->save();
+            }
 
             DB::commit();
 
@@ -244,7 +247,7 @@ class QuoteController extends Controller
      * @return type
      * @throws conditon
      **/
-    public function pnote($transaction)
+    public function pnote($data)
     {
         $pdf = Pdf::loadView('pdf.premium_note');
         $pdfFileName = 'premium_note_' . date('Ymd_His') . '.pdf';
@@ -264,9 +267,9 @@ class QuoteController extends Controller
      * @return type
      * @throws conditon
      **/
-    public function psummary($transaction)
+    public function psummary($data)
     {
-        $pdf = Pdf::loadView('pdf.policy_summary');
+        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
         $pdfFileName = 'policy_summary_' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
         Storage::disk('public')->put($pdfFilePath, $pdf->output());
