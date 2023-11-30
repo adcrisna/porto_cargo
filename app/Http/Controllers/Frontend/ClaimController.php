@@ -96,17 +96,17 @@ class ClaimController extends Controller
 
 
     function processFile($file)
-{
-    if (!empty($file)) {
-        $originalName = $file->getClientOriginalName();
-        $extension = $file->getClientOriginalExtension();
-        $newFileName = date('Ymd'). '_' . rand() . '_' . $originalName;
-        $imagePath = $file->storeAs('claim_file', $newFileName, 'public');
-        return asset('storage/' . $imagePath);
-    }
+    {
+        if (!empty($file)) {
+            $originalName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $newFileName = date('Ymd'). '_' . rand() . '_' . $originalName;
+            $imagePath = $file->storeAs('claim_file', $newFileName, 'public');
+            return asset('storage/' . $imagePath);
+        }
 
-    return null;
-}
+        return null;
+    }
 
     function submittedClaim() {
 

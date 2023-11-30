@@ -28,7 +28,6 @@ class ShipmentController extends Controller
                 $query->where('payment_status', 'paid');
             })->get();
         }
-
         return view('Frontend.shipment' , compact('data'));
     }
 }

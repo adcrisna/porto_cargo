@@ -66,11 +66,11 @@
                                 <td class="">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <a href=""><span class="badge bg-primary "><i
+                                            <a href="{{ @$item->transaction->doc_premium ?? null }}"><span class="badge bg-primary "><i
                                                         class="fa fa-download p-1"></i>Premium Note</span></a>
                                         </div>
                                         <div class="col-sm-6">
-                                            <a href="">
+                                            <a href="{{ @$item->transaction->doc_policy ?? null }}">
                                                 <span class="badge bg-white text-primary"
                                                     style="border: 1px solid #007BFF;">
                                                     <i class="fa fa-download p-1"></i>Policy Summary

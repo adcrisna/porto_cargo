@@ -89,18 +89,18 @@ class QuoteController extends Controller
 
     function calculatePrice($sumInsured, $rate, $additionalCostSum) {
         if ($rate['premium_type'] == 'fixed') {
-            return $sum =  ceil($rate['premium_value']+$additionalCostSum);
+            $sum =  ceil($rate['premium_value']+$additionalCostSum);
         }else {
-            $sum_rate = ceil(($sumInsured * $rate['premium_value']));
-            if ($sum_rate < 100000) {
-                $sum = 100000 +$additionalCostSum;
-            }else{
-                $sum = $sum_rate +$additionalCostSum;
-            }
+            $sum = ceil(($sumInsured * $rate['premium_value'])+$additionalCostSum);
+            // if ($sum_rate < 100000) {
+            //     $sum = 100000 +$additionalCostSum;
+            // }else{
+            //     $sum = $sum_rate +$additionalCostSum;
+            // }
         }
         return $sum;
         // ceil(($sumInsured * $rate)+$additionalCostSum);
-        // return ceil(($sumInsured * $rate)+$additionalCostSum);
+        // return ceil(($sumInsured * $rate['premium_value'])+$additionalCostSum);
     }
 
     function builtYear($builtYear) {
