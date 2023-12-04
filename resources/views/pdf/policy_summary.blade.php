@@ -88,7 +88,7 @@
         </div>
         <center>
             <p style="color: #2156A5; font-size: 14px; margin :0px !important; padding: 0px !important"><b>Cargo
-                    Insurance PT. Struktur Pintar</b></p>
+                    Insurance {{ @$data->order->company_name }}</b></p>
         </center>
         <div class="detailPolicy">
             <table>
