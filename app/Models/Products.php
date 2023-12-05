@@ -12,8 +12,10 @@ class Products extends Model
 
     protected $table = 'product';
     protected $casts = [
-        'additional_cost' => 'array'
+        'additional_cost' => 'array',
+        'goods_type' => 'array'
     ];
+
 
     public function rate()
     {

@@ -89,8 +89,7 @@
                             <label style="color: rgb(126, 124, 124)">Name Type</label>
                             <select class="form-select" name="nametype" id="nameType" style="background-color: #ffffff"
                                 required>
-                                <option selected>-Selected-</option>
-                                <option value="PT">PT</option>
+                                <option value="PT" selected>PT</option>
                                 <option value="Individu">Individu</option>
                             </select>
                         </div>

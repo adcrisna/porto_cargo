@@ -3,6 +3,24 @@ $(document).ready(function () {
         let conveyanceType = $("#conveyance");
         let valueConveyance = conveyanceType.val();
 
+        $('#goodsType').change(function() {
+            var selectedGoodType = $(this).val();
+            checkGoodTypeCondition();
+        });
+        function checkGoodTypeCondition() {
+            var selectedGoodType = $('#goodsType').val();
+
+            if (selectedGoodType === null || selectedGoodType === '') {
+                $('#btnCalculate').hide();
+                $('#alert_input').html('<strong style="color: red;">Please select Goods Type!</strong>');
+            } else {
+                $('#btnCalculate').show();
+                $('#alert_input').empty();
+            }
+        }
+
+        checkGoodTypeCondition();
+
         $("#shipmentDetails").css("display", "block");
 
         if (valueConveyance === "Land") {
@@ -67,6 +85,8 @@ $(document).ready(function () {
             window.location.hash = "#air";
         }
 
-        $("#btnCalculate").css("display", "block");
+        // $("#btnCalculate").css("display", "block");
     });
 });
+
+

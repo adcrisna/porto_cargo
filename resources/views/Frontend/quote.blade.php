@@ -215,6 +215,9 @@
                             <button type="button" class="btn btn-primary" id="continueButton"
                                 style="width: 120px">Continue</button>
                         </div>
+
+                        <div id="alert_input"></div>
+
                     </div>
                 </div>
             </div>
@@ -429,4 +432,29 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        // $('#btnCalculate').css("display", "none");
+
+        // $('#goodsType').change(function() {
+        //     var selectedGoodType = $(this).val();
+        //     checkGoodTypeCondition();
+        // });
+        // function checkGoodTypeCondition() {
+        //     var selectedGoodType = $('#goodsType').val();
+
+        //     if (selectedGoodType === null || selectedGoodType === '') {
+        //         $('#btnCalculate').hide();
+        //         $('#alert_input').html('<strong style="color: red;">Please fill in the data properly!</strong>');
+        //     } else {
+        //         $('#btnCalculate').show();
+        //         $('#alert_input').empty();
+        //     }
+        // }
+
+        // checkGoodTypeCondition();
+    });
+</script>
+
 @endsection

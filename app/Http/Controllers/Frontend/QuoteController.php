@@ -55,22 +55,64 @@ class QuoteController extends Controller
             $products = $products->where('account_type','retail')->get();
         }
 
+        if ($request->goodsType === 'other' || (isset($request->builtYear) && $this->builtYear($request->builtYear) >= 23)) {
+            $is_risk = 1;
+        }else {
+            $is_risk = 0;
+        }
+
+        $arrproduct = [];
         $result = [];
 
         foreach ($products as $product) {
-            $additionalCostSum = !empty(collect($product->additional_cost)->sum('value')) ? collect($product->additional_cost)->sum('value') : 0;
-            $productData = [
-                'product_data' => $product,
-                'additional_sum' => floatval($additionalCostSum),
-                'icc_price' => [
-                    'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a,$additionalCostSum) : null,
-                    'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b,$additionalCostSum) : null,
-                    'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c,$additionalCostSum) : null,
-                ],
-            ];
+            $productGoodsType = $this->check_gdtype($product->goods_type, $request->goodsType);
+            if ($productGoodsType->isNotEmpty()) {
+                $arrproduct[] = $productGoodsType;
+                $additionalCostSum = !empty(collect($product->additional_cost)->sum('value')) ? collect($product->additional_cost)->sum('value') : 0;
+                $productData = [
+                    'product_data' => $product,
+                    'additional_sum' => floatval($additionalCostSum),
+                    'icc_price' => [
+                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a, $additionalCostSum) : null,
+                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b, $additionalCostSum) : null,
+                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c, $additionalCostSum) : null,
+                    ],
+                ];
 
-            $result[] = $productData;
+                $result[] = $productData;
+            }
         }
+
+        if ($arrproduct == []) {
+            $is_risk = 1;
+        }
+
+        // return  $is_risk;
+        // foreach ($products as $product) {
+        //     $arrproduct[] = $this->check_gdtype($product->goods_type, $request->goodsType);
+
+        //     if (empty($this->check_gdtype($product->goods_type, $request->goodsType)->toArray())) {
+        //         $is_risk = 1;
+        //     }
+        // }
+        // return $arrproduct;
+
+        // $result = [];
+
+        // foreach ($products as $product) {
+        //     $additionalCostSum = !empty(collect($product->additional_cost)->sum('value')) ? collect($product->additional_cost)->sum('value') : 0;
+        //     $productData = [
+        //         'product_data' => $product,
+        //         'additional_sum' => floatval($additionalCostSum),
+        //         'icc_price' => [
+        //             'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a,$additionalCostSum) : null,
+        //             'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b,$additionalCostSum) : null,
+        //             'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c,$additionalCostSum) : null,
+        //         ],
+        //     ];
+
+        //     $result[] = $productData;
+        // }
 
         // return $result;
 
@@ -78,14 +120,16 @@ class QuoteController extends Controller
         //     return $a['product_data']['icc_price']['a'] - $b['product_data']['icc_price']['a'];
         // });
         // return $result;
-        if ($request->goodsType === 'other' || (isset($request->builtYear) && $this->builtYear($request->builtYear) >= 23)) {
-            $is_risk = 1;
-        }else {
-            $is_risk = 0;
-        }
-
         // return $is_risk;
+
+
         return view('Frontend.quote_calculate', compact('data','result','is_risk'));
+    }
+
+    function check_gdtype($data, $dgtype) {
+        return Repository::whereIn('id', $data)
+            ->whereRaw('LOWER(name) = ?', [strtolower($dgtype)])
+            ->get();
     }
 
     function calculatePrice($sumInsured, $rate, $additionalCostSum) {
