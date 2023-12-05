@@ -194,7 +194,7 @@
                                 <label style="color: rgb(126, 124, 124)">Goods Type</label>
                                 <select name="goodsType" id="goodsType" class="form-select"
                                     style="background-color: #ffffff" required>
-                                    <option selected disabled>- Select -</option>
+                                    {{-- <option selected disabled>- Select -</option> --}}
                                     @foreach ($good as $item)
                                         <option value="{{ strtolower($item->name) }}">{{ $item->name }}</option>
                                     @endforeach
