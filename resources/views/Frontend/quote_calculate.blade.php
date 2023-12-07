@@ -155,6 +155,14 @@
         <input type="hidden" value="" name="product_id">
         <input type="hidden" value="{{ $is_risk }}" name="is_risk">
     </form>
+    <form action="{{ route('quote.saved') }}" class="d-none" id="sendtosaved" method="post">
+        @csrf
+        <input type="hidden" value="{{ json_encode($data) }}" name="insured_detail">
+        <input type="hidden" value="" name="premium_amount">
+        <input type="hidden" value="" name="icc_selected">
+        <input type="hidden" value="" name="product_id">
+        <input type="hidden" value="{{ $is_risk }}" name="is_risk">
+    </form>
 
     <br>
     <br>
@@ -631,11 +639,24 @@
             }
 
             $('#ok_risk').click(function() {
-                // $('#loader_calculate').removeClass('d-none').addClass('d-block');
-                // $('#specialRisk').addClass('d-none');
                 setTimeout(function() {
                     $('#loader_calculate').removeClass('d-block').addClass('d-none');
-                    $('#sendtoconfirm').submit();
+                    var formData = $('#sendtosaved').serialize();
+                    formData += '&_token={{ csrf_token() }}';
+
+                    $.ajax({
+                        url: '{{ route('quote.saved') }}',
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            window.location.href = response.link
+                        },
+                        error: function(xhr) {
+                            alert("ERROR DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
+                        }
+                    });
+
+                    // $('#sendtosaved').submit();
                 }, 400);
             });
         });

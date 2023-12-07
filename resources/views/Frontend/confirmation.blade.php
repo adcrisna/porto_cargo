@@ -595,8 +595,6 @@
                     data: $('#final_data').val(),
                     payment_method: selectedPaymentMethod
                 };
-                console.log(formData);
-
                 $('#load_save').show();
                 $.ajax({
                     url: '{{ route('quote.saved') }}',
@@ -624,7 +622,7 @@
     </script>
 
 
-    {{-- <script>
+    <script>
         $(document).on('contextmenu', function() {
             return false;
         });
@@ -645,5 +643,5 @@
                 return false;
             }
         });
-    </script> --}}
+    </script>
 @endsection

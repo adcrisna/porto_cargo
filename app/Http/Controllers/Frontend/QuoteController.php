@@ -157,12 +157,21 @@ class QuoteController extends Controller
     function saved(Request $request) {
         DB::beginTransaction();
         try {
-            $data = json_decode($request['data']);
-            // return $data;
-            $product = Products::find($data->product_id);
+            if ($request->is_risk == "1") {
+                $data = (object)[
+                    "data" => json_decode($request->insured_detail),
+                    "product_id" => $request->product_id ?? null,
+                    "icc_selected" => $request->icc_selected ?? null,
+                    "premium_amount" => $request->premium_amount ?? null,
+                    "is_risk" => $request->is_risk,
+                    "account_type" => Auth::user()->account_type,
+                ];
+            }else {
+                $data = json_decode($request['data']);
+            }
 
+            $product = Products::find($data->product_id ?? null);
             $order = new Orders;
-
             $order->user_id = Auth::user()->id ?? null;
             $order->product_id = $data->product_id ?? null;
             $order->company_name = $data->data->companyName ?? null;
@@ -213,7 +222,7 @@ class QuoteController extends Controller
             $transaction->order_id = $order->id;
             $transaction->pn_number = 'PN-'.date('Ymd').'-'.$order->id;
             $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
-            $transaction->payment_total = $data->premium_amount; //???
+            $transaction->payment_total = $data->premium_amount ?? null; //???
             $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
             $transaction->start_policy_date = date('Y-m-d');
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
@@ -242,6 +251,12 @@ class QuoteController extends Controller
                     'message' => 'success',
                     'type' => 'retail',
                     'link' => $to_xendit
+                ]);
+            }elseif ($request->is_risk == "1") {
+                return response()->json([
+                    'type' => 'risk',
+                    'message' => 'success',
+                    'link' => route('shipment.index')
                 ]);
             }else {
                 return response()->json([

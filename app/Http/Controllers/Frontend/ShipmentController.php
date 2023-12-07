@@ -22,10 +22,13 @@ class ShipmentController extends Controller
         $order = Orders::where('user_id', Auth::user()->id);
 
         if (Auth::user()->account_type === 'verify') {
-            $data = $order->with('transaction')->get();
+            $data = $order->with('transaction')->whereHas('transaction', function ($query) {
+                $query->where('is_risk', '!=', '1');
+            })->get();
         } else {
             $data = $order->with('transaction')->whereHas('transaction', function ($query) {
-                $query->where('payment_status', 'paid');
+                $query->where('payment_status', 'paid')
+                ->where('is_risk', '!=', '1');
             })->get();
         }
         return view('Frontend.shipment' , compact('data'));
