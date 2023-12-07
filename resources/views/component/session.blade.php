@@ -1,6 +1,6 @@
 @if ($message = Session::get('success'))
-    <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 35%">{{ $message }}</strong>
+    <div class="alert mt-5 alert-info alert-dismissible fade show text-center" id="alert" role="alert">
+        <strong >{{ $message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
@@ -8,12 +8,12 @@
 
 
 @if ($message = Session::get('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{ $message }}</strong>
+    <div class="alert alert-danger alert-dismissible fade show mt-5 text-center" role="alert">
+        <strong class="ms-5">{{ $message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {{-- <div class="alert mt-5 alert-danger alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 35%">{{ $message }}</strong>
+        <strong >{{ $message }}</strong>
         <button type="button" class="close border-primary" data-dismiss="alert" aria-label="Close"
             style="float: right">
             <span aria-hidden="true">&times;</span>
@@ -24,8 +24,8 @@
 
 
 @if ($message = Session::get('warning'))
-    <div class="alert mt-5 alert-warning alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 35%">{{ $message }}</strong>
+    <div class="alert mt-5 alert-warning alert-dismissible fade show text-center" id="alert" role="alert">
+        <strong >{{ $message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
     </div>
@@ -34,8 +34,8 @@
 
 
 @if ($message = Session::get('info'))
-    <div class="alert mt-5 alert-info alert-dismissible fade show" id="alert" role="alert">
-        <strong style="margin-left: 35%">{{ $message }}</strong>
+    <div class="alert mt-5 alert-info alert-dismissible fade show text-center" id="alert" role="alert">
+        <strong >{{ $message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
