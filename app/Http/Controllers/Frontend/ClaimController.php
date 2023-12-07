@@ -13,7 +13,7 @@ use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
 use Carbon\Carbon;
-use Auth;
+use Auth,Validator;
 
 class ClaimController extends Controller
 {
@@ -41,7 +41,21 @@ class ClaimController extends Controller
 
     function postClaim( Request $request) {
         try {
-            // return $request->all();
+            // return $request;
+            $validator = Validator::make($request->all(), [
+                'invoice' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'travelPermissionLetter' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'billOfLanding' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'airwayBill' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'policeInvestiReport' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'packingList' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'photosOfDamage.*' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+                'photosOfUnloading.*' => 'mimes:doxc,pdf,excel,jpeg,png,jpg',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             $f_pd = [];
             foreach ($request->file('photosOfDamage') as $key => $file) {
