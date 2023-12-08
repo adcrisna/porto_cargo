@@ -209,12 +209,11 @@ class QuoteController extends Controller
 
             $order->deductibles =  null;
             $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
-            $order->rate = isset($product) ? $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] : null;  // ke 0.0
+            $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] ?? null;  // ke 0.0
             $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
             $order->premium_calculation = isset($product) ?  $data->data->sumInsured . ' x ' . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ' = ' . $data->premium_amount : null;
             $order->premium_payment_warranty = $product->premium_payment_warranty ?? null;
             $order->security = null;
-
             // return $order;
             $order->save();
 

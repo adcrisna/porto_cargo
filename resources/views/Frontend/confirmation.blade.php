@@ -561,17 +561,17 @@
     </script> --}}
 
     <script>
-        // $(document).ready(function() {
-        //     $('#load_save').hide();
-        //     $('#confirm').click(function() {
-        //         $('#post_data').submit();
-        //         // $('#load_save').show();
-        //         // setTimeout(function() {
-        //         //     $('#load_save').hide();
-        //         //     $('#modalSuccess').modal('show');
-        //         // }, 3000);
-        //     });
-        // });
+        $(document).ready(function() {
+            // $('#load_save').hide();
+            // $('#confirm').click(function() {
+            //     $('#post_data').submit();
+            //     // $('#load_save').show();
+            //     // setTimeout(function() {
+            //     //     $('#load_save').hide();
+            //     //     $('#modalSuccess').modal('show');
+            //     // }, 3000);
+            // });
+        });
     </script>
     <script>
         $(document).ready(function() {
