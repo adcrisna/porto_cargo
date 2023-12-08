@@ -459,7 +459,7 @@
                 }).format(number);
             }
 
-            $('.detail-btn').click(function() {
+            $('#example').on('click', '.detail-btn', function() {
                 var itemId = $(this).data('item-id');
                 console.log(itemId);
 
@@ -517,7 +517,8 @@
                         }
                         $('#item-total_sum_insured').text(rupiah(data
                             .total_sum_insured));
-                        $('#item-rate').text(data.rate !== null ? parseFloat(data.rate).toFixed(3) : null);
+                        $('#item-rate').text(data.rate !== null ? parseFloat(data.rate).toFixed(
+                            3) : null);
                         $('#item-premium_calculation').text(data.premium_calculation);
                         $('#item-premium_payment_warranty').text(data.premium_payment_warranty);
                         if (data.premium_payment_warranty == null) {
