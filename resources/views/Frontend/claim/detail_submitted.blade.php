@@ -360,8 +360,8 @@
                     </div>
                     <div class="col-sm-9">
                         <p class="text-dark" style="font-size:12px">:
-                            <a href="{{ $data->invoice }}" class="btn btn-warning" target="_blank"
-                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                            <a href="{{ $data->invoice }}" class="btn btn-sm btn-warning" target="_blank"
+                                rel="packing_list"><i class="fa fa-download"></i> View</a>
                         </p>
                     </div>
                 </div>
@@ -379,8 +379,8 @@
                     </div>
                     <div class="col-sm-9">
                         <p class="text-dark" style="font-size:12px">:
-                            <a href="{{ $data->police_investigation_report }}" class="btn btn-warning" target="_blank"
-                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                            <a href="{{ $data->police_investigation_report }}" class="btn btn-sm btn-warning"
+                                target="_blank" rel="packing_list"><i class="fa fa-download"></i> View</a>
                         </p>
                     </div>
                 </div>
@@ -390,8 +390,8 @@
                     </div>
                     <div class="col-sm-9">
                         <p class="text-dark" style="font-size:12px">:
-                            <a href="{{ $data->packing_list }}" class="btn btn-warning" target="_blank"
-                                rel="packing_list"><i class="fa fa-download"></i>Download</a>
+                            <a href="{{ $data->packing_list }}" class="btn btn-sm btn-warning" target="_blank"
+                                rel="packing_list"><i class="fa fa-download"></i> View</a>
                         </p>
                     </div>
                 </div>
@@ -402,8 +402,8 @@
                     <div class="col-sm-9">
                         <p class="text-dark" style="font-size:12px">:
                             @foreach ($data->photos_of_damaged_items as $value)
-                                <a href="{{ $value['file_path'] }}" class="btn btn-warning" target="_blank"
-                                    rel="photo_of_damage"><i class="fa fa-download"></i>Download</a>
+                                <a href="{{ $value['file_path'] }}" class="btn btn-sm btn-warning" target="_blank"
+                                    rel="photo_of_damage"><i class="fa fa-download"></i> View</a>
                             @endforeach
                         </p>
                     </div>
@@ -415,8 +415,8 @@
                     <div class="col-sm-9">
                         <p class="text-dark" style="font-size:12px">:
                             @foreach ($data->photos_of_unloading_process as $value)
-                                <a href="{{ $value['file_path'] }}" class="btn btn-warning" target="_blank"
-                                    rel="photo_of_damage"><i class="fa fa-download"></i>Download</a>
+                                <a href="{{ $value['file_path'] }}" class="btn btn-sm btn-warning" target="_blank"
+                                    rel="photo_of_damage"><i class="fa fa-download"></i> View</a>
                             @endforeach
                         </p>
                     </div>
