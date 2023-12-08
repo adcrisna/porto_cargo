@@ -175,7 +175,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Departure</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: {{ $order->estimated_time_of_departure }}</p>
+                                <p class="text-dark" style="font-size:12px">
+                                    :{{ date('d-m-Y', strtotime($order->estimated_time_of_departure)) }}</p>
                             </div>
                         </div>
                     @endif
@@ -187,7 +188,8 @@
                                 <p class="text-dark" style="font-size:12px"><b>Estimated Time Of Arrival</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: {{ $order->estimated_time_of_arrival }} </p>
+                                <p class="text-dark" style="font-size:12px">:
+                                    {{ date('d-m-Y', strtotime($order->estimated_time_of_arrival)) }}</p>
                             </div>
                         </div>
                     @endif
