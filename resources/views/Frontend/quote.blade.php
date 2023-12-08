@@ -148,6 +148,7 @@
         </div>
     </div>
     <form action="{{ route('quote.calculation') }}" method="POST">
+        @csrf
         <div id="insuredProfile">
             <div class="row mt-2" style="justify-content: center">
                 <div class="card border-primary mb-3">
