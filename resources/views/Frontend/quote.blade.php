@@ -366,7 +366,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Built Year</label>
-                                    <input type="text" class="form-control" name="builtYear" id="builtYear">
+                                    <input type="number" min="1950" max="2100" class="form-control"
+                                        name="builtYear" id="builtYear">
                                 </div>
                             </div>
                             <div class="row mt-5">
@@ -433,28 +434,27 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        // $('#btnCalculate').css("display", "none");
+    <script>
+        $(document).ready(function() {
+            // $('#btnCalculate').css("display", "none");
 
-        // $('#goodsType').change(function() {
-        //     var selectedGoodType = $(this).val();
-        //     checkGoodTypeCondition();
-        // });
-        // function checkGoodTypeCondition() {
-        //     var selectedGoodType = $('#goodsType').val();
+            // $('#goodsType').change(function() {
+            //     var selectedGoodType = $(this).val();
+            //     checkGoodTypeCondition();
+            // });
+            // function checkGoodTypeCondition() {
+            //     var selectedGoodType = $('#goodsType').val();
 
-        //     if (selectedGoodType === null || selectedGoodType === '') {
-        //         $('#btnCalculate').hide();
-        //         $('#alert_input').html('<strong style="color: red;">Please fill in the data properly!</strong>');
-        //     } else {
-        //         $('#btnCalculate').show();
-        //         $('#alert_input').empty();
-        //     }
-        // }
+            //     if (selectedGoodType === null || selectedGoodType === '') {
+            //         $('#btnCalculate').hide();
+            //         $('#alert_input').html('<strong style="color: red;">Please fill in the data properly!</strong>');
+            //     } else {
+            //         $('#btnCalculate').show();
+            //         $('#alert_input').empty();
+            //     }
+            // }
 
-        // checkGoodTypeCondition();
-    });
-</script>
-
+            // checkGoodTypeCondition();
+        });
+    </script>
 @endsection
