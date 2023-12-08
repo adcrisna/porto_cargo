@@ -249,7 +249,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" id="inter_island">
                                         <div class="col-sm-3">
                                             <p class="text-dark" style="font-size:12px"><b>Inter Island</b></p>
                                         </div>
@@ -259,7 +259,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" id="license_plateinter">
                                         <div class="col-sm-3">
                                             <p class="text-dark" style="font-size:12px"><b>License Plate Inter</b></p>
                                         </div>
@@ -349,7 +349,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="transhipment">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Transipment</b></p>
                                     </div>
@@ -367,7 +367,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="deductibles">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Deductibles</b></p>
                                     </div>
@@ -403,7 +403,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="premium_payment_warranty">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>
                                     </div>
@@ -413,7 +413,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="security">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Security</b></p>
                                     </div>
@@ -507,18 +507,36 @@
                         $('#item-classified').text(data.classified);
                         $('#item-built_year').text(data.built_year);
                         $('#item-transhipment').text(data.transhipment);
+                        if (data.transhipment == null) {
+                            $("#transhipment").css("display", "none");
+                        }
                         $('#item-coverage').text(data.coverage);
                         $('#item-deductibles').text(data.deductibles);
+                        if (data.deductibles == null) {
+                            $("#deductibles").css("display", "none");
+                        }
                         $('#item-total_sum_insured').text(rupiah(data
                             .total_sum_insured));
-                        $('#item-rate').text(data.rate);
+                        $('#item-rate').text(parseFloat(data.rate).toFixed(3));
                         $('#item-premium_calculation').text(data.premium_calculation);
                         $('#item-premium_payment_warranty').text(data.premium_payment_warranty);
+                        if (data.premium_payment_warranty == null) {
+                            $("#premium_payment_warranty").css("display", "none");
+                        }
                         $('#item-security').text(data.security);
+                        if (data.security == null) {
+                            $("#security").css("display", "none");
+                        }
                         $('#item-travel_permission').text(data.travel_permission);
                         $('#item-license_plate').text(data.license_plate);
                         $('#item-license_plateinter').text(data.license_plateinter);
+                        if (data.license_plateinter == null) {
+                            $("#license_plateinter").css("display", "none");
+                        }
                         $('#item-inter_island').text(data.inter_island);
+                        if (data.inter_island == null) {
+                            $("#inter_island").css("display", "none");
+                        }
                         $('#item-airway_bill').text(data.airway_bill);
                         $('#detailModal').modal('show');
                     },
