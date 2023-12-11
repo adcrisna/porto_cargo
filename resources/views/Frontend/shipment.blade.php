@@ -65,10 +65,10 @@
                                 </td>
                                 <td class="">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <a href="{{ @$item->transaction->doc_premium ?? null }}"><span class="badge bg-primary "><i
                                                         class="fa fa-download p-1"></i>Premium Note</span></a>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-sm-6">
                                             <a href="{{ @$item->transaction->doc_policy ?? null }}">
                                                 <span class="badge bg-white text-primary"

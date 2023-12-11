@@ -17,7 +17,8 @@ class TestController extends Controller
 {
     function pdfPremiumNote()
     {
-        $pdf = Pdf::loadView('pdf.premium_note');
+        $data= Transactions::find(1);
+        $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
         return $pdf->stream();
     }
     function pdfPolicySummary()

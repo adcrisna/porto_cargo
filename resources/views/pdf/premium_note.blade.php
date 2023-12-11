@@ -49,15 +49,15 @@
                         <tr>
                             <td>
                                 <p class="name"><b>PREMIUM NOTE</b></p>
-                                <p style="font-size: 12px">No : 568383 / SURYA ANDRITAMA, PT</p>
-                                <p style="font-size: 12px">REF : 568383</p>
+                                {{-- <p style="font-size: 12px">No : 568383 / SURYA ANDRITAMA, PT</p> --}}
+                                {{-- <p style="font-size: 12px">REF : 568383</p> --}}
                             </td>
-                            <td style="width: 280px"></td>
+                            {{-- <td style="width: 280px"></td>
                             <td style="width: 200px; justify-content:">
                                 <p style="font-size: 12px;">Issue Date : <b style="font-size: 14px !important">14
                                         September
                                         2023</b></p>
-                            </td>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>
@@ -74,41 +74,43 @@
                         <tr>
                             <td style="width: 140px; font-size: 12px">Policy Number </td>
                             <td>: </td>
-                            <td style="font-size: 12px">31313/P31321/2321</td>
+                            <td style="font-size: 12px">{{ @$data->policy_number }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">The Insured</td>
                             <td>: </td>
-                            <td style="font-size: 12px">Alex Martin</td>
+                            <td style="font-size: 12px">{{ @$data->order->company_name }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">Address</td>
                             <td>: </td>
-                            <td style="font-size: 12px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-                                facilis similique totam ea sapiente iure nobis repellendus ab beatae cumque et est cum
-                                inventore ex, laboriosam ipsam a consequuntur nesciunt.</td>
+                            <td style="font-size: 12px">{{ @$data->order->insured_address }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">Class of Business</td>
                             <td>: </td>
-                            <td style="font-size: 12px">Cargo</td>
+                            <td style="font-size: 12px">{{ @$data->order->coverage }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">Description</td>
                             <td>: </td>
-                            <td style="font-size: 12px">Toyota AVanza</td>
+                            <td style="font-size: 12px">{{ @$data->order->product->product_name }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">Insurer</td>
                             <td>: </td>
-                            <td style="font-size: 12px">TOKIO MARINE INDONESIA</td>
+                            <td style="font-size: 12px">{{ @$data->order->product->security }}</td>
                         </tr>
                         <tr>
                             <td style="width: 140px; font-size: 12px">Policy Periode</td>
                             <td>: </td>
-                            <td style="width: 350px; font-size: 12px">2023-09-13 to 23-10-13</td>
+                            <td style="width: 350px; font-size: 12px">
+                                {{ date('d-m-Y', strtotime(@$data->start_policy_date)) }} to
+                                {{ date('d-m-Y', strtotime(@$data->end_policy_date)) }}</td>
                             <td style="font-size: 12px">Due Date</td>
-                            <td style="font-size: 12px"> <b style="font-size: 14px !important">2023-09-21</b></td>
+                            <td style="font-size: 12px"> <b
+                                    style="font-size: 14px !important">{{ date('d-m-Y', strtotime(@$data->end_policy_date)) }}</b>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -171,27 +173,29 @@
                         <tr>
                             <td style="font-size: 12px; width: 200px;">PREMIUM AMOUNT</td>
                             <td style="font-size: 12px">: </td>
-                            <td style="font-size: 12px">IDR 240.000.00</td>
+                            <td style="font-size: 12px">IDR
+                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
                             <td style="font-size: 12px; width: 200px;">POLICY COST</td>
                             <td style="font-size: 12px">: </td>
-                            <td style="font-size: 12px">IDR 20.000.00</td>
+                            <td style="font-size: 12px">IDR -</td>
                         </tr>
                         <tr>
                             <td style="font-size: 12px; width: 200px;">DISCOUNT</td>
                             <td style="font-size: 12px">: </td>
-                            <td style="font-size: 12px">IDR 0.00</td>
+                            <td style="font-size: 12px">IDR -</td>
                         </tr>
                         <tr>
                             <td style="font-size: 12px; width: 200px;">ADITIONAL DISCOUNT</td>
                             <td style="font-size: 12px">: </td>
-                            <td style="font-size: 12px; border-bottom: 1px black solid">IDR -0.00</td>
+                            <td style="font-size: 12px; border-bottom: 1px black solid">IDR -</td>
                         </tr>
                         <tr>
                             <td style="font-size: 12px; width: 200px;">TOTAL</td>
                             <td style="font-size: 12px">: </td>
-                            <td style="font-size: 12px">IDR 260.000.00</td>
+                            <td style="font-size: 12px">IDR
+                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}</td>
                         </tr>
                     </tbody>
                 </table>
