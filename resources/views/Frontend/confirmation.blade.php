@@ -433,7 +433,7 @@
                             <div class="col-sm-9">
                                 <p class="text-dark" style="font-size:12px">:
                                     IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }} x
-                                    {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }} % =
+                                    {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }} - {{ $product->discount }} =
                                     IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
                             </div>
                         </div>

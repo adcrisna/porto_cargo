@@ -652,6 +652,7 @@
                             window.location.href = response.link
                         },
                         error: function(xhr) {
+                            console.log(xhr);
                             alert("ERROR DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
                         }
                     });
@@ -710,7 +711,7 @@
         });
     </script>
 
-
+{{--
     <script>
         $(document).on('contextmenu', function () {
             return false;
@@ -732,5 +733,5 @@
                 return false;
             }
         });
-    </script>
+    </script> --}}
 @endsection

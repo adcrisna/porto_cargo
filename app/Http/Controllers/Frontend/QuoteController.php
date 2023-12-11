@@ -35,7 +35,6 @@ class QuoteController extends Controller
                 "account_type" => Auth::user()->account_type,
             ];
         $product = Products::find($request->product_id);
-        // return $data;
         return view('Frontend.confirmation',compact('data','product'));
     }
 
@@ -73,9 +72,9 @@ class QuoteController extends Controller
                     'product_data' => $product,
                     'additional_sum' => floatval($additionalCostSum),
                     'icc_price' => [
-                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a, $additionalCostSum) : null,
-                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b, $additionalCostSum) : null,
-                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c, $additionalCostSum) : null,
+                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a, $additionalCostSum, $product->discount) : null,
+                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b, $additionalCostSum, $product->discount) : null,
+                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c, $additionalCostSum, $product->discount) : null,
                     ],
                 ];
 
@@ -132,11 +131,11 @@ class QuoteController extends Controller
             ->get();
     }
 
-    function calculatePrice($sumInsured, $rate, $additionalCostSum) {
+    function calculatePrice($sumInsured, $rate, $additionalCostSum, $dsc) {
         if ($rate['premium_type'] == 'fixed') {
-            $sum =  ceil($rate['premium_value']+$additionalCostSum);
+            $sum =  ceil(($rate['premium_value']+$additionalCostSum)-(($rate['premium_value']+$additionalCostSum)*$dsc/100));
         }else {
-            $sum = ceil(($sumInsured * $rate['premium_value'])+$additionalCostSum);
+            $sum = ceil((($sumInsured * $rate['premium_value'])+$additionalCostSum)-((($sumInsured * $rate['premium_value'])+$additionalCostSum)*$dsc/100));
             // if ($sum_rate < 100000) {
             //     $sum = 100000 +$additionalCostSum;
             // }else{
@@ -169,7 +168,7 @@ class QuoteController extends Controller
             }else {
                 $data = json_decode($request['data']);
             }
-
+            // return $data;
             $product = Products::find($data->product_id ?? null);
             $order = new Orders;
             $order->user_id = Auth::user()->id ?? null;
@@ -206,14 +205,14 @@ class QuoteController extends Controller
             $order->built_year = $data->data->builtYear ?? null;
             $order->transhipment = isset($data->data->transhipment) ? ($data->data->transhipment == 'on' ? 'YES' : 'NO') : null;
             $order->coverage = $data->icc_selected ?? null;
-
-            $order->deductibles =  null;
+            $callculate_data = $request->is_risk == "1" ? null : $this->calculateData($data, $product, $data->premium_amount);
+            $order->deductibles =  $product->deductibles ?? null;
             $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
             $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] ?? null;  // ke 0.0
             $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
-            $order->premium_calculation = isset($product) ?  $data->data->sumInsured . ' x ' . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ' = ' . $data->premium_amount : null;
+            $order->premium_calculation = $callculate_data;
             $order->premium_payment_warranty = $product->premium_payment_warranty ?? null;
-            $order->security = null;
+            $order->security = $product->security ?? null;
             // return $order;
             $order->save();
 
@@ -333,4 +332,18 @@ class QuoteController extends Controller
         Storage::disk('public')->put($pdfFilePath, $pdf->output());
         return asset('storage/' . $pdfFilePath);
     }
+
+
+    function calculateData($data, $product, $premi) {
+
+        $premiumType = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_type'];
+        if ($premiumType == "fixed") {
+            $premiumSymbol = "+";
+        } else {
+            $premiumSymbol = "*";
+        }
+        $calculateData = "((" . $data->data->sumInsured . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ".$premi;
+        return $calculateData;
+    }
+
 }
