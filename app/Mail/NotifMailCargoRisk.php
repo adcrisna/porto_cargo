@@ -49,7 +49,7 @@ class NotifMailCargoRisk extends Mailable
     {
         $data = $this->data;
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->view('emails.risk')
+            ->view('emails.risk', compact('data'))
             ->subject('Salvus : Notification of Cargo Risk');
     }
 

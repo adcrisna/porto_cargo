@@ -640,24 +640,24 @@
 
             $('#ok_risk').click(function() {
                 setTimeout(function() {
-                    $('#loader_calculate').removeClass('d-block').addClass('d-none');
-                    var formData = $('#sendtosaved').serialize();
-                    formData += '&_token={{ csrf_token() }}';
+                    // $('#loader_calculate').removeClass('d-block').addClass('d-none');
+                    // var formData = $('#sendtosaved').serialize();
+                    // formData += '&_token={{ csrf_token() }}';
 
-                    $.ajax({
-                        url: '{{ route('quote.saved') }}',
-                        type: 'POST',
-                        data: formData,
-                        success: function(response) {
-                            window.location.href = response.link
-                        },
-                        error: function(xhr) {
-                            console.log(xhr);
-                            alert("ERROR DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
-                        }
-                    });
+                    // $.ajax({
+                    //     url: '{{ route('quote.saved') }}',
+                    //     type: 'POST',
+                    //     data: formData,
+                    //     success: function(response) {
+                    //         window.location.href = response.link
+                    //     },
+                    //     error: function(xhr) {
+                    //         console.log(xhr);
+                    //         alert("ERROR DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
+                    //     }
+                    // });
 
-                    // $('#sendtosaved').submit();
+                    $('#sendtosaved').submit();
                 }, 400);
             });
         });

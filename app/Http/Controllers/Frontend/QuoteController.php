@@ -16,6 +16,9 @@ use Carbon\Carbon;
 use Auth,Str,Storage;
 use Xendit\Xendit;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifMailCargoRisk;
+use App\Jobs\RiskNotifJobs;
 
 class QuoteController extends Controller
 {
@@ -213,8 +216,15 @@ class QuoteController extends Controller
             $order->premium_calculation = $callculate_data;
             $order->premium_payment_warranty = $product->premium_payment_warranty ?? null;
             $order->security = $product->security ?? null;
+
+            // $data = $order;
+            // return view('emails.risk',compact('data'));
             // return $order;
+
             $order->save();
+
+            // $this->risk_notif($order);
+
 
             $transaction = new Transactions;
             $transaction->order_id = $order->id;
@@ -237,6 +247,8 @@ class QuoteController extends Controller
             }
 
             DB::commit();
+
+            $this->risk_notif($order);
 
 
             if (Auth::user()->account_type == 'retail' && $data->is_risk !== "1") {
@@ -262,6 +274,7 @@ class QuoteController extends Controller
                     'message' => 'success',
                 ]);
             }
+
 
 
         } catch (Exception $e) {
@@ -293,6 +306,27 @@ class QuoteController extends Controller
 
     }
 
+    function risk_notif($order) {
+        $recipients = [
+            'lisa.anggraini@salvus.co.id','rosa.lina@salvus.co.id',
+            'foni.linggajaya@salvus.co.id','ratna.ningsih@salvus.co.id',
+            'lazuardi.pratama@salvus.co.id','mega.damaiyanti@salvus.co.id',
+            'mymailforyou13@gmail.com'
+        ];
+
+        $data = $order;
+
+        // foreach ($recipients as $recipient) {
+        //     RiskNotifJobs::dispatch($recipient, $data);
+        // }
+        // return "masuk";
+
+        foreach ($recipients as $recipient) {
+            $data = $order;
+            Mail::to($recipient)->send(new NotifMailCargoRisk($data));
+            usleep(400000);
+        }
+    }
 
 
     /**

@@ -36,6 +36,8 @@ class TestController extends Controller
         return $pdf->stream();
     }
     function test() {
+        abort(404);
+        // return view('emails.risk');
         $data = 1;
 
         Mail::to('alvanhan4@gmail.com')->send(new NotifMailCargoRisk($data));
