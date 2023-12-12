@@ -88,7 +88,7 @@
         </div>
         <center>
             <p style="color: #2156A5; font-size: 14px; margin :0px !important; padding: 0px !important"><b>Cargo
-                    Insurance {{ @$data->order->company_name }}</b></p>
+                    Insurance {{ @$data->order->product->display_name }}</b></p>
         </center>
         <div class="detailPolicy">
             <table>
@@ -109,8 +109,7 @@
                         <td style="width: 300px">
                             <p
                                 style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                Nama Asuransi <br> <i style="font-size: 12px !important">Insurer
-                                    Name
+                                Nama Tertanggung<br> <i style="font-size: 12px !important">Insured Name
                                 </i></p>
                         </td>
                         <td
@@ -216,7 +215,7 @@
                         <td>
                             <p
                                 style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                {{ @$data->order->product->product_name }}</p>
+                                -</p>
                         </td>
                     </tr>
                     <br>
@@ -238,14 +237,14 @@
 
                     <tr>
                         <td style="width: 300px">
-                            <p style="color: #2156A5; float: right; font-size: 14px; ">Perhitungan Premi<br><i
-                                    style="font-size: 12px !important">Premi
-                                    Calculation
+                            <p style="color: #2156A5; float: right; font-size: 14px; ">Gross Premium<br><i
+                                    style="font-size: 12px !important">Gross Premium
                                 </i></p>
                         </td>
                         <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                         <td>
-                            <p style="margin-top: 18px; font-size: 14px;">{{ @$data->order->premium_calculation }}
+                            <p style="margin-top: 18px; font-size: 14px;">IDR
+                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
                             </p>
                         </td>
                     </tr>
@@ -265,14 +264,15 @@
 
                     <tr>
                         <td style="width: 300px">
-                            <p style="color: #2156A5; float: right; font-size: 14px;">Premi & Biaya
-                                Polis<br><i style="font-size: 12px !important">Premium & Policy Cost
-                                </i></p>
+                            <p style="color: #2156A5; float: right; font-size: 14px;">Total Premium
+                                <br><i style="font-size: 12px !important">
+                                </i>
+                            </p>
                         </td>
                         <td style="margin-top: 25px; margin-left: 20px; width: 20px"> : </td>
                         <td>
                             <p style="margin-top: 18px; font-size: 14px;">IDR
-                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }} + Rp 60.000
+                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
                             </p>
                         </td>
                     </tr>

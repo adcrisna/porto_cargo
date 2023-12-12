@@ -512,8 +512,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Police Investigation
-                                        Report</b>(if available)</label>
+                                <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Other Document</b>(Police
+                                    Investigation Report / Event Report / Warrant Letter)</label>
+                                {{-- <label style="color: rgb(126, 124, 124); font-size: 14px"><b>Police Investigation
+                                        Report</b>(if available)</label> --}}
                                 <input type="file" accept=".doxc, .pdf, .png, .jpg, .xlsx, .jpeg" class="form-control"
                                     name="policeInvestiReport" id="policeInvestiReport"
                                     style="background-color: #ffffff">

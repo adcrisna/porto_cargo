@@ -23,7 +23,8 @@ class TestController extends Controller
     }
     function pdfPolicySummary()
     {
-        $data= Transactions::find(1);
+        $data= Transactions::find(35);
+        return $data->order->product;
 
         $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
         return $pdf->stream();
