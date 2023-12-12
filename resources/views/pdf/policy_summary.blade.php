@@ -277,8 +277,7 @@
                         <td>
                             <p
                                 style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                IDR
-                                {{ number_format(@$data->order->product->discount ?? 0, 0, ',', '.') }}
+                                {{ @$data->order->product->discount ?? 0 }} %
                             </p>
                         </td>
                     </tr>
