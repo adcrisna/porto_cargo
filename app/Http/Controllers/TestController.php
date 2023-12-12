@@ -12,6 +12,8 @@ use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotifMailCargoRisk;
 
 class TestController extends Controller
 {
@@ -34,11 +36,10 @@ class TestController extends Controller
         return $pdf->stream();
     }
     function test() {
-        $trx_id = 12345;
-        $external_id = Str::random(10) . '_' . $trx_id;
-        $parts = explode('_', $external_id);
-        return $parts[1];
+        $data = 1;
 
+        Mail::to('alvanhan4@gmail.com')->send(new NotifMailCargoRisk($data));
+        dd('Mail send successfully.');
     }
 
 }
