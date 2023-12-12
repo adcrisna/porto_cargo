@@ -32,7 +32,7 @@
         }
 
         .footerRingpol {
-            margin-top: 150px;
+            margin-top: 120px;
             width: 100%;
         }
 
@@ -248,7 +248,40 @@
                             </p>
                         </td>
                     </tr>
-
+                    <tr>
+                        <td style="width: 300px">
+                            <p
+                                style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
+                                Additional Cost<br></p>
+                        </td>
+                        <td
+                            style="margin-top: 25px; margin-left: 20px; width: 20px; margin :0px !important; padding: 0px !important">
+                            : </td>
+                        <td>
+                            <p
+                                style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
+                                IDR
+                                {{ number_format(@$data->order->product->additional_cost['value'] ?? 0, 0, ',', '.') }}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 300px">
+                            <p
+                                style="color: #2156A5; float: right; font-size: 14px; margin :0px !important; padding: 0px !important">
+                                Discount<br></p>
+                        </td>
+                        <td
+                            style="margin-top: 25px; margin-left: 20px; width: 20px; margin :0px !important; padding: 0px !important">
+                            : </td>
+                        <td>
+                            <p
+                                style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
+                                IDR
+                                {{ number_format(@$data->order->product->discount ?? 0, 0, ',', '.') }}
+                            </p>
+                        </td>
+                    </tr>
                     <tr>
                         <td style="width: 300px">
                             <p style="color: #2156A5; float: right; font-size: 14px;">Kendaraan<br><i
