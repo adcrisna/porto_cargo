@@ -248,7 +248,6 @@ class QuoteController extends Controller
 
             DB::commit();
 
-            $this->risk_notif($order);
 
 
             if (Auth::user()->account_type == 'retail' && $data->is_risk !== "1") {
@@ -263,6 +262,7 @@ class QuoteController extends Controller
                     'link' => $to_xendit
                 ]);
             }elseif ($request->is_risk == "1") {
+                $this->risk_notif($order);
                 return response()->json([
                     'type' => 'risk',
                     'message' => 'success',
