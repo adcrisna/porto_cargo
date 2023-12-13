@@ -215,7 +215,7 @@
                         <td>
                             <p
                                 style="margin-top: 18px; font-size: 14px; margin :0px !important; padding: 0px !important">
-                                -</p>
+                                {{ @$data->order->item_description }}</p>
                         </td>
                     </tr>
                     <br>

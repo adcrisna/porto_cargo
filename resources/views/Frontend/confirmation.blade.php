@@ -188,6 +188,17 @@
                         </div>
                     @endif
 
+                    @if (!empty($data['data']->itemDescription))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Item Description</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['data']->itemDescription ?? '' }}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     @if (!empty($data['data']->departure))
                         <div class="row">
                             <div class="col-sm-3">

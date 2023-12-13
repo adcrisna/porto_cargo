@@ -230,7 +230,6 @@
                         <h5 class="text-primary mt-2">Shipment Details</h5>
                     </div>
                     <div class="card-body text-primary">
-                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -330,6 +329,12 @@
                                     <input type="number" class="form-control" name="licensePlateInter"
                                         id="licensePlateInter">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label style="color: rgb(126, 124, 124)">Item Description</label>
+                                <input type="text" class="form-control" name="itemDescription" id="itemDescription">
                             </div>
                         </div>
                         <div id="sea" style="display: none">

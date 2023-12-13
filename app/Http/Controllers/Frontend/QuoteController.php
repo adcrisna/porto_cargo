@@ -208,6 +208,7 @@ class QuoteController extends Controller
             $order->built_year = $data->data->builtYear ?? null;
             $order->transhipment = isset($data->data->transhipment) ? ($data->data->transhipment == 'on' ? 'YES' : 'NO') : null;
             $order->coverage = $data->icc_selected ?? null;
+            $order->item_description = $data->data->itemDescription ?? null;
             $callculate_data = $request->is_risk == "1" ? null : $this->calculateData($data, $product, $data->premium_amount);
             $order->deductibles =  $product->deductibles ?? null;
             $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
