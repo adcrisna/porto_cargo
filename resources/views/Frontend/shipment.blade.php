@@ -70,7 +70,7 @@
                                                         class="fa fa-download p-1"></i>Premium Note</span></a>
                                         </div> --}}
                                         <div class="col-sm-6">
-                                            <a href="{{ @$item->transaction->doc_policy ?? null }}">
+                                            <a href="{{ @$item->transaction->doc_policy ?? null }}" target="_blank">
                                                 <span class="badge bg-white text-primary"
                                                     style="border: 1px solid #007BFF;">
                                                     <i class="fa fa-download p-1"></i>Policy Summary
