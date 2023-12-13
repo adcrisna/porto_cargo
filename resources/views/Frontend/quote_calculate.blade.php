@@ -137,6 +137,26 @@
             font-size: 12px !important;
             font-weight: bold;
         }
+
+
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loader-content {
+            background-color: white;
+            /* padding: 20px;
+                                            border-radius: 8px; */
+        }
     </style>
 @endsection
 @section('content')
@@ -586,6 +606,17 @@
         </div>
     </div>
 
+
+
+    <div class="loader-container" id="load_save">
+        <div class="d-flex align-items-center loader-content">
+            <div class="spinner-grow text-primary" role="status"></div>
+            <div class="spinner-grow text-info" role="status"></div>
+            <div class="spinner-grow text-light" role="status"></div>
+            <div class="ms-3">Please wait, processing your transaction...</div>
+        </div>
+    </div>
+
     <div id="specialRisk" class="mt-5">
         <div class="row">
             <center>
@@ -642,6 +673,8 @@
     <script src="{{ asset('js/quote.js') }}"></script>
     <script>
         $(document).ready(function() {
+            $('#load_save').hide();
+
             if ('{{ $is_risk }}' == '1') {
                 $('#yourInsurancePlan').hide();
                 $('#specialRisk').show();
@@ -651,6 +684,7 @@
             }
 
             $('#ok_risk').click(function() {
+                $('#load_save').show();
                 setTimeout(function() {
                     $('#loader_calculate').removeClass('d-block').addClass('d-none');
                     var formData = $('#sendtosaved').serialize();
@@ -661,16 +695,19 @@
                         type: 'POST',
                         data: formData,
                         success: function(response) {
+                            $('#load_save').hide();
                             window.location.href = response.link
                         },
                         error: function(xhr) {
                             console.log(xhr);
-                            alert("ERROR DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
+                            $('#load_save').hide();
+                            alert("ERROR!!!! DATA SEND PLEASE CONTACT YOUR ADMINISTATOR!!")
                         }
                     });
 
                     // $('#sendtosaved').submit();
                 }, 400);
+
             });
         });
     </script>
