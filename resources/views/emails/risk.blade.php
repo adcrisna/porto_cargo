@@ -58,34 +58,35 @@
         </p>
         <hr>
         <p style="background-color: #e4e4e4;padding-left:10px; margin:10px;">
-            Company Name : {{ $data->company_name ?? '-' }} <br>
-            Phone Number : {{ $data->phone_number ?? '-' }} <br>
-            Company Email : {{ $data->company_email ?? '-' }} <br>
-            Insured Address : {{ $data->insured_address ?? '-' }} <br>
-            Conveyance : {{ $data->conveyance ?? '-' }} <br>
-            Goods Type : {{ $data->goods_type ?? '-' }} <br>
-            Specify : {{ $data->specify ?? '-' }} <br>
-            Estimated Time of Departure : {{ $data->estimated_time_of_departure ?? '-' }} <br>
-            Estimated Time of Arrival : {{ $data->estimated_time_of_arrival ?? '-' }} <br>
-            Point Of Origin : {{ $data->point_of_origin ?? '-' }} <br>
-            Point Of Destination : {{ $data->point_of_destination ?? '-' }} <br>
-            Sum Insured : {{ $data->sum_insured ?? '-' }} <br>
-            Invoice Number : {{ $data->invoice_number ?? '-' }} <br>
-            Packing List Number : {{ $data->packing_list_number ?? '-' }} <br>
-            Bill of Lading Number : {{ $data->bill_of_lading_number ?? '-' }} <br>
+            Company Name : {{ @$data->company_name ?? '-' }} <br>
+            Phone Number : {{ @$data->phone_number ?? '-' }} <br>
+            Company Email : {{ @$data->company_email ?? '-' }} <br>
+            Insured Address : {{ @$data->insured_address ?? '-' }} <br>
+            Conveyance : {{ @$data->conveyance ?? '-' }} <br>
+            Goods Type : {{ @$data->goods_type ?? '-' }} <br>
+            Item Description : {{ @$data->item_description ?? '-' }} <br>
+            Specify : {{ @$data->specify ?? '-' }} <br>
+            Estimated Time of Departure : {{ @$data->estimated_time_of_departure ?? '-' }} <br>
+            Estimated Time of Arrival : {{ @$data->estimated_time_of_arrival ?? '-' }} <br>
+            Point Of Origin : {{ @$data->point_of_origin ?? '-' }} <br>
+            Point Of Destination : {{ @$data->point_of_destination ?? '-' }} <br>
+            Sum Insured : {{ @$data->sum_insured ?? '-' }} <br>
+            Invoice Number : {{ @$data->invoice_number ?? '-' }} <br>
+            Packing List Number : {{ @$data->packing_list_number ?? '-' }} <br>
+            Bill of Lading Number : {{ @$data->bill_of_lading_number ?? '-' }} <br>
 
-            License Plate : {{ $data->license_plate ?? '-' }} <br>
-            Inter Island : {{ $data->inter_island ?? '-' }} <br>
-            License Plate Inter : {{ $data->license_plateinter ?? '-' }} <br>
+            License Plate : {{ @$data->license_plate ?? '-' }} <br>
+            Inter Island : {{ @$data->inter_island ?? '-' }} <br>
+            License Plate Inter : {{ @$data->license_plateinter ?? '-' }} <br>
 
-            Ship Name : {{ $data->ship_name ?? '-' }} <br>
-            Vessel Group : {{ $data->vessel_group ?? '-' }} <br>
-            Container Load : {{ $data->container_load ?? '-' }} <br>
-            Vessel Material : {{ $data->vessel_material ?? '-' }} <br>
-            Vessel Type : {{ $data->vessel_type ?? '-' }} <br>
-            Classified : {{ $data->classified ?? '-' }} <br>
-            Built Year : {{ $data->built_year ?? '-' }} <br>
-            Transhipment : {{ $data->transhipment ?? '-' }} <br>
+            Ship Name : {{ @$data->ship_name ?? '-' }} <br>
+            Vessel Group : {{ @$data->vessel_group ?? '-' }} <br>
+            Container Load : {{ @$data->container_load ?? '-' }} <br>
+            Vessel Material : {{ @$data->vessel_material ?? '-' }} <br>
+            Vessel Type : {{ @$data->vessel_type ?? '-' }} <br>
+            Classified : {{ @$data->classified ?? '-' }} <br>
+            Built Year : {{ @$data->built_year ?? '-' }} <br>
+            Transhipment : {{ @$data->transhipment ?? '-' }} <br>
 
         </p>
 
