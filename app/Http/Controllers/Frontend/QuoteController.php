@@ -311,8 +311,7 @@ class QuoteController extends Controller
         $recipients = [
             'lisa.anggraini@salvus.co.id','rosa.lina@salvus.co.id',
             'foni.linggajaya@salvus.co.id','ratna.ningsih@salvus.co.id',
-            'lazuardi.pratama@salvus.co.id','mega.damaiyanti@salvus.co.id',
-            'mymailforyou13@gmail.com'
+            'lazuardi.pratama@salvus.co.id','mega.damaiyanti@salvus.co.id'
         ];
 
         $data = $order;
