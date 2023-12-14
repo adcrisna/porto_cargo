@@ -760,7 +760,7 @@
         });
     </script>
 
-{{--
+
     <script>
         $(document).on('contextmenu', function () {
             return false;
@@ -782,5 +782,5 @@
                 return false;
             }
         });
-    </script> --}}
+    </script>
 @endsection
