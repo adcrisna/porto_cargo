@@ -287,7 +287,7 @@ class QuoteController extends Controller
 
     function payment_store($trx_id,$pay_method,$pay_total) {
         $transaction = Transactions::find($trx_id);
-        Xendit::setApiKey("xnd_development_JZtuTWarcPMX8z4vQhhw4KMEeUatMkbyzxlVG0oyiklSJqKRgOx1qqPtSyn");
+        Xendit::setApiKey(env("SECRET_KEY_XENDIT"));
         $external_id = Str::random(10).'_'.$trx_id;
         $params = [
             'external_id' =>  $external_id,
