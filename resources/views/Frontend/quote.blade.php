@@ -329,7 +329,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-3" id="ShowlicensePlateInter" style="display: none">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
                                     <input type="number" class="form-control" name="licensePlateInter"
@@ -424,6 +424,19 @@
             $('#builtYear').on('input', function() {
                 var year = $(this).val().replace(/\D/g, '');
                 $(this).val(year);
+            });
+        });
+    </script>
+    <script>
+        $(function() {
+            $("#interIsland").click(function() {
+                if ($(this).is(":checked")) {
+                    $("#ShowlicensePlateInter").show();
+                    $("#licensePlateInter").attr("required", true);
+                } else {
+                    $("#ShowlicensePlateInter").hide();
+                    $("#licensePlateInter").attr("required", false);
+                }
             });
         });
     </script>
