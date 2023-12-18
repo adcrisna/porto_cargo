@@ -391,8 +391,8 @@
                             <div class="row mt-5">
                                 <div class="col-sm-6">
                                     <div class="mb-3 form-check">
-                                        <input class="form-check-input" id="transhipment" disabled
-                                            style="background-color: rgb(126, 124, 124)">
+                                        <input type="checkbox" class="form-check-input" id="transhipment"
+                                            name="transhipment" style="background-color: rgb(126, 124, 124)">
                                         <label class="form-check-label" style="color: black"
                                             for="transhipment">Transhipment</label>
                                     </div>
