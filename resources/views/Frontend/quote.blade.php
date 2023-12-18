@@ -305,6 +305,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label style="color: rgb(126, 124, 124)">Item Description</label>
+                                <input type="text" class="form-control" name="itemDescription" id="itemDescription">
+                            </div>
+                        </div>
                         <br>
                         <div id="land" style="display: none">
                             <div class="row">
@@ -329,12 +335,6 @@
                                     <input type="number" class="form-control" name="licensePlateInter"
                                         id="licensePlateInter">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <label style="color: rgb(126, 124, 124)">Item Description</label>
-                                <input type="text" class="form-control" name="itemDescription" id="itemDescription">
                             </div>
                         </div>
                         <div id="sea" style="display: none">
