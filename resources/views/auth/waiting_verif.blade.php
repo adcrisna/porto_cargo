@@ -91,7 +91,7 @@
         <img src="{{ asset('images/Waiting Verification.png') }}" alt="Gambar Responsif" class="responsive-image imageQuote">
         <div class="textQuote">
             <h2 class="text-primary">Your account is currently waiting for verification</h2>
-            <p style="font-size: 14px" class="text-primary">Please wait adn you will be notified by email as soon as posible
+            <p style="font-size: 14px" class="text-primary">Please wait and you will be notified by email as soon as posible
             </p>
         </div>
     </div>

@@ -308,7 +308,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <label style="color: rgb(126, 124, 124)">Item Description</label>
-                                <input type="text" class="form-control" name="itemDescription" id="itemDescription">
+                                <textarea name="itemDescription" class="form-control" id="itemDescription" cols="30" rows="5"></textarea>
+                                {{-- <input type="text" class="form-control" name="itemDescription" id="itemDescription"> --}}
                             </div>
                         </div>
                         <br>
