@@ -286,13 +286,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Packing List Number</label>
-                                <input type="number" class="form-control" name="packingListNumber"
+                                <input type="text" class="form-control" name="packingListNumber"
                                     id="packingListNumber" required>
                             </div>
                             <div class="col-sm-6">
                                 <div id="travelPermissionLand" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Travel Permission Letter Number</label>
-                                    <input type="number" class="form-control" name="travelPermission"
+                                    <input type="text" class="form-control" name="travelPermission"
                                         id="travelPermission">
                                 </div>
                                 <div id="billOfLandingSea" style="display: none">
@@ -317,7 +317,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
-                                    <input type="number" class="form-control" name="licensePlate" id="licensePlate">
+                                    <input type="text" class="form-control" name="licensePlate" id="licensePlate">
                                 </div>
                             </div>
                             <div class="row mt-4">
@@ -333,7 +333,7 @@
                             <div class="row mt-3" id="ShowlicensePlateInter" style="display: none">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">License Plate</label>
-                                    <input type="number" class="form-control" name="licensePlateInter"
+                                    <input type="text" class="form-control" name="licensePlateInter"
                                         id="licensePlateInter">
                                 </div>
                             </div>
