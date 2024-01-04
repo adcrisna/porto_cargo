@@ -25,9 +25,10 @@ class TestController extends Controller
     }
     function pdfPolicySummary()
     {
-        $data= Transactions::find(39);
+        return 'halo dek';
+        $data= Transactions::find(3);
 
-        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
+        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'))->setPaper('a4', 'potrait');
         return $pdf->stream();
     }
     function compensationOffer()
