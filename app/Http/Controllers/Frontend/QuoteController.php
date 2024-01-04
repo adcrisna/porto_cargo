@@ -38,9 +38,10 @@ class QuoteController extends Controller
                 "account_type" => Auth::user()->account_type,
             ];
         
-            if(!empty($data->premium_amount) < 10000){
-                return  redirect()->route('quote.index')->with('warning', 'Total premium amount cannot be less than IDR 10.000,00 please reorder.');
+            if (Auth::user()->account_type != 'verify' && !empty($data->premium_amount) && $data->premium_amount < 10000) {
+                return redirect()->route('quote.index')->with('warning', 'Total premium amount cannot be less than IDR 10.000,00. Please reorder.');
             }
+            
             
         $product = Products::find($request->product_id);
         return view('Frontend.confirmation',compact('data','product'));
