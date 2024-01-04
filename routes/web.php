@@ -22,6 +22,7 @@ use App\Http\Controllers\Payment\ProcessedPaymentController;
 */
 Route::controller(TestController::class)->group(function () {
     Route::get('/premium_note', 'pdfPremiumNote')->name('pdfPremiumNote');
+    Route::get('/regeneratepn', 'regeneratepn')->name('regeneratepn');
     Route::get('/policy_summary', 'pdfPolicySummary')->name('pdfPolicySummary');
     Route::get('/compensation_offer', 'compensationOffer')->name('compensationOffer');
     Route::get('/test', 'test')->name('test')->name('test');

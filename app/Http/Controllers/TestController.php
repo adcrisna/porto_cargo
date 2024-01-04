@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use DB,Str;
+use Auth,Str,Storage;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Products;
@@ -15,11 +15,12 @@ use App\Models\Claims;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifMailCargoRisk;
 
+
 class TestController extends Controller
 {
     function pdfPremiumNote()
     {
-        $data= Transactions::find(1);
+        $data= Transactions::find(4);
         $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
         return $pdf->stream();
     }
@@ -43,6 +44,18 @@ class TestController extends Controller
 
         Mail::to('alvanhan4@gmail.com')->send(new NotifMailCargoRisk($data));
         dd('Mail send successfully.');
+    }
+
+    function regeneratepn() {
+        return abort(404);
+        $data= Transactions::find(1);
+        $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
+        $pdfFileName = 'premium_note_trx' . date('Ymd_His') . '.pdf';
+        $pdfFilePath = 'doc_trx/' . $pdfFileName;
+        Storage::disk('public')->put($pdfFilePath, $pdf->output());
+        $data->doc_premium = asset('storage/' . $pdfFilePath);
+        $data->save();
+        return "baru";
     }
 
 }

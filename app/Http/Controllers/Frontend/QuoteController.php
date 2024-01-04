@@ -350,7 +350,7 @@ class QuoteController extends Controller
      **/
     public function pnote($data)
     {
-        $pdf = Pdf::loadView('pdf.premium_note');
+        $pdf = Pdf::loadView('pdf.premium_note',compact('data'));
         $pdfFileName = 'premium_note_' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
         Storage::disk('public')->put($pdfFilePath, $pdf->output());
