@@ -46,16 +46,28 @@ class TestController extends Controller
         dd('Mail send successfully.');
     }
 
-    function regeneratepn() {
-        return abort(404);
-        $data= Transactions::find(1);
+    function regeneratepn($id) {
+        return abort(404); //komen jika ingin generate
+        $data= Transactions::find($id);
         $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
         $pdfFileName = 'premium_note_trx' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
         Storage::disk('public')->put($pdfFilePath, $pdf->output());
         $data->doc_premium = asset('storage/' . $pdfFilePath);
         $data->save();
-        return "baru";
+        return "regenerate pn masuk";
+    }
+
+    function regeneratepolis($id) {
+        return abort(404);  //komen jika ingin generate
+        $data= Transactions::find($id);
+        $pdf = Pdf::loadView('pdf.policy_summary', compact('data'))->setPaper('a4', 'potrait');
+        $pdfFileName = 'policy_summary_re' . date('Ymd_His') . '.pdf';
+        $pdfFilePath = 'doc_trx/' . $pdfFileName;
+        Storage::disk('public')->put($pdfFilePath, $pdf->output());
+        $data->doc_policy = asset('storage/' . $pdfFilePath);
+        $data->save();
+        return "regenerate polis masuk";
     }
 
 }
