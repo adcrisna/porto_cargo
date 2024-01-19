@@ -412,7 +412,7 @@
                     @endif
 
 
-                    @if (!empty($order->premium_calculation))
+                    {{-- @if (!empty($order->premium_calculation))
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
@@ -421,7 +421,7 @@
                                 <p class="text-dark" style="font-size:12px">: {{ $order->premium_calculation }} </p>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
 
                     @if (!empty($order->premium_payment_warranty))

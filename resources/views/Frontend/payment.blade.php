@@ -393,7 +393,7 @@
                                         <p class="text-dark" style="font-size:12px">: <span id="item-rate"></span></p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
                                     </div>
@@ -402,7 +402,7 @@
                                                 id="item-premium_calculation"></span>
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row" id="premium_payment_warranty">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Premium Payment Warranty</b></p>

@@ -435,7 +435,7 @@
                             </div>
                         </div>
                     @endif
-
+{{-- 
                     @if (!empty($data['premium_amount']))
                         <div class="row">
                             <div class="col-sm-3">
@@ -448,7 +448,7 @@
                                     IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</p>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="row">
                         <div class="col-sm-3">
