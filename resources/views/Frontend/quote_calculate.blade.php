@@ -474,7 +474,7 @@
                     <div class="card-body text-primary">
                         <div class="row" style="justify-content: center">
                             <div class="col-sm-3 d-flex flex-column align-items-center" style="width: 140px">
-                                <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px" class="img-fluid rounded-circle" alt="logo">
+                                <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px" class="img-fluid" alt="logo">
                                 <p class="text-primary font-weight-bold mt-2">{{ $item['product_data']['display_name'] }}</p>
                             </div>
                             @if (!empty($item['icc_price']['a']))
