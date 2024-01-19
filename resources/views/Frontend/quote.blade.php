@@ -274,9 +274,14 @@
                             </div>
                             <div class="col-sm-4">
                                 <label style="color: rgb(126, 124, 124)"></label>
-                                <input type="number" class="form-control" name="sumInsured" min="100000"
+                                <input type="number" class="form-control" name="sumInsured" min="1000"
                                     id="sumInsured" required>
                             </div>
+                            {{-- <div class="col-sm-4">
+                                <label style="color: rgb(126, 124, 124)"></label>
+                                <input type="number" class="form-control" name="sumInsured" min="100000"
+                                    id="sumInsured" required>
+                            </div> --}}
                             <div class="col-sm-6">
                                 <label style="color: rgb(126, 124, 124)">Invoice Number</label>
                                 <input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber"
@@ -297,11 +302,11 @@
                                 </div>
                                 <div id="billOfLandingSea" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Bill Of Landing</label>
-                                    <input type="number" class="form-control" name="billOfLanding" id="billOfLanding">
+                                    <input type="text" class="form-control" name="billOfLanding" id="billOfLanding">
                                 </div>
                                 <div id="airwayBillAir" style="display: none">
                                     <label style="color: rgb(126, 124, 124)">Airway Bill</label>
-                                    <input type="number" class="form-control" name="airwayBill" id="airwayBill">
+                                    <input type="text" class="form-control" name="airwayBill" id="airwayBill">
                                 </div>
                             </div>
                         </div>

@@ -60,7 +60,7 @@ class TestController extends Controller
 
     function regeneratepolis($id) {
         return abort(404);  //komen jika ingin generate
-        $data= Transactions::find($id);
+        return $data= Transactions::find($id);
         $pdf = Pdf::loadView('pdf.policy_summary', compact('data'))->setPaper('a4', 'potrait');
         $pdfFileName = 'policy_summary_re' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
