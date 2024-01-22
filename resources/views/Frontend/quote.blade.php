@@ -267,14 +267,19 @@
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
                                 <select class="form-select" name="Currency" id="autoSizingSelect">
                                     {{-- <option selected>IDR</option> --}}
+                                    @foreach ($currency as $item)
+                                        <option value="{{ $item->currency}}">{{ $item->currency }}</option>
+                                    @endforeach
                                     <option value="IDR" selected>IDR</option>
+                                    {{-- <option value="SGD" selected>SGD</option>
+                                    <option value="USD" selected>USD</option> --}}
                                     {{-- <option value="USD">USD</option>
                                     <option value="YEN">YEN</option> --}}
                                 </select>
                             </div>
                             <div class="col-sm-4">
                                 <label style="color: rgb(126, 124, 124)"></label>
-                                <input type="number" class="form-control" name="sumInsured" min="1000"
+                                <input type="number" class="form-control" name="sumInsured" min="1"
                                     id="sumInsured" required>
                             </div>
                             {{-- <div class="col-sm-4">

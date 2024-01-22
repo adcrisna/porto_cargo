@@ -252,7 +252,7 @@
                                 <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: IDR
+                                <p class="text-dark" style="font-size:12px">: {{$data['data']->Currency}}
                                     {{ number_format($data['data']->sumInsured, 0, ',', '.') }}</p>
                             </div>
                         </div>
@@ -417,7 +417,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-dark" style="font-size:12px">:
-                                    IDR {{ number_format($data['data']->sumInsured, 0, ',', '.') }}
+                                    {{$data['data']->Currency}} {{ number_format($data['data']->sumInsured, 0, ',', '.') }}
                                 </p>
                             </div>
                         </div>
@@ -510,7 +510,7 @@
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
                         <p style="color: rgb(126, 124, 124); font-size:12px"><b>Total Payment</b></p>
-                        <h5 class="text-primary">IDR {{ number_format($data['premium_amount'], 0, ',', '.') }}</h5>
+                        <h5 class="text-primary">{{$data['data']->Currency}} {{ number_format($data['premium_amount'], 0, ',', '.') }}</h5>
                     </div>
                 </div>
             </div>
@@ -572,17 +572,17 @@
     </script> --}}
 
     <script>
-        $(document).ready(function() {
-            // $('#load_save').hide();
-            // $('#confirm').click(function() {
-            //     $('#post_data').submit();
-            //     // $('#load_save').show();
-            //     // setTimeout(function() {
-            //     //     $('#load_save').hide();
-            //     //     $('#modalSuccess').modal('show');
-            //     // }, 3000);
-            // });
-        });
+        // $(document).ready(function() {
+        //     $('#load_save').hide();
+        //     $('#confirm').click(function() {
+        //         $('#post_data').submit();
+        //         // $('#load_save').show();
+        //         // setTimeout(function() {
+        //         //     $('#load_save').hide();
+        //         //     $('#modalSuccess').modal('show');
+        //         // }, 3000);
+        //     });
+        // });
     </script>
     <script>
         $(document).ready(function() {

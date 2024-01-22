@@ -312,7 +312,7 @@
                                 <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: IDR {{ $data['sumInsured'] ?? '' }}</p>
+                                <p class="text-dark" style="font-size:12px">: {{$data['Currency']}} {{ $data['sumInsured'] ?? '' }}</p>
                             </div>
                         </div>
                     @endif
@@ -488,7 +488,7 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">IDR
+                                                    <h5 class="text-primary">{{$data['Currency']}}
                                                         {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5>
                                                     <p></p>
                                                     <button type="button"
@@ -527,7 +527,7 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">IDR
+                                                    <h5 class="text-primary">{{$data['Currency']}}
                                                         {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5>
                                                     <p></p>
                                                     <button type="button"
@@ -565,7 +565,7 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">IDR
+                                                    <h5 class="text-primary">{{$data['Currency']}}
                                                         {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5>
                                                     <p></p>
                                                     <button type="button"

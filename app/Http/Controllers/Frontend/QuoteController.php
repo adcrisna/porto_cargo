@@ -19,12 +19,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifMailCargoRisk;
 use App\Jobs\RiskNotifJobs;
+use Illuminate\Support\Facades\Http;
 
 class QuoteController extends Controller
 {
     public function index() {
         $good = Repository::all();
-        return view('Frontend.quote', compact('good'));
+        $currency = json_decode($this->getCurrencyName());
+        return view('Frontend.quote', compact('good', 'currency'));
     }
 
     public function confirmation(Request $request) {
@@ -53,9 +55,14 @@ class QuoteController extends Controller
         }
 
         $data = $request->all();
+        $tengah = $this->getCurrencyTengah($data['Currency']);
+        $convert = $data['sumInsured'] * $tengah;
+        $data['convert'] = $convert;
+        $data['rate_currency'] = $tengah;
 
         $userId = Auth::id();
         $userProductIds = User::findOrFail($userId)->product_list ?? [];
+        
         $products = Products::with('rate');
         if (Auth::user()->account_type == 'verify') {
             $products = $products->whereIn('id', $userProductIds)->get();
@@ -226,6 +233,10 @@ class QuoteController extends Controller
             $order->premium_calculation = $callculate_data;
             $order->premium_payment_warranty = $product->premium_payment_warranty ?? null;
             $order->security = $product->security ?? null;
+            $order->currency = $data->data->Currency ?? null;
+            $order->origin_value = $data->data->sumInsured ?? null;
+            $order->rate_currency = $data->data->rate_currency ?? null;
+            $order->converted = $data->data->convert ?? null;
 
             // $data = $order;
             // return view('emails.risk',compact('data'));
@@ -389,5 +400,16 @@ class QuoteController extends Controller
         $calculateData = "((" . $data->data->sumInsured . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ".$premi;
         return $calculateData;
     }
+
+    function getCurrencyName() {
+        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy')->body();
+        return $response;
+    }
+
+    function getCurrencyTengah($currency) {
+        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy/'.$currency)['tengah'];
+        return $response;
+    }
+
 
 }
