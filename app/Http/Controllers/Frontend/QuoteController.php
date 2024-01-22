@@ -299,7 +299,7 @@ class QuoteController extends Controller
         Xendit::setApiKey(env("SECRET_KEY_XENDIT"));
         $external_id = Str::random(10).'_'.$trx_id;
         $params = [
-            'for-user-id' => env("XENDIT_USER_ID"),
+            // 'for-user-id' => env("XENDIT_USER_ID"),
             'external_id' =>  $external_id,
             'description' => "Payment CARGO for transaction #".$transaction->order->company_name,
             'amount' => $pay_total,
