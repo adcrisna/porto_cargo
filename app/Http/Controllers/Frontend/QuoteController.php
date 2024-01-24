@@ -407,8 +407,8 @@ class QuoteController extends Controller
     }
 
     function getCurrencyTengah($currency) {
-        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy/'.$currency)['tengah'];
-        return $response;
+        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy/'.$currency);
+        return $response['tengah'] ?? 1;
     }
 
 

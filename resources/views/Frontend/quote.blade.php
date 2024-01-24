@@ -267,10 +267,10 @@
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
                                 <select class="form-select" name="Currency" id="autoSizingSelect">
                                     {{-- <option selected>IDR</option> --}}
+                                    <option value="IDR" selected>IDR</option>
                                     @foreach ($currency as $item)
                                         <option value="{{ $item->currency}}">{{ $item->currency }}</option>
                                     @endforeach
-                                    <option value="IDR" selected>IDR</option>
                                     {{-- <option value="SGD" selected>SGD</option>
                                     <option value="USD" selected>USD</option> --}}
                                     {{-- <option value="USD">USD</option>
@@ -487,4 +487,5 @@
             // checkGoodTypeCondition();
         });
     </script>
+    
 @endsection
