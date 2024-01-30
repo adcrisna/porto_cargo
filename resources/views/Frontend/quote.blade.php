@@ -265,7 +265,7 @@
                         <div class="row">
                             <div class="col-sm-2">
                                 <label style="color: rgb(126, 124, 124)">Sum Insured</label>
-                                <select class="form-select" name="Currency" id="autoSizingSelect">
+                                <select class="form-select" name="currency" id="autoSizingSelect">
                                     {{-- <option selected>IDR</option> --}}
                                     <option value="IDR" selected>IDR</option>
                                     @foreach ($currency as $item)

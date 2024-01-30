@@ -312,7 +312,7 @@
                                 <p class="text-dark" style="font-size:12px"><b>Sum Insured</b></p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-dark" style="font-size:12px">: {{$data['Currency']}} {{ $data['sumInsured'] ?? '' }}</p>
+                                <p class="text-dark" style="font-size:12px">: {{$data['currency']}} {{ $data['sumInsured'] ?? '' }}</p>
                             </div>
                         </div>
                     @endif
@@ -488,8 +488,19 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">{{$data['Currency']}}
-                                                        {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5>
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ $item['icc_price']['a'] }}</h5> --}}
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ number_format($item['icc_price']['a'], 0, ',', '.') }}</h5> --}}
+                                                    <h5 class="text-primary">{{$data['currency']}}
+                                                        @if ($data['currency'] === "IDR")
+                                                            {{ number_format($item['icc_price']['a'], 0, ',', '.') }}
+                                                        @elseif ($data['currency'] === "USD")
+                                                            {{ number_format($item['icc_price']['a'], 2, ',', '.') }}
+                                                        @else
+                                                            {{ number_format($item['icc_price']['a'], 2, ',', '.') }}
+                                                        @endif
+                                                        </h5>
                                                     <p></p>
                                                     <button type="button"
                                                         class="btn btn-sm btn-default border-primary btnDetails"
@@ -527,8 +538,19 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">{{$data['Currency']}}
-                                                        {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5>
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ $item['icc_price']['b'] }}</h5> --}}
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ number_format($item['icc_price']['b'], 0, ',', '.') }}</h5> --}}
+                                                    <h5 class="text-primary">{{$data['currency']}}
+                                                        @if ($data['currency'] === "IDR")
+                                                            {{ number_format($item['icc_price']['b'], 0, ',', '.') }}
+                                                        @elseif ($data['currency'] === "USD")
+                                                            {{ number_format($item['icc_price']['b'], 2, ',', '.') }}
+                                                        @else
+                                                            {{ number_format($item['icc_price']['b'], 2, ',', '.') }}
+                                                        @endif
+                                                        </h5>
                                                     <p></p>
                                                     <button type="button"
                                                         class="btn btn-sm btn-default border-primary btnDetails"
@@ -565,8 +587,19 @@
                                                 <div class="col-sm-9 align-self-center">
                                                     <div class="garis_vertikal"></div>
                                                     <P style="font-size: 10px">Premium Ammount</P>
-                                                    <h5 class="text-primary">{{$data['Currency']}}
-                                                        {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5>
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ $item['icc_price']['c'] }}</h5> --}}
+                                                    {{-- <h5 class="text-primary">{{$data['currency']}}
+                                                        {{ number_format($item['icc_price']['c'], 0, ',', '.') }}</h5> --}}
+                                                    <h5 class="text-primary">{{$data['currency']}}
+                                                        @if ($data['currency'] === "IDR")
+                                                            {{ number_format($item['icc_price']['c'], 0, ',', '.') }}
+                                                        @elseif ($data['currency'] === "USD")
+                                                            {{ number_format($item['icc_price']['c'], 2, ',', '.') }}
+                                                        @else
+                                                            {{ number_format($item['icc_price']['c'], 2, ',', '.') }}
+                                                        @endif
+                                                        </h5>
                                                     <p></p>
                                                     <button type="button"
                                                         class="btn btn-sm btn-default border-primary btnDetails"
@@ -713,10 +746,25 @@
     </script>
 
     <script>
-        function showProductDetails(product, detail, productid) {
+        var data = {!! json_encode($data) !!};
+
+        function formatCurrency(currency, premium_amount) {
+            if(currency === "USD") {
+                return premium_amount.toFixed(2)
+                // return Math.round(premium_amount)
+            }
+            if(currency === "IDR") {
+                return premium_amount.toLocaleString('id-ID')
+            }
+        }
+
+        function showProductDetails(product, detail, productid, currency) {
+
             $('#productName').text(product.product_name);
             $('#iccType').text('ICC ' + product.icc_type);
-            $('#premiumAmount').text('IDR ' + product.premium_amount.toLocaleString('id-ID'));
+            // $('#premiumAmount').text(currency + ' ' + Math.round(product.premium_amount));
+            $('#premiumAmount').text(currency + ' ' + formatCurrency(currency, product.premium_amount));
+            // $('#premiumAmount').text(currency + ' ' + product.premium_amount);
             $('#productDetails').html(detail);
 
             $('#detailInsuranceModals').modal('show');
@@ -727,12 +775,13 @@
                 var product = $(this).data('product');
                 var detail = $(this).data('detail');
                 var productid = $(this).data('proid');
+                var currency = data.currency;
 
                 $('#sendtoconfirm input[name="premium_amount"]').val(product.premium_amount);
                 $('#sendtoconfirm input[name="product_id"]').val(productid);
                 $('#sendtoconfirm input[name="icc_selected"]').val(product.icc_type);
 
-                showProductDetails(product, detail, productid);
+                showProductDetails(product, detail, productid, currency);
 
 
             });

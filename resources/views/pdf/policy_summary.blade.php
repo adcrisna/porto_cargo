@@ -248,7 +248,7 @@
                         <td>
                             <p
                                 style="margin-top: 18px; font-size: 12px; margin :0px !important; padding: 0px !important">
-                                IDR {{ number_format(@$data->order->total_sum_insured ?? 0, 0, ',', '.') }}</p>
+                                {{@$data->order->currency}} {{ number_format(@$data->order->total_sum_insured ?? 0, 0, ',', '.') }}</p>
                         </td>
                     </tr>
 
@@ -261,8 +261,15 @@
                         </td>
                         <td style="width: 20px"> : </td>
                         <td>
-                            <p style="margin-top: 18px; font-size: 12px;">IDR
-                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
+                            <p style="margin-top: 18px; font-size: 12px;">{{@$data->order->currency}}
+                                {{-- {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }} --}}
+                                @if (@$data->order->currency === "IDR")
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
+                                @elseif (@$data->order->currency === "USD")
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 2, ',', '.') }}
+                                @else
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 2, ',', '.') }}
+                                @endif
                             </p>
                         </td>
                     </tr>
@@ -277,7 +284,7 @@
                         <td>
                             <p
                                 style="margin-top: 18px; font-size: 12px; margin :0px !important; padding: 0px !important">
-                                IDR
+                                {{@$data->order->currency}}
                                 {{ number_format(@$data->order->product->additional_cost['value'] ?? 0, 0, ',', '.') }}
                             </p>
                         </td>
@@ -323,7 +330,7 @@
                         </td>
                         <td style="margin-top: 5px; width: 20px"> : </td>
                         <td>
-                            <p style="font-size: 12px;">IDR
+                            <p style="font-size: 12px;">{{@$data->order->currency}}
                                 {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
                             </p>
                         </td>
