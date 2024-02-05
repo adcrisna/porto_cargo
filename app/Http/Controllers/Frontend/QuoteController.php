@@ -55,9 +55,9 @@ class QuoteController extends Controller
         }
 
         $data = $request->all();
-        $tengah = $this->getCurrencyTengah($data['Currency']);
-        $convert = $data['sumInsured'] * $tengah;
-        $data['convert'] = $convert;
+        $tengah = $this->getCurrencyTengah($data['currency']);
+        $converted = $data['sumInsured'] * $tengah;
+        $data['converted'] = strval($converted);
         $data['rate_currency'] = $tengah;
 
         $userId = Auth::id();
@@ -86,11 +86,12 @@ class QuoteController extends Controller
                 $additionalCostSum = !empty(collect($product->additional_cost)->sum('value')) ? collect($product->additional_cost)->sum('value') : 0;
                 $productData = [
                     'product_data' => $product,
+                    // 'additional_sum' => floatval($additionalCostSum),
                     'additional_sum' => floatval($additionalCostSum),
                     'icc_price' => [
-                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_a, $additionalCostSum, $product->discount) : null,
-                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_b, $additionalCostSum, $product->discount) : null,
-                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['sumInsured'], $product->rate->icc_c, $additionalCostSum, $product->discount) : null,
+                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_a, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
+                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_b, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
+                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_c, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
                     ],
                 ];
 
@@ -129,6 +130,7 @@ class QuoteController extends Controller
         //     $result[] = $productData;
         // }
 
+        // return $data;
         // return $result;
 
         // usort($result, function ($a, $b) {
@@ -147,11 +149,15 @@ class QuoteController extends Controller
             ->get();
     }
 
-    function calculatePrice($sumInsured, $rate, $additionalCostSum, $dsc) {
+    function calculatePrice($currency, $sumInsured, $rate, $additionalCostSum, $dsc, $rate_currency) {
+        // if ($rate['premium_type'] == 'fixed') {
+        //     $sum =  ceil((($rate['premium_value']+$additionalCostSum)-(($rate['premium_value']+$additionalCostSum)*$dsc/100))/$rate_currency);
+        // }else {
+        //     $sum = ceil(((($sumInsured * $rate['premium_value'])+$additionalCostSum)-((($sumInsured * $rate['premium_value'])+$additionalCostSum)*$dsc/100))/$rate_currency);
         if ($rate['premium_type'] == 'fixed') {
-            $sum =  ceil(($rate['premium_value']+$additionalCostSum)-(($rate['premium_value']+$additionalCostSum)*$dsc/100));
+            $sum =  (($rate['premium_value']+$additionalCostSum)-(($rate['premium_value']+$additionalCostSum)*$dsc/100))/$rate_currency;
         }else {
-            $sum = ceil((($sumInsured * $rate['premium_value'])+$additionalCostSum)-((($sumInsured * $rate['premium_value'])+$additionalCostSum)*$dsc/100));
+            $sum = ((($sumInsured * $rate['premium_value'])+$additionalCostSum)-((($sumInsured * $rate['premium_value'])+$additionalCostSum)*$dsc/100))/$rate_currency;
             // if ($sum_rate < 100000) {
             //     $sum = 100000 +$additionalCostSum;
             // }else{
@@ -225,18 +231,21 @@ class QuoteController extends Controller
             $order->transhipment = isset($data->data->transhipment) ? ($data->data->transhipment == 'on' ? 'YES' : 'NO') : null;
             $order->coverage = $data->icc_selected ?? null;
             $order->item_description = $data->data->itemDescription ?? null;
-            $callculate_data = $request->is_risk == "1" ? null : $this->calculateData($data, $product, $data->premium_amount);
             $order->deductibles =  $product->deductibles ?? null;
             $order->total_sum_insured =   $data->data->sumInsured ?? 0;  // ke 0
             $order->rate = $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] ?? null;  // ke 0.0
+            
             $order->premium_amount = $data->premium_amount ?? 0;  // ke 0
+            
+            $callculate_data = $request->is_risk == "1" ? null : $this->calculateData($data, $product, $data->premium_amount);
             $order->premium_calculation = $callculate_data;
+
             $order->premium_payment_warranty = $product->premium_payment_warranty ?? null;
             $order->security = $product->security ?? null;
-            $order->currency = $data->data->Currency ?? null;
+            $order->currency = $data->data->currency ?? null;
             $order->origin_value = $data->data->sumInsured ?? null;
             $order->rate_currency = $data->data->rate_currency ?? null;
-            $order->converted = $data->data->convert ?? null;
+            $order->converted = $data->data->converted ?? null;
 
             // $data = $order;
             // return view('emails.risk',compact('data'));
@@ -397,7 +406,7 @@ class QuoteController extends Controller
         } else {
             $premiumSymbol = "*";
         }
-        $calculateData = "((" . $data->data->sumInsured . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ".$premi;
+        $calculateData = "((" . $data->data->converted . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ".$premi;
         return $calculateData;
     }
 
@@ -407,8 +416,8 @@ class QuoteController extends Controller
     }
 
     function getCurrencyTengah($currency) {
-        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy/'.$currency)['tengah'];
-        return $response;
+        $response = Http::get('https://momentic.salvus.id/api/checkcurrancy/'.$currency);
+        return $response['tengah'] ?? 1;
     }
 
 
