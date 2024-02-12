@@ -510,7 +510,15 @@
                 <div class="card border-primary mb-3">
                     <div class="card-body text-primary">
                         <p style="color: rgb(126, 124, 124); font-size:12px"><b>Total Payment</b></p>
-                        <h5 class="text-primary">{{$data['data']->currency}} {{ number_format($data['premium_amount'], 0, ',', '.') }}</h5>
+                        <h5 class="text-primary">{{$data['data']->currency}}
+                            @if ($data['data']->currency === "IDR")
+                                {{ number_format($data['premium_amount'], 0, ',', '.') }}
+                            @elseif ($data['data']->currency === "USD")
+                                {{ number_format($data['premium_amount'], 2, ',', '.') }}
+                            @else
+                                {{ number_format($data['premium_amount'], 2, ',', '.') }}
+                            @endif
+                        </h5>
                     </div>
                 </div>
             </div>

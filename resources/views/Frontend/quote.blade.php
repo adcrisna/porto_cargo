@@ -355,7 +355,7 @@
                                     <input type="text" class="form-control" name="shipName" id="shipName">
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-sm-6">
                                     <label style="color: rgb(126, 124, 124)">Vessel Group</label>
                                     <input type="text" class="form-control" name="vesselGroup" id="vesselGroup">
@@ -386,7 +386,7 @@
                                     <input type="number" min="1950" max="2100" class="form-control"
                                         name="builtYear" id="builtYear">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row mt-5">
                                 <div class="col-sm-6">
                                     <div class="mb-3 form-check">

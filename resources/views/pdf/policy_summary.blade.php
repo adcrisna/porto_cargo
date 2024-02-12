@@ -331,7 +331,14 @@
                         <td style="margin-top: 5px; width: 20px"> : </td>
                         <td>
                             <p style="font-size: 12px;">{{@$data->order->currency}}
-                                {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
+                                {{-- {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }} --}}
+                                @if (@$data->order->currency === "IDR")
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 0, ',', '.') }}
+                                @elseif (@$data->order->currency === "USD")
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 2, ',', '.') }}
+                                @else
+                                    {{ number_format(@$data->order->premium_amount ?? 0, 2, ',', '.') }}
+                                @endif
                             </p>
                         </td>
                     </tr>

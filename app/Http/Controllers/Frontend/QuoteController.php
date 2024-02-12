@@ -228,6 +228,7 @@ class QuoteController extends Controller
             $order->vessel_type = $data->data->vesselType ?? null;
             $order->classified = $data->data->classified ?? null;
             $order->built_year = $data->data->builtYear ?? null;
+            
             $order->transhipment = isset($data->data->transhipment) ? ($data->data->transhipment == 'on' ? 'YES' : 'NO') : null;
             $order->coverage = $data->icc_selected ?? null;
             $order->item_description = $data->data->itemDescription ?? null;
@@ -260,7 +261,7 @@ class QuoteController extends Controller
             $transaction->order_id = $order->id;
             $transaction->pn_number = 'PN-'.date('Ymd').'-'.$order->id;
             $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
-            $transaction->payment_total = $data->premium_amount ?? null; //???
+            $transaction->payment_total = $data->premium_amount * $data->data->rate_currency ?? null; //???
             $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
             $transaction->start_policy_date = date('Y-m-d');
             $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
@@ -283,7 +284,7 @@ class QuoteController extends Controller
             if (Auth::user()->account_type == 'retail' && $data->is_risk !== "1") {
                 $trx_id = $transaction->id;
                 $pay_method = $request["payment_method"];
-                $pay_total = $data->premium_amount;
+                $pay_total = $data->premium_amount * $data->data->rate_currency;
                 $to_xendit =  $this->payment_store($trx_id,$pay_method,$pay_total);
 
                 return response()->json([
@@ -406,7 +407,10 @@ class QuoteController extends Controller
         } else {
             $premiumSymbol = "*";
         }
-        $calculateData = "((" . $data->data->converted . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ".$premi;
+
+        $result = (($data->data->converted * $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value']) + array_sum(array_map('intval', array_column($product->additional_cost, 'value')))) - $product->discount;
+
+        $calculateData = "((" . $data->data->converted . $premiumSymbol . $product->rate->{'icc_' . strtolower($data->icc_selected)}['premium_value'] . ") + " . array_sum(array_map('intval', array_column($product->additional_cost, 'value'))) . ") - " . $product->discount ." = ". $result . " / " . rtrim($data->data->rate_currency, ".0") . " = " .$premi;
         return $calculateData;
     }
 
