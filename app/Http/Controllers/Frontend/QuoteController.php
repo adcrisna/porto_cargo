@@ -70,11 +70,18 @@ class QuoteController extends Controller
             $products = $products->where('account_type','retail')->get();
         }
 
-        if ($request->goodsType === 'other' || (isset($request->builtYear) && $this->builtYear($request->builtYear) >= 23)) {
+        
+        if ($request->goodsType === 'other') {
             $is_risk = 1;
         }else {
             $is_risk = 0;
         }
+
+        // if ($request->goodsType === 'other' || (isset($request->builtYear) && $this->builtYear($request->builtYear) >= 23)) {
+        //     $is_risk = 1;
+        // }else {
+        //     $is_risk = 0;
+        // }
 
         $arrproduct = [];
         $result = [];
