@@ -285,7 +285,13 @@
                             <p
                                 style="margin-top: 18px; font-size: 12px; margin :0px !important; padding: 0px !important">
                                 {{@$data->order->currency}}
-                                {{ number_format(@$data->order->product->additional_cost['value'] ?? 0, 0, ',', '.') }}
+                                @if (@$data->order->currency === "IDR")
+                                    {{ number_format(@$addtional_cost_converted ?? 0, 0, ',', '.') }}
+                                @elseif (@$data->order->currency === "USD")
+                                    {{ number_format(@$addtional_cost_converted ?? 0, 2, ',', '.') }}
+                                @else
+                                    {{ number_format(@$addtional_cost_converted ?? 0, 2, ',', '.') }}
+                                @endif
                             </p>
                         </td>
                     </tr>

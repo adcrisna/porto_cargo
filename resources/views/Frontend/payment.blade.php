@@ -69,7 +69,15 @@
                                     @endif
 
                                 </td>
-                                <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td>
+                                <!-- <td>IDR {{ number_format($item->premium_amount, 0, ',', '.') }}</td> -->
+                                <td>{{$item->currency}} 
+                                    @if ($item->currency === "IDR")
+                                        {{ number_format($item->premium_amount, 0, ',', '.') }}
+                                    @elseif ($item->currency === "USD")
+                                        {{ number_format($item->premium_amount, 2, ',', '.') }}
+                                    @else
+                                        {{ number_format($item->premium_amount, 2, ',', '.') }}
+                                    @endif</td>
                                 <td>
                                     <button class="btn btn-default border-primary detail-btn"
                                         data-item-id="{{ $item->id }}" style="width: 90px">Detail</button>
@@ -385,14 +393,14 @@
                                                 id="item-total_sum_insured"></span></p>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-dark" style="font-size:12px">: <span id="item-rate"></span></p>
                                     </div>
-                                </div>
+                                </div> -->
                                 {{-- <div class="row">
                                     <div class="col-sm-3">
                                         <p class="text-dark" style="font-size:12px"><b>Premium Calculation</b></p>
@@ -458,6 +466,13 @@
                     minimumFractionDigits: 0,
                 }).format(number);
             }
+            const usd = (number) => {
+                return new Intl.NumberFormat("en-US", {
+                    style: 'currency',
+                    currency: "USD",
+                    minimumFractionDigits: 0,
+                }).format(number);
+            }
 
             $('#example').on('click', '.detail-btn', function() {
                 var itemId = $(this).data('item-id');
@@ -495,7 +510,13 @@
                             .estimated_time_of_arrival);
                         $('#item-point_of_origin').text(data.point_of_origin);
                         $('#item-point_of_destination').text(data.point_of_destination);
-                        $('#item-sum_insured').text(rupiah(data.sum_insured));
+                        if(data.currency === "IDR") {
+                            $('#item-sum_insured').text(rupiah(data.sum_insured));
+                        } else if(data.currency === "USD") {
+                            $('#item-sum_insured').text(usd(data.sum_insured));
+                        } else {
+                            $('#item-sum_insured').text(data.currency + ' ' + parseFloat(data.sum_insured).toFixed(0));
+                        }
                         $('#item-invoice_number').text(data.invoice_number);
                         $('#item-packing_list_number').text(data.packing_list_number);
                         $('#item-bill_of_lading_number').text(data.bill_of_lading_number);
@@ -515,8 +536,16 @@
                         if (data.deductibles == null) {
                             $("#deductibles").css("display", "none");
                         }
-                        $('#item-total_sum_insured').text(rupiah(data
-                            .total_sum_insured));
+                        if(data.currency === "IDR") {
+                            $('#item-total_sum_insured').text(rupiah(data
+                                .total_sum_insured));
+                            } else if(data.currency === "USD") {
+                            $('#item-total_sum_insured').text(usd(data
+                                .total_sum_insured));
+                            } else {
+                            $('#item-total_sum_insured').text(data.currency + ' ' + parseFloat(data
+                                .total_sum_insured).toFixed(0))
+                        }
                         $('#item-rate').text(data.rate !== null ? parseFloat(data.rate).toFixed(
                             3) : null);
                         $('#item-premium_calculation').text(data.premium_calculation);

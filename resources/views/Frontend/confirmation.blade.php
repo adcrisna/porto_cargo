@@ -502,6 +502,8 @@
                             <option selected value="BCA">BCA</option>
                             <option value="BRI">BRI</option>
                             <option value="BNI">BNI</option>
+                            <option value="MANDIRI">MANDIRI</option>
+                            <option value="CIMB">CIMB NIAGA</option>
                         </select>
                     </div>
                 </div>

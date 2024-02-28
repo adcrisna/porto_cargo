@@ -70,7 +70,7 @@
             Estimated Time of Arrival : {{ @$data->estimated_time_of_arrival ?? '-' }} <br>
             Point Of Origin : {{ @$data->point_of_origin ?? '-' }} <br>
             Point Of Destination : {{ @$data->point_of_destination ?? '-' }} <br>
-            Sum Insured : {{ @$data->sum_insured ?? '-' }} <br>
+            Sum Insured : {{ @$data->currency ?? '' }} {{ @$data->sum_insured ?? '-' }} <br>
             Invoice Number : {{ @$data->invoice_number ?? '-' }} <br>
             Packing List Number : {{ @$data->packing_list_number ?? '-' }} <br>
             Bill of Lading Number : {{ @$data->bill_of_lading_number ?? '-' }} <br>
@@ -80,6 +80,7 @@
             License Plate Inter : {{ @$data->license_plateinter ?? '-' }} <br>
 
             Ship Name : {{ @$data->ship_name ?? '-' }} <br>
+            Aircraft Name : {{ @$data->aircraft_name ?? '-' }} <br>
             Vessel Group : {{ @$data->vessel_group ?? '-' }} <br>
             Container Load : {{ @$data->container_load ?? '-' }} <br>
             Vessel Material : {{ @$data->vessel_material ?? '-' }} <br>

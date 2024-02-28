@@ -77,6 +77,13 @@
             margin-top: 1px;
         }
 
+        /* @media (min-width: 1700px) {
+            .auth {
+                margin-left: 1130px;
+                margin-top: 1px;
+            }
+        } */
+
         @media (max-width: 768px) {
             .auth {
                 margin-left: 0px;
@@ -149,7 +156,7 @@
                     <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
                 </div>
             @else
-                <div class="auth">
+                <div class="auth ms-auto">
                     <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
                         style="height: 40px">Login</a>
                     &nbsp; &nbsp;

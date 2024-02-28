@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Frontend\QuoteController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ShipmentController;
@@ -10,6 +11,9 @@ use App\Http\Controllers\Frontend\ReportController;
 use App\Http\Controllers\Frontend\ClaimController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\Payment\ProcessedPaymentController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,10 +31,13 @@ Route::controller(TestController::class)->group(function () {
     Route::get('/policy_summary', 'pdfPolicySummary')->name('pdfPolicySummary');
     Route::get('/compensation_offer', 'compensationOffer')->name('compensationOffer');
     Route::get('/test', 'test')->name('test')->name('test');
+    Route::get('/connect', 'connect')->name('connect')->name('connect');
+    Route::get('/testt', 'testt')->name('testt');
 });
 
 Route::controller(ProcessedPaymentController::class)->group(function () {
     Route::post('/payment/callback', 'callback')->name('callback.payment');
+    Route::get('/send/jobs/{id}', 'cargoSendJobs')->name('cargoSendJobs.payment');
 });
 
 Route::controller(IndexController::class)->group(function () {
@@ -38,6 +45,12 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/cargo', 'cargo')->name('cargo');
     Route::get('/parcel', 'parcel')->name('parcel');
+});
+
+Route::controller(VerificationController::class)->group(function () {
+    Route::get('/email/verify', 'verifiationNotice')->middleware(['auth'])->name('verification.notice');
+    Route::post('/email/verification-notification', 'resend')->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    Route::get('/verify-email/{id}/{hash}', 'verify')->name('verification.verify');
 });
 
 Route::controller(LoginController::class)->group(function () {
@@ -51,7 +64,8 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/logout', 'logout')->name('auth.logout');
 });
 
-Route::group(['middleware' => ['auth','verify_account']],function() {
+
+Route::group(['middleware' => ['auth', 'verified', 'verify_account']],function() {
     Route::controller(QuoteController::class)->group(function () {
         Route::get('/quote', 'index')->name('quote.index');
         Route::post('/confirmation', 'confirmation')->name('quote.confirmation');

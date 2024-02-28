@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Jobs;
 
-use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Log;
+use GuzzleHttp\Client;
 use Auth,Str,Storage;
 use App\Models\User;
 use App\Models\Orders;
@@ -12,76 +18,32 @@ use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\NotifMailCargoRisk;
-use Log;
-use App\Jobs\MomenticConnection;
-use GuzzleHttp\Client;
 
-
-
-class TestController extends Controller
+class MomenticConnection implements ShouldQueue
 {
-    function pdfPremiumNote()
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    
+    protected $data;
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($data)
     {
-        $data= Transactions::find(4);
-        $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
-        return $pdf->stream();
+        $this->data = $data;
     }
-    function pdfPolicySummary()
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
     {
-        return 'halo dek';
-        $data= Transactions::find(3);
 
-        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'))->setPaper('a4', 'potrait');
-        return $pdf->stream();
-    }
-    function compensationOffer()
-    {
-        $pdf = Pdf::loadView('pdf.compensation_offer');
-        return $pdf->stream();
-    }
-    function test() {
-        abort(404);
-        // return view('emails.risk');
-        $data = 1;
-
-        Mail::to('alvanhan4@gmail.com')->send(new NotifMailCargoRisk($data));
-        dd('Mail send successfully.');
-    }
-
-    function regeneratepn($id) {
-        return abort(404); //komen jika ingin generate
-        $data= Transactions::find($id);
-        $pdf = Pdf::loadView('pdf.premium_note', compact('data'));
-        $pdfFileName = 'premium_note_trx' . date('Ymd_His') . '.pdf';
-        $pdfFilePath = 'doc_trx/' . $pdfFileName;
-        Storage::disk('public')->put($pdfFilePath, $pdf->output());
-        $data->doc_premium = asset('storage/' . $pdfFilePath);
-        $data->save();
-        return "regenerate pn masuk";
-    }
-
-    function regeneratepolis($id) {
-        return abort(404);  //komen jika ingin generate
-        return $data= Transactions::find($id);
-        $pdf = Pdf::loadView('pdf.policy_summary', compact('data'))->setPaper('a4', 'potrait');
-        $pdfFileName = 'policy_summary_re' . date('Ymd_His') . '.pdf';
-        $pdfFilePath = 'doc_trx/' . $pdfFileName;
-        Storage::disk('public')->put($pdfFilePath, $pdf->output());
-        $data->doc_policy = asset('storage/' . $pdfFilePath);
-        $data->save();
-        return "regenerate polis masuk";
-    }
-
-    function connect() {
-            // return env('API_SPECTRUM_URL').'/api/v1/spectrum/general-api';
-            // MomenticConnection::dispatch(7);
-            // return "masuk";
-            // $order = Orders::find(41);
-
-            return 404;
-            MomenticConnection::dispatch(41);
+            $order = Orders::find($this->data);
             Log::alert("SEND MOMENTIC CONNECTION_JOBS_ORDER_ID ".$order->id);
             $icc_type = ucfirst($order->product->rate['icc_'.strtolower($order->coverage)]['premium_type']);
             $icc_premi = strval($order->product->rate['icc_'.strtolower($order->coverage)]['premium_value']);
@@ -290,7 +252,7 @@ class TestController extends Controller
 
             $client = new Client();
 
-            $res = $client->POST('http://api-spec.salvusuat.com/api/v1/spectrum/general-api',
+            $res = $client->POST(env('API_SPECTRUM_URL').'/api/v1/spectrum/general-api',
             [
                 'verify' => false,
                 'headers' => $headers,
@@ -304,15 +266,5 @@ class TestController extends Controller
             $order->transaction->momentic_log = json_decode($res->getBody(), true);
             $order->transaction->save();
 
-            return "masuk";
     }
-
-    public function testt()
-    {
-        $transaksi = Transactions::where('id', 42)->lazyById(200, $column = 'id')->first();
-        return $addtional_cost_converted = $transaksi->order->product->additional_cost[0]['value'] / $transaksi->order->rate_currency;
-        // return $transaksi->order->product->additional_cost[0]['value'] / $transaksi->order->rate_currancy;
-        
-    }
-
 }

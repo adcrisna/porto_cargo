@@ -16,11 +16,13 @@ use Carbon\Carbon;
 use Auth,Str,Storage;
 use Xendit\Xendit;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Log;
+use App\Jobs\MomenticConnection;
 
 
 class ProcessedPaymentController extends Controller
 {
-    function callback(Request $request ) {
+    function callback(Request $request) {
         $data = $request->all();
         $parts = explode('_', $data['external_id']);
         $transaction = Transactions::find($parts[1]);
@@ -30,6 +32,24 @@ class ProcessedPaymentController extends Controller
         $transaction->doc_policy = $this->psummary($transaction);
         $transaction->doc_premium = $this->pnote($transaction);
         $transaction->save();
+
+        if ($data['status'] == 'PAID') {
+            MomenticConnection::dispatch($transaction->order->id);
+            Log::alert("SEND MOMENTIC CONNECTION_FROM_XENDIT_ORDER_ID ".$transaction->order->id);
+        }
+    }
+
+
+    function cargoSendJobs($id) {
+        $order = Orders::find($id);
+        if(!empty($order->contract_id)) 
+        {
+            return response()->json(['status' => 'false'],200);
+        }else {
+            Log::alert("LOG FROM DASHBOARD PARTERS CARGO ORDER ID ".$id);
+            MomenticConnection::dispatch($id);
+            return response()->json(['status' => 'success'],200);
+        }
     }
 
     /**

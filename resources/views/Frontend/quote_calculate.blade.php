@@ -361,6 +361,17 @@
                         </div>
                     @endif
 
+                    @if (!empty($data['aircraftName']))
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="text-dark" style="font-size:12px"><b>Aircraft Name</b></p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-dark" style="font-size:12px">: {{ $data['aircraftName'] ?? '' }}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     @if (!empty($data['vesselGroup']))
                         <div class="row">
                             <div class="col-sm-3">
@@ -472,12 +483,12 @@
             <div class="row mt-2" style="justify-content: center">
                 <div class="card border-primary">
                     <div class="card-body text-primary">
-                        <div class="row" style="justify-content: center">
-                            <div class="col-sm-3 d-flex flex-column align-items-center" style="width: 140px">
+                        <div class="row gy-3" style="justify-content: center">
+                            <div class="card-image col-sm-3 d-flex flex-column align-items-center justify-content-center" style="width: 140px">
                                 <img src="{{ $item['product_data']['product_image'] }}" style="width: 120px" class="img-fluid" alt="logo">
-                                <p class="text-primary font-weight-bold mt-2">{{ $item['product_data']['display_name'] }}</p>
+                                <p class="text-primary font-weight-bold mt-2 mb-0">{{ $item['product_data']['display_name'] }}</p>
                             </div>
-                            @if (!empty($item['icc_price']['a']))
+                            @if (!empty($item['icc_price']['a']))   
                                 <div class="col-sm-3 align-self-center" style="width: 300px">
                                     <div class="card" style="max-width: 100%; padding:0px; margin:0px">
                                         <div class="card-body text-primary" style="height: 25%">
@@ -749,12 +760,13 @@
         var data = {!! json_encode($data) !!};
 
         function formatCurrency(currency, premium_amount) {
-            if(currency === "USD") {
-                return premium_amount.toFixed(2)
-                // return Math.round(premium_amount)
-            }
             if(currency === "IDR") {
-                return premium_amount.toLocaleString('id-ID')
+                return premium_amount.toLocaleString('id-ID').split(',')[0]
+            } else if(currency === "USD") {
+                return premium_amount.toFixed(2).replace('.', ',')
+                // return Math.round(premium_amount)
+            } else {
+                return premium_amount.toFixed(2).replace('.', ',')
             }
         }
 

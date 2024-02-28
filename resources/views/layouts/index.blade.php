@@ -211,7 +211,7 @@
                     <img src="{{ asset('images/Confirmation.png') }}" alt="Foto Pengguna">
                 </div>
             @else
-                <div class="auth">
+                <div class="auth ms-auto">
                     <a class="btn btn-default text-primary border-primary px-4" href="{{ route('auth.login') }}"
                         style="height: 40px">Login</a>
                     &nbsp; &nbsp;

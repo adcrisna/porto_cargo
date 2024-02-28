@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use DB;
 use App\Models\User;
 use App\Models\Orders;
@@ -17,26 +18,31 @@ use Auth;
 
 class LoginController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
-    public function register() {
+    public function register()
+    {
         return view('auth.register');
     }
-    public function waitVerif() {
+    public function waitVerif()
+    {
         return view('auth.waiting_verif');
     }
 
 
 
-    public function postlogin(Request $request) {
+    public function postlogin(Request $request)
+    {
         if (auth()->attempt($request->only('email', 'password'))) {
             return redirect()->route('quote.index');
         }
         return redirect()->route('auth.login')->with('error', 'Username and password does not match!');
     }
 
-    public function postregister(Request $request) {
+    public function postregister(Request $request)
+    {
         try {
             DB::beginTransaction();
             $this->validate($request, [
@@ -55,21 +61,30 @@ class LoginController extends Controller
             $user->phone_number =  $request->phone_number;
             // return $user;
             $user->save();
-
+            $user->sendEmailVerificationNotification();
             DB::commit();
-            return redirect()->route('auth.login')->with('info', 'Resgistration Successfully!.');
+            return redirect()->route('auth.login')->with('info', 'Resgistration Successfully!, Verification has been send to email.');
         } catch (ValidationException $e) {
             DB::rollback();
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }
 
-    function profile() {
+    public function verify(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+
+        $user->markEmailAsVerified();
+    }
+
+    function profile()
+    {
         $profile = User::find(Auth::user()->id);
         return view('Frontend.profile', compact('profile'));
     }
 
-    public function updateProfile(Request $request) {
+    public function updateProfile(Request $request)
+    {
         try {
             DB::beginTransaction();
 
@@ -98,9 +113,9 @@ class LoginController extends Controller
         }
     }
 
-    function logout() {
+    function logout()
+    {
         auth()->logout();
         return redirect()->route('auth.login')->with('info', 'Logout Successfully!.');
     }
-
 }

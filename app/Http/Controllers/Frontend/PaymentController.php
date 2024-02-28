@@ -14,6 +14,7 @@ use App\Models\Transactions;
 use App\Models\Claims;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Http;
 
 
 class PaymentController extends Controller

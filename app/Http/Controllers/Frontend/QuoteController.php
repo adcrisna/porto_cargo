@@ -11,6 +11,7 @@ use App\Models\Products;
 use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
+use App\Models\Countries;
 use App\Models\Claims;
 use Carbon\Carbon;
 use Auth,Str,Storage;
@@ -20,13 +21,16 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifMailCargoRisk;
 use App\Jobs\RiskNotifJobs;
 use Illuminate\Support\Facades\Http;
+use Log;
+use App\Jobs\MomenticConnection;
 
 class QuoteController extends Controller
 {
     public function index() {
         $good = Repository::all();
+        $countries = Countries::select(["id","country_name"])->get();
         $currency = json_decode($this->getCurrencyName());
-        return view('Frontend.quote', compact('good', 'currency'));
+        return view('Frontend.quote', compact('good', 'currency',"countries"));
     }
 
     public function confirmation(Request $request) {
@@ -55,6 +59,7 @@ class QuoteController extends Controller
         }
 
         $data = $request->all();
+        // return $data;
         $tengah = $this->getCurrencyTengah($data['currency']);
         $converted = $data['sumInsured'] * $tengah;
         $data['converted'] = strval($converted);
@@ -64,12 +69,36 @@ class QuoteController extends Controller
         $userProductIds = User::findOrFail($userId)->product_list ?? [];
         
         $products = Products::with('rate');
-        if (Auth::user()->account_type == 'verify') {
-            $products = $products->whereIn('id', $userProductIds)->get();
-        }else {
-            $products = $products->where('account_type','retail')->get();
-        }
 
+        // if (Auth::user()->account_type == 'verify') {
+        //     $products = $products->whereIn('id', $userProductIds)->get();
+        // }else {
+        //     $products = $products->where('account_type','retail')->get();
+        // }
+
+        $transport_type = $data['conveyance'];
+
+        if($data['country_origin'] === "Indonesia" && $data['country_destination'] === "Indonesia") { 
+            if (Auth::user()->account_type == 'verify') {
+                $products = $products->whereIn('id', $userProductIds)->where(function($query) use ($transport_type) {
+                    $query->where('transport_type', 'like', '%'. $transport_type .'%');
+                })->get();
+            }else {
+                $products = $products->where('account_type','retail')->where(function($query) use ($transport_type) {
+                    $query->where('transport_type', 'like', '%'. $transport_type .'%');
+                })->get();
+            }
+        } else {
+            if (Auth::user()->account_type == 'verify') {
+                $products = $products->where('is_international', 1)->whereIn('id', $userProductIds)->where(function($query) use ($transport_type) {
+                    $query->where('transport_type', 'like', '%'. $transport_type .'%');
+                })->get();
+            }else {
+                $products = $products->where('is_international', 1)->where('account_type','retail')->where(function($query) use ($transport_type) {
+                    $query->where('transport_type', 'like', '%'. $transport_type .'%');
+                })->get();
+            }
+        }
         
         if ($request->goodsType === 'other') {
             $is_risk = 1;
@@ -85,28 +114,40 @@ class QuoteController extends Controller
 
         $arrproduct = [];
         $result = [];
+        $productData = [];
 
         foreach ($products as $product) {
             $productGoodsType = $this->check_gdtype($product->goods_type, $request->goodsType);
             if ($productGoodsType->isNotEmpty()) {
                 $arrproduct[] = $productGoodsType;
                 $additionalCostSum = !empty(collect($product->additional_cost)->sum('value')) ? collect($product->additional_cost)->sum('value') : 0;
-                $productData = [
-                    'product_data' => $product,
-                    // 'additional_sum' => floatval($additionalCostSum),
-                    'additional_sum' => floatval($additionalCostSum),
-                    'icc_price' => [
-                        'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_a, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
-                        'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_b, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
-                        'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_c, $additionalCostSum, $product->discount, $data['rate_currency']) : null,
-                    ],
-                ];
+                
+                if($data['converted'] >= $product->min_tsi && $data['converted'] <= $product->max_tsi) {
+                    $productData = [
+                        'product_data' => $product,
+                        // 'additional_sum' => floatval($additionalCostSum),
+                        'additional_sum' => floatval($additionalCostSum),
+                        'icc_price' => [
+                            'a' => $product->rate->icc_a['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_a, $additionalCostSum, $product->discount, $data['rate_currency'], $product) : null,
+                            'b' => $product->rate->icc_b['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_b, $additionalCostSum, $product->discount, $data['rate_currency'], $product) : null,
+                            'c' => $product->rate->icc_c['is_active'] === 'on' ? $this->calculatePrice($data['currency'], $data['converted'], $product->rate->icc_c, $additionalCostSum, $product->discount, $data['rate_currency'], $product) : null,
+                        ],
+                    ];
+                    $result[] = $productData;
+                }
 
-                $result[] = $productData;
+
             }
         }
 
+        // return $arrproduct;
+        // return $result;
+        
         if ($arrproduct == []) {
+            $is_risk = 1;
+        }
+
+        if ($result == []) {
             $is_risk = 1;
         }
 
@@ -156,7 +197,7 @@ class QuoteController extends Controller
             ->get();
     }
 
-    function calculatePrice($currency, $sumInsured, $rate, $additionalCostSum, $dsc, $rate_currency) {
+    function calculatePrice($currency, $sumInsured, $rate, $additionalCostSum, $dsc, $rate_currency, $product) {
         // if ($rate['premium_type'] == 'fixed') {
         //     $sum =  ceil((($rate['premium_value']+$additionalCostSum)-(($rate['premium_value']+$additionalCostSum)*$dsc/100))/$rate_currency);
         // }else {
@@ -171,6 +212,17 @@ class QuoteController extends Controller
             //     $sum = $sum_rate +$additionalCostSum;
             // }
         }
+
+        $min_premium_converted = $product->min_premium / $rate_currency;
+        
+        if($sum <= $min_premium_converted) {
+            $sum = $min_premium_converted+($additionalCostSum / $rate_currency);
+        }
+
+        // if($sum >= $product->max_premium) {
+        //     $sum = $product->max_premium;
+        // }
+        
         return $sum;
         // ceil(($sumInsured * $rate)+$additionalCostSum);
         // return ceil(($sumInsured * $rate['premium_value'])+$additionalCostSum);
@@ -254,6 +306,11 @@ class QuoteController extends Controller
             $order->origin_value = $data->data->sumInsured ?? null;
             $order->rate_currency = $data->data->rate_currency ?? null;
             $order->converted = $data->data->converted ?? null;
+            
+            $order->country_origin = $data->data->country_origin ?? null;
+            $order->country_destination = $data->data->country_destination ?? null;
+            
+            $order->aircraft_name = $data->data->aircraftName ?? null;
 
             // $data = $order;
             // return view('emails.risk',compact('data'));
@@ -263,15 +320,14 @@ class QuoteController extends Controller
 
             // $this->risk_notif($order);
 
-
             $transaction = new Transactions;
             $transaction->order_id = $order->id;
             $transaction->pn_number = 'PN-'.date('Ymd').'-'.$order->id;
             $transaction->policy_number = 'POL-'.date('Ymd').'-'.$order->id;
             $transaction->payment_total = $data->premium_amount * $data->data->rate_currency ?? null; //???
             $transaction->payment_method = !empty($request["payment_method"]) ? $request["payment_method"] : null;
-            $transaction->start_policy_date = date('Y-m-d');
-            $transaction->end_policy_date = date('Y-m-d', strtotime('+1 year'));
+            $transaction->start_policy_date = $order->estimated_time_of_departure;   //udah di fix
+            $transaction->end_policy_date = $order->estimated_time_of_arrival;  //udah di fix juga , untuk start end nya .
             $transaction->risk_status = $data->is_risk === "1" ? 'follow_up' : null;
             $transaction->payment_status = 'unpaid';
             // return $transaction;
@@ -279,19 +335,25 @@ class QuoteController extends Controller
 
             if (Auth::user()->account_type == 'verify' && $data->is_risk !== "1") {
                 $trans_update = Transactions::find($transaction->id);
-                $trans_update->doc_policy = $this->psummary($transaction);
+                $addtional_cost_converted = $trans_update->order->product->additional_cost[0]['value'] / $trans_update->order->rate_currency;
+                $trans_update->doc_policy = $this->psummary($transaction, $addtional_cost_converted);
                 $trans_update->doc_premium = $this->pnote($transaction);
                 $trans_update->save();
+
+                MomenticConnection::dispatch($trans_update->order->id);
+                Log::alert("SEND MOMENTIC CONNECTION_FROM_VERIFY_ACCOUNT_ORDER_ID ".$trans_update->order->id);
             }
 
             DB::commit();
 
-
+            $xendit_rate= 4500;
+            $tax= 0.11;
+            $biayaAdmin = $xendit_rate+($xendit_rate*$tax);
 
             if (Auth::user()->account_type == 'retail' && $data->is_risk !== "1") {
                 $trx_id = $transaction->id;
                 $pay_method = $request["payment_method"];
-                $pay_total = $data->premium_amount * $data->data->rate_currency;
+                $pay_total = ($data->premium_amount * $data->data->rate_currency) + $biayaAdmin;
                 $to_xendit =  $this->payment_store($trx_id,$pay_method,$pay_total);
 
                 return response()->json([
@@ -396,9 +458,9 @@ class QuoteController extends Controller
      * @return type
      * @throws conditon
      **/
-    public function psummary($data)
+    public function psummary($data, $addtional_cost_converted)
     {
-        $pdf = Pdf::loadView('pdf.policy_summary',compact('data'));
+        $pdf = Pdf::loadView('pdf.policy_summary',compact('data', 'addtional_cost_converted'));
         $pdfFileName = 'policy_summary_' . date('Ymd_His') . '.pdf';
         $pdfFilePath = 'doc_trx/' . $pdfFileName;
         Storage::disk('public')->put($pdfFilePath, $pdf->output());

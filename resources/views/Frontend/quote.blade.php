@@ -175,7 +175,7 @@
                                     value="{{ Auth::user()->email }}" required>
                             </div>
                             <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Insurance Address</label>
+                                <label style="color: rgb(126, 124, 124)">Address</label>
                                 <input type="text" name="insuranceAddress" class="form-control" id="insuranceAddress"
                                     required>
                                 {{-- <textarea name="insuranceAddress" class="form-control" id="insuranceAddress" cols="2" rows="1"></textarea> --}}
@@ -252,12 +252,34 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Point of Origin</label>
+                                <label style="color: rgb(126, 124, 124)">Country Origin</label>
+                                <select name="country_origin" id="goodsType" class="form-select"
+                                style="background-color: #ffffff" required>
+                                {{-- <option selected disabled>- Select -</option> --}}
+                                    @foreach ($countries as $item)
+                                        <option value="{{ $item->country_name }}" {{ $item->country_name == "Indonesia" ? "selected":""}}>{{ $item->country_name }}</option>
+                                    @endforeach
+                            </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Contry Destination</label>
+                                <select name="country_destination" id="goodsType" class="form-select"
+                                style="background-color: #ffffff" required>
+                                {{-- <option selected disabled>- Select -</option> --}}
+                                @foreach ($countries as $item)
+                                    <option value="{{ $item->country_name }}" {{ $item->country_name== "Indonesia" ? "selected":"" }}>{{ $item->country_name }}</option>
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label style="color: rgb(126, 124, 124)">Origin Address</label>
                                 <input type="text" class="form-control" name="pointOforigin" id="pointOforigin"
                                     required>
                             </div>
                             <div class="col-sm-6">
-                                <label style="color: rgb(126, 124, 124)">Point of Destination</label>
+                                <label style="color: rgb(126, 124, 124)">Destination Address</label>
                                 <input type="text" class="form-control" name="pointOfDestination" id="pointOfDesti"
                                     required>
                             </div>
@@ -399,6 +421,12 @@
                             </div>
                         </div>
                         <div id="air" style="display: none">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label style="color: rgb(126, 124, 124)">Aircraft Name</label>
+                                    <input type="text" class="form-control" name="aircraftName" id="aircraftName">
+                                </div>
+                            </div>
                             <div class="row mt-5">
                                 <div class="col-sm-6">
                                     <div class="mb-3 form-check">
