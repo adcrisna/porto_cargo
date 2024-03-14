@@ -423,7 +423,7 @@
                         </div>
                     @endif
 
-                    @if (!empty($product->rate->{'icc_' . strtolower($data['icc_selected'])}))
+                    <!-- @if (!empty($product->rate->{'icc_' . strtolower($data['icc_selected'])}))
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="text-dark" style="font-size:12px"><b>Rate</b></p>
@@ -434,7 +434,7 @@
                                     {{ $product->rate->{'icc_' . strtolower($data['icc_selected'])}['premium_value'] }}</p>
                             </div>
                         </div>
-                    @endif
+                    @endif -->
 {{-- 
                     @if (!empty($data['premium_amount']))
                         <div class="row">
@@ -619,7 +619,7 @@
                 $('#load_save').show();
                 $.ajax({
                     url: '{{ route('quote.saved') }}',
-                    type: 'POST',
+                    type: 'GET',
                     data: formData,
                     success: function(response) {
                         setTimeout(function() {

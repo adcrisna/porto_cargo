@@ -736,7 +736,7 @@
 
                     $.ajax({
                         url: '{{ route('quote.saved') }}',
-                        type: 'POST',
+                        type: 'GET',
                         data: formData,
                         success: function(response) {
                             $('#load_save').hide();

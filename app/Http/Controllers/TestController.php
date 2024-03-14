@@ -12,6 +12,7 @@ use App\Models\Repository;
 use App\Models\IccRate;
 use App\Models\Transactions;
 use App\Models\Claims;
+use App\Models\Countries;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifMailCargoRisk;
 use Log;
@@ -310,9 +311,13 @@ class TestController extends Controller
     public function testt()
     {
         $transaksi = Transactions::where('id', 42)->lazyById(200, $column = 'id')->first();
-        return $addtional_cost_converted = $transaksi->order->product->additional_cost[0]['value'] / $transaksi->order->rate_currency;
+        // return $addtional_cost_converted = $transaksi->order->product->additional_cost[0]['value'] / $transaksi->order->rate_currency;
         // return $transaksi->order->product->additional_cost[0]['value'] / $transaksi->order->rate_currancy;
-        
+        $iccrate = IccRate::find(1);
+        // return json_encode($iccrate->icc_a);
+        $arr = ['aa' => 'a', 'bb' => 'b', 'cc' => 'c'];
+        dd(json_decode(json_encode($iccrate->icc_a), true));
+        // var_dump(json_decode(json_encode($arr),true)['aa']);
     }
 
 }
