@@ -485,10 +485,10 @@
             <div class="ms-3">Please wait, processing your transaction...</div>
         </div>
     </div>
-    <form action="{{ route('quote.saved') }}" id="post_data" method="post">
-        @csrf
+    {{-- <form action="{{ route('quote.saved') }}" id="post_data" method="post">
+        @csrf --}}
         <input type="hidden" name="data" value="{{ json_encode($data) }}" id="final_data">
-    </form>
+    {{-- </form> --}}
 
     <div id="payment">
         @if ($data['account_type'] == 'retail' && $data['is_risk'] !== '1')
@@ -619,7 +619,7 @@
                 $('#load_save').show();
                 $.ajax({
                     url: '{{ route('quote.saved') }}',
-                    type: 'GET',
+                    type: 'POST',
                     data: formData,
                     success: function(response) {
                         setTimeout(function() {

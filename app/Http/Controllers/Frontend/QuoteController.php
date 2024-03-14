@@ -335,7 +335,7 @@ class QuoteController extends Controller
 
             if (Auth::user()->account_type == 'verify' && $data->is_risk !== "1") {
                 $trans_update = Transactions::find($transaction->id);
-                $addtional_cost_converted = $trans_update->order->product->additional_cost[0]['value'] / $trans_update->order->rate_currency;
+                $addtional_cost_converted = !empty($trans_update->order->product->additional_cost[0]['value']) ? $trans_update->order->product->additional_cost[0]['value'] : 0  / $trans_update->order->rate_currency;
                 $trans_update->doc_policy = $this->psummary($transaction, $addtional_cost_converted);
                 $trans_update->doc_premium = $this->pnote($transaction);
                 $trans_update->save();
